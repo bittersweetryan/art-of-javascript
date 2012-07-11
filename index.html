@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JavaScript Fundamentals for ColdFusion Developers</title>
+    
+    <meta name="description" content="A presentation on JavaScript fundamentals for ColdFusion developers.">
+    <meta name="author" content="Ryan Anklam">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+    
+
+    <!-- Core and extension CSS files -->
+    <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="core/deck.core.css">
+    <link rel="stylesheet" href="extensions/goto/deck.goto.css">
+    <link rel="stylesheet" href="extensions/menu/deck.menu.css">
+    <link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" href="extensions/status/deck.status.css">
+    <link rel="stylesheet" href="extensions/hash/deck.hash.css">
+    
+    <!-- Theme CSS files (menu swaps these out) -->
+    <link rel="stylesheet" id="style-theme-link" href="themes/style/web-2.0.css">
+    <link rel="stylesheet" id="transition-theme-link" href="themes/transition/horizontal-slide.css">
+    
+    <!-- Custom CSS just for this page -->
+    <link rel="stylesheet" href="introduction.css">
+    <script src="jquery-1.7.min.js"></script>
+    <script src="modernizr.custom.js"></script>
+    <script type="text/javascript" src="google-code-prettify/prettify.js"></script>
+</head>
+
+<body class="deck-container" onload="prettyPrint()">
+
+<!-- 
+Title
+ -->
+
+<div class="slide" id="title-slide">
+    <ul>
+        <li>Water</li>
+        <li>Turn off all chrome extentions</li>
+        <li>ColdFusion Started</li>
+        <li>Close Tabs</li>
+        <li>Close IM's</li>
+    </ul>
+</div>
+
+<div class="slide" id="introslide">
+    <h1>JavaScript Fundamentals for ColdFusion Developers</h1>
+</div>
+
+<div class="slide" id="about-me">
+    <h2>Obligitory About me</h2>
+    <p>ryan.anklam@gmail.com<br>
+       @bittersweeryan<br>
+       <a href="http://blog.bittersweetryan.com" target="_blank">blog.bittersweetryan.com</a>
+    </p>
+    <ul>
+        <li>Technical Solutions Architect at IDL Solutions <a href="http://www.idl.com" target="_blank">http://www.idl.com</a>.
+            <ul>
+                <li>Focus on Federal &amp; Local Government Projects</li>
+                <li>ColdFusion Shop Since Version 3.0 - Developed The First Wisconsin Lottery site in ColdFusion.</li>
+                <li>Lately focused on front end engineering for single page, enterprise apps.</li>
+            </ul>
+        </li>
+        <li>ColdFusion developer since 1996</li>
+        <li>Open Source
+            <ul>
+                <li>
+                    <strong>Author</strong>: ColdFusion Koans, CFEvernote
+                </li>
+                <li>
+                    <strong>Contributor</strong>: JavaScript Koans, MXUnit
+                </li>
+            </ul>
+        </li>
+        <li>Known To Make Obscure Simpsons Refernces.</li>
+    </ul>
+</div>
+
+<!-- 
+About me
+ -->
+
+<div class="slide" id="introduction">
+    <h2>Introduction</h2>
+    <p>
+        JavaScript and ColdFusion have more in common than you may think.  In this session I'll walk you through many of the fundamentals of JavaScript and how many concepts relate to the language you love and already know, ColdFusion.  
+    </p>
+        <h4>ColdFusion</h4>
+        <pre><code class="prettyprint">var obj = {
+    key = &quot;value&quot;,
+    foo = &quot;bar&quot;
+}</code></pre>
+        <h4>JavaScript</h4>
+        <pre><code class="prettyprint">var obj = {
+    key : &quot;value&quot;,
+    foo : &quot;bar&quot;
+}</code></pre>
+</div>
+
+<!-- 
+Cover
+ -->
+
+<div class="slide" id="what-well-cover">
+    <h2>What we'll cover</h2>
+    <ul>
+        <li class="slide" id="basics">
+            <h3>Basics  (variables, loops, arrays, etc)</h3>
+        </li>
+        <li class="slide" id="coverObj">
+            <h3>Objects</h3>
+        </li>
+        <li class="slide" id="coverFn">
+            <h3>Functions</h3>
+        </li>
+        <li class="slide" id="coverInheritance">
+            <h3>Inheritance</h3>
+        </li>
+        <li class="slide" id="coverThis">
+            <h3>This</h3>
+        </li>
+        <li class="slide" id="coverPatterns">
+            <h3>Design Patterns</h3>
+        </li>
+    </ul>
+</div>
+
+<div class="slide" id="basicsTitle">
+    <h1>Let's Start With Some Basics</h1>
+</div>
+
+<!-- 
+Variables
+ -->
+
+<div class="slide" id="variablesTitle">
+    <h1>Variables</h1>
+</div>
+
+<div class="slide" id="variables">
+    <h2>Variables</h2>
+    <p>Variables in ColdFusion and JavaScript both share the same problem: poor default scoping.</p>
+    <h3>ColdFusion</h3>
+    <pre><code class="prettyprint">&lt;cffunction name=&quot;doSomething&quot; returnType=&quot;void&quot;&gt;
+    &lt;cfset myVar = &quot;foo&quot;&gt; &lt;!--bad--&gt;
+    &lt;cfset var myOtherVar = &quot;bar&quot;&gt; &lt;!--good--&gt;        
+&lt;/cffunction&gt;</code></pre>
+<h3>JavaScript</h3>
+    <pre><code class="prettyprint">function doSomething(){
+    myVar = &quot;foo&quot;; //global scope = bad
+    var myOtherVar = &quot;bar&quot;; //good        
+}</code></pre>
+</div>
+
+<div class="slide" id="variables2">
+    <h2>Scoping Example</h2>
+    <pre><code class="prettyprint">function doSomething(){
+    myVar = &quot;foo&quot;; //this goes into the global scope which == bad
+    var myOtherVar = &quot;bar&quot;; //this goes into the function scope which == good     
+};
+
+console.log(myVar); //foo 
+console.log(myOtherVar); //error
+</code></pre>
+<input type="button" value="Run" id="runVariables">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    
+    var variableButton = document.getElementById("runVariables");
+        
+    variableButton.addEventListener("click",function(){
+    
+        myVar = "foo"; //this goes into the global scope which == bad
+        var myOtherVar = "bar"; //this goes into the function scope which == good       
+        
+        outputToConsole();
+    });
+    
+    function outputToConsole(){
+        console.log(myVar);
+        console.log(myOtherVar);    
+    }
+</script>
+
+<!-- 
+Numbers
+ -->
+
+<div class="slide" id="variables3">
+    <h2>Numbers</h2>
+    <ul>
+        <li class="slide" id="var1">
+            <p>All numbers in JavaScript are 64 bit floating point numbers.</p>
+            <p>
+                <pre><code class="prettyprint">0.06 + 0.01 = <a href="#" id="numberButton">??</a></code></pre>
+            </p>
+            <p><a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
+        </li>
+        <li class="slide" id="var2">
+            <p>ColdFusion does the same thing, but it implicity rounds the result!</p>
+            <p><pre><code class="prettyprint">result = 0.06 + 0.01;
+
+String = createObject(&quot;java&quot;,&quot;java.lang.String&quot;);
+        
+writedump(<a href="http://localhost:8500/test.cfm?section=numbers" target="_blank">result</a>);
+writedump(String.valueOf(result));</code></pre></p>
+        </li>
+    </ul>
+</div>
+
+<div class="slide" id="variables31">
+    <h2>Numbers</h2>
+    <p>ColdFusion has the <code class="prettyprint">precisionEvaluate()</code> function to solve this issue</p>
+    <p>JavaScript has a BigNum library at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var numberButton = document.getElementById("numberButton");
+    
+    numberButton.addEventListener("click",function(e){
+        var result = 0.06 + 0.01;
+        console.log("0.06 + 0.01 = " + result); 
+        e.preventDefault();
+    });
+</script>
+
+<div class="slide" id="numbers2">
+    <h2>Numbers</h2>
+    <p>In JavaScript there is also a special value, <code class="prettyprint">NaN</code>, which stands for "not a number".  You'll get NaN in situations like trying to do math on a var that is <code class="prettyprint">undefined</code> or trying to perform multiplication or division on a string.</p>
+    <ul>
+        <li class="slide" id="nan1"><code class="prettyprint">NaN is False</code></li>
+        <li class="slide" id="nan2"><code class="prettyprint">NaN !== NaN</code></li>
+        <li class="slide" id="na3">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
+    </ul>
+</div>
+
+
+<!-- 
+Arrays
+ -->
+
+<div class="slide" id="arraysTitle">
+    <h1>Arrays</h1>
+</div>
+
+<div class="slide" id="arrays">
+    <h2>Arrays</h2>
+        <P>Arrays can be created two ways:</P>
+        <pre><code class="prettyprint">var myArray = new Array() //ArrayNew(1) in ColdFusion</code></pre>
+        <p>AND</p>
+        <pre><code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code></pre>
+        <p>In order to create multi-dimensional arrays in JavaScript you nest arrays:
+        <pre><code class="prettyprint">myArray[0] = ["nested one", "nested two"];<br>myArray[0][1]; //nested two</code></pre>
+    </ul>
+</div>
+
+<div class="slide" id="arrays3">
+<h2>Arrays</h2>
+<p>Arrays in JavaScript are passed <strong>by reference</strong>. Arrays in ColdFusion are passed by <strong>value</strong>.</p>
+    <h3>ColdFusion</h3>
+    <pre><code class="prettyprint">&lt;cffunction name=&quot;createArray&quot;&gt;
+    &lt;cfset var myArray = [&quot;Foo&quot;,&quot;Bar&quot;,&quot;Bazz&quot;]&gt;
+
+    &lt;cfdump var=&quot;#myArray#&quot;&gt;
+    &lt;cfset <a href="http://localhost:8500/test.cfm?section=arrays" target="_blank">changeArray(myArray)</a>&gt;
+    &lt;cfdump var=&quot;#myArray#&quot;&gt;
+&lt;/cffunction&gt;
+
+&lt;cffunction name=&quot;changeArray&quot;&gt;
+    &lt;cfargument name=&quot;theArray&quot; type=&quot;array&quot; /&gt;
+    &lt;cfset arguments.theArray[2] = &quot;Win!&quot; /&gt;
+    &lt;cfdump var=&quot;#theArray#&quot;&gt;
+&lt;/cffunction&gt;</code></pre>
+</div>
+
+<div class="slide" id="arrays4">
+<h2>Arrays By Reference</h2>
+    <h3>JavaScript</h3>
+    <pre><code class="prettyprint">function createArray(){
+    var myArray = [&quot;Foo&quot;,&quot;Bar&quot;,&quot;Bazz&quot;];
+    console.log(myArray);
+    changeArray(myArray);
+    console.log(myArray);       
+}
+
+function changeArray(theArray){
+    theArray[0] = &quot;Win!&quot;;
+    console.log(theArray);
+}</code></pre>
+<input type="button" id="arrayBtn2" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var aryBtn2 = document.getElementById("arrayBtn2");
+
+    aryBtn2.addEventListener("click",function(){
+        createArray();
+    });
+    
+    function createArray(){
+    var myArray = ["Foo","Bar","Bazz"];
+    console.log(myArray);   
+    changeArray(myArray);
+    console.log(myArray);       
+}
+
+function changeArray(theArray){
+    theArray[0] = "Win!";
+    console.log(theArray);
+}
+</script>
+
+<div class="slide" id="arrays2">
+    <h2>Arrays</h2>
+    <p>Arrays are objects so they have methods, here are a few you'll commonly see used in projects: </p>
+        <div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //arrayLen() function in CFML
+
+myArray.push("item 4") //arrayAppend in CFML, myArray is changed
+
+myArray.concat(anotherArray) //adds two arrays together, returns a new array. myArray unchanged!
+
+myArray.join(",") //combines elements into string, separated by argument
+</code></pre></div>
+</div>
+
+<div class="slide" id="arrays13">
+    <h2>Arrays</h2>
+    <p>More methods:</p>
+        <div id="arm2"><pre><code class="prettyprint">
+myArray.sort() //arraySort in CFML
+
+myArray.splice(1,2) //deletes 2 items from the array starting at position 1
+
+myArray.slice(1,2) //returns 2 items from the array starting at position 1
+
+myArray.pop() //removes the last element of the array and returns it
+
+myArray.shift() //removes the first element of the array and returns it</code></pre></div>
+</div>
+
+
+<!-- 
+Operators
+ -->
+
+<div class="slide" id="statementsTitle">
+    <h1>Operators</h1>
+</div>
+
+<div class="slide" id="operators">
+    <h2>Operators</h2>
+    <p>Most of the operators in JavaScript are very similar to what we have available in ColdFusion, but there are some
+        subtle differences to be aware of.</p>
+</div>
+
+<div class="slide" id="comparisons">
+    <h2>Comparisons</h2>
+    <p>In JavaScript there are TWO sets of comparison operators;</p>
+    <ul>
+        <li class="slide" id="comp1">Type coercion operators: == and !=</li>
+        <li class="slide" id="comp2">Non-type coercion operators: === and !==</li>
+    </ul>
+    <p class="slide" id="comp3">As a ColdFusion developer you are probabaly used to the first type of operators, also known as <strong>eq</strong> and <strong>neq</strong>.</p>
+    <pre class="slide"><code class="prettyprint"><a href="http://localhost:8500/test.cfm?section=comparison" target="_blank">&lt;cfdump var=&quot;#1 eq &#39;1&#39;#&quot;/&gt;</a></code></pre>
+</div>
+
+<div class="slide" id="comparisons2">
+    <h2>Comparisons</h2>
+    <p>What does this mean to you as a JavaScript programmer?
+    <pre><code class="prettyprint">1 == "1" //true</code></pre>
+    but
+    <pre><code class="prettyprint">1 === "1" //false</code></pre>
+    </p>
+    <p>So, which one do you use?</p>
+    <p class="slide">
+    Always use === when comparing <code class="prettyprint">0</code>, <code class="prettyprint">undefined</code>, and empty strings.
+    </p>
+
+</div>
+
+<div class="slide" id="comparisons3">
+    <h2>Comparisons</h2>
+    <h3>If I'm using === and I know "<code class="prettyprint">1</code>" is a numeric value how do I get "<code class="prettyprint">1</code>" to equal <code class="prettyprint">1</code>?</h3>
+    <p>There are a few ways, some of the most common are:</p>
+    <ol>
+        <li class="slide" id="comp7">
+            Use the Number object: <code class="prettyprint">var num = Number("1").</code>
+        </li>
+        <li class="slide" id="comp8">
+            Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10)</code>.<br>The second param is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.
+        </li>
+        <li class="slide" id="comp9">
+            If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <code class="prettyprint">var num = +&quot;3&quot;</code>.
+        </li>       
+    </ol>
+</div>
+
+<div class="slide" id="comparisons4">
+    <h2>Truthy / Falsy Values</h2>
+        <table class="datatable">
+            <caption>Falsy Values</caption>
+            <thead>
+            <tr>
+                <th>ColdFusion</th>
+                <th>JavaScript</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>false</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>"false"</td>
+                <td>""</td>
+            </tr>
+            <tr>
+                <td>"no"</td>
+                <td>undefined</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>NaN</td>
+            </tr>
+        </table>
+        
+        <table class="datatable">
+            <caption>Truthy Values</caption>
+            <thead>
+            <tr>
+                <th>ColdFusion</th>
+                <th>JavaScript</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>true</td>
+                <td>Anything that is NOT falsy</td>
+            </tr>
+            <tr>
+                <td>numbers != 0</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>"true"</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>"yes"</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+</div>
+
+<div class="slide" id="andor">
+    <h2>Logical Operators</h2>
+    <p>Logical operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
+    <h3>CFML</h3>
+    <pre><code class="prettyprint">&lt;!-- short circuits and returns true if the first expression is true, if it's false returns the value of the second expression.--&gt;
+&lt;cfif true OR len(&quot;hello&quot;)&gt; 
+    &lt;cfset myVar = &quot;<a href="http://localhost:8500/test.cfm?section=andor" target="_blank">Hello World</a>" /&gt;
+&lt;/cfif&gt;
+</code>
+</pre>
+</div>
+<div class="slide" id="andor2">
+    <h2>Logical Operators</h2>
+    <h3>JavaScript OR Operator <code class="prettyprint">||</code></h3>
+    <pre><code class="prettyprint">//returns the value of the first expression if it's true, otherwise returns the value of the second expression
+
+console.log(false || &quot;hello&quot;); 
+
+console.log(&quot;world&quot; || &quot;foo&quot;);
+</code>
+</pre>
+<input type="button" id="andorbtn" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var andorLink = document.getElementById("andorbtn");
+    
+    andorLink.addEventListener("click",function(){
+        console.log(false || "hello");
+        console.log("world" || "foo");
+    });
+</script>
+
+<div class="slide" id="andor3">
+    <h2>Logical Operators</h2>
+    <p>The || operator can be used to set default values like so:</p>
+    <pre><code class="prettyprint">var myFunc = function(arg){
+
+    var myVal = document.getElementById(arg) || 
+        document.createElement(&quot;div&quot;); //if no arg was passed in myVal is &quot;defaultValue&quot;
+
+    console.log(myVal);
+}
+
+myFunc();
+myFunc("andor2");
+</code>
+</pre>
+<input type="button" value="Run" id="andor2btn">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var andorLink = document.getElementById("andor2btn");
+    
+    var myOperatorFunc = function(arg){
+        var myElem = document.getElementById(arg) || document.createElement("div") //if no arg was passed in myVal is "defaultValue"
+        console.log(myElem);
+    }
+
+    andorLink.addEventListener("click",function(){
+        myOperatorFunc();
+        myOperatorFunc("andor3");
+    });
+</script>
+
+<div class="slide" id="andor3div">
+    <h2>Logical</h2>
+   <h3>JavaScript AND Operator <code class="prettyprint">&&</code></h3>
+    <pre><code class="prettyprint">//returns the value of the first operator if it is false, otherwise it returns the value of the second:
+
+console.log(false &amp;&amp; &quot;Foo&quot;);
+console.log(true &amp;&amp; &quot;Bar&quot;);
+</code>
+</pre>
+<input type="button" id="andor4" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var andorLink2 = document.getElementById("andor4");
+
+    andorLink2.addEventListener("click",function(){
+        console.log(false && "Foo");
+        console.log(true && "Bar");
+    });
+</script>
+
+<div class="slide" id="loopsTitle">
+    <h1>Loops</h1>
+</div>
+
+<div class="slide" id="loops">
+    <h2>Loops</h2>
+    <h4>JavaScript has for loops, while loops, and for-in loops</h4>
+    <p>If you've ONLY written CFML you'll be surprised to know that counters in JavaScript typically start with 0.</p>
+    <h4>ColdFusion</h4>
+<pre><code class="prettyprint">for(var i = 1; i lte 100; i = i + 1){
+    //note i starts with 1 and the continue statement is less than or equal
+}</code></pre>
+    <h4>JavaScript</h4>
+<pre><code class="prettyprint">for(var i = 0; i &lt; 100; i = i++){
+    //note i starts with 0 and the continue statement is less than
+}</code></pre>
+</div>
+
+<div class="slide" id="foriinloops">
+    <h2>Loops</h2>
+    <h3>for-in loops</h3>
+    <p>In JavaScript you can loop through the properties of an object like you can loop through the keys of a Struct</p>
+    <h3>ColdFusion</h3>
+<pre><code class="prettyprint">var myStruct = {foo = "Foo", bar = "Bar", baz = "Baz"};
+
+for(var myKey in myStruct){
+    <a href="http://localhost:8500/test.cfm?section=forin" target="_blank">myVar</a> = myStruct[key];
+}</code></pre>
+</div>
+
+<div class="slide" id="foriinloops2">
+    <h2>Loops</h2>
+    <h3>for-in loops continued...</h3>
+    <p><strong style="color:red">Warning! </strong>
+    When looping through an object using for-in you will get all of the objects properties AND all of the properites of its prototype chain.</p>
+    <h3>JavaScript</h3>
+<pre><code class="prettyprint">var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
+
+for(var myKey in myObj){
+    myVar = myObj[myKey];  
+}</code></pre>
+<input type="button" value="Run" id="runforin">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var forInLink = document.getElementById("runforin");
+
+    forInLink.addEventListener("click",function(){
+        var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
+        
+        for(var myKey in myObj){
+            console.log(myKey + " = " + myObj[myKey]);
+        }
+    });
+</script>
+
+<div class="slide" id="foriinloops1">
+    <h2>Loops</h2>
+    <p>A few last things about loops</p>
+    <ul>
+        <li class="slide" id="fi1">If you are looping through an array it's a good idea to cache the size of the array in a variable.</li>
+        <li class="slide" id="fi2">Make sure to "var" your iteration variable.</li>
+    </ul>
+<div class="slide" id="loopscode1"><pre><code class="prettyprint">var len = myArray.length;
+//just like in ColdFusion, var your array index variable
+for(var i = 0; i &lt; len; i++){
+    ...  
+}</code></pre></div>
+</div>
+
+<!-- 
+Objects
+ -->
+
+<div class="slide" id="objectsTitle">
+    <h1>Objects</h1>
+</div>
+
+<div class="slide" id="objects">
+    <h2>Objects</h2>
+    <p>Objects in JavaScript can be thought of as being similar to a ColdFusion struct.</p>
+    <h3>ColdFusion</h3>
+    <pre><code class="prettyprint"><a href="http://localhost:8500/test.cfm?section=object" target="_blank">myStruct</a> = {foo = &quot;foo&quot;, bar = &quot;bar&quot;, anotherStruct = {baz=&quot;baz&quot;, pez = &quot;pez&quot;}};</code></pre>
+    <h3>JavaScript</h3>
+    <pre><code class="prettyprint">myObject = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, anotherObject : {baz : &quot;Baz&quot;, pez = &quot;Pez&quot;}}; //this is called an object literal.  It's equal to new Object();</code></pre>
+</div>
+
+<div class="slide" id="objects7">
+    <h2>Objects</h2>
+    <p>When accessing properties from other properties in an object, use the <code>this</code> keyword.</p>
+    <pre><code class="prettyprint">​var myObj = {
+    name: &quot;Homer&quot;,
+    sayHello: function(){
+        console.log(&quot;Hello, &quot; + name); 
+        console.log(&quot;Hello, &quot; + this.name);    
+    }    
+}</code></pre>
+<input type="button" id="objThisPropBtn" value="Run">
+</div>
+
+<script type="text/javascript">
+    var objThisPropBtn = document.getElementById("objThisPropBtn");
+
+    var myObjProp = {
+        name: "Homer",
+        sayHello: function(){
+            console.log("Hello, " + name);    
+            console.log("Hello, " + this.name);    
+        }    
+    }
+
+    objThisPropBtn.addEventListener('click',function(){
+        myObjProp.sayHello();
+    });
+</script>
+
+<div class="slide" id="objects1">
+    <h2>Objects</h2>
+    <p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
+    <pre><code class="prettyprint">myObject.foo = "Foo"; 
+myObject['foo']; //Foo
+
+myObject['foo bar'] = "foo bar"; //non standard property names
+
+myObject['foo ' + 'bar'] = "foo bar";
+</code></pre>
+</div>
+
+<div class="slide" id="objects2">
+    <h2>Objects</h2>
+    <p>Similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method and the <code>in</code> operator.</p>
+    <h3>ColdFusion</h3>
+    <pre><code class="prettyprint">structKeyExists(myStruct,"foo"); //true</code></pre>
+    <h3>JavaScript</h3>
+    <pre><code class="prettyprint">myObject.hasOwnProperty("foo"); //true (only searches current object)
+        
+'foo' in myObject //true (this searches all the way up the inheritance tree)</code></pre>
+</div>
+<!--
+<div class="slide" id="objects6">
+    <h2>Objects</h2>
+    <p>As shown in the for-in loop example you can use a for-in loop to loop through a objects properties.</p>
+    <p>However, theres one important thing to note, when you loop through an object you will be iterating through all of its properties AND all of the properties of its prototpye (more on prototypes later).</p>
+    <pre><code class="prettyprint">var anotherRealObject = new RealObject(); //remember we added a function, iRule to the RealObjects prototpye
+
+anotherRealObject.newFunction = function(){
+    return &quot;Im another real object.&quot;;
+}
+
+for(var myKey in anotherRealObject){
+    ...
+}
+</code></pre>
+<input type="button" id="objInBtn" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    //fixme, this script breaks
+    RealObject = function(){};
+
+    var anotherRealObject = new RealObject();
+        
+    anotherRealObject.newFunction = function(){
+        return "Im another real object.";
+    }
+    
+    var objInBtn = document.getElementById("objInBtn");
+    
+    objInBtn.addEventListener("click",function(){
+        for(var myKey in anotherRealObject){
+            console.log(myKey);
+        }   
+    });
+</script>
+
+<div class="slide" id="objects7">
+    <h2>Objects</h2>
+    <p>As we've seen before, using the hasOwnProperty method will filter out properties that don't directly belong to an object.</p>
+    <pre><code class="prettyprint">var anotherRealObject = new RealObject();
+    
+anotherRealObject.newFunction = function(){
+    return &quot;Im another real object.&quot;;
+}
+
+for(var myKey in anotherRealObject){
+    if(anotherRealObject.hasOwnProperty(myKey)){
+        console.log(myKey);
+    }
+}
+</code></pre>
+<input type="button" id="objInBtn2" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var objInBtn2 = document.getElementById("objInBtn2");
+    
+    objInBtn2.addEventListener("click",function(){
+        
+        for(var myKey in anotherRealObject){
+            if(anotherRealObject.hasOwnProperty(myKey)){
+                console.log(myKey); 
+            }
+            
+        }   
+    });
+</script>
+-->
+<!-- 
+Functions
+ -->
+
+<div class="slide" id="functionsTitle">
+    <h1>Functions</h1>
+</div>
+
+<div class="slide" id="functions">
+    <h2>Functions</h2>
+    <p>JavaScript functions are the beating heart of a JavaScript application and are one of the most powerful features of the language.</p>
+    <p>They have many similarities to functions in ColdFusion:</p>
+    <ul>
+        <li class="slide" id="fn1">Functions are first class citizens.</li>
+        <li class="slide" id="fn2">Arguments are type-less, it would be the same as having all arguments having <code class="prettyprint">type="any"</code>.</li>
+        <li class="slide" id="fn3">Arguments are passed in an array-like structure called arguments.</li>
+    </ul>
+    <p class="slide">There are some subtle differences</p>
+    <ul>
+        <li class="slide" id="fn8">All functions return something!  If there is no <code class="prettyprint">return</code> statement a function will return the keyword <code class="prettyprint">undefined</code>.</li>
+        <li class="slide" id="fn9">There is only function scope in JavaScript.</li>
+    </ul>
+</div>
+
+<!--
+<div class="slide" id="functions2">
+    <h2>Functions</h2>
+    <p>There are some important differences.</p>
+    <ul>
+        <li class="slide" id="fn4">There is ONLY function scope in JavaScript.</li>
+        <li class="slide" id="fn5">You can have unnamed, or anonymous functions in JavaScript.</li>
+        <li class="slide" id="fn6">There are two ways to create functions: statements and expressions.</li>
+        <li class="slide" id="fn7" style="text-decoration:line-through">Functions can be defined <i>inside</i> other functions.</li>
+    </ul>
+</div>
+-->
+<div class="slide" id="function3">
+    <h2>Creating Functions</h2>
+    <h3>Function Statement</h3>
+    <pre><code class="prettyprint">function myFunc(args) {
+    ...     
+};
+</code></pre>   
+    <h3>Function Expression</h3>
+    <p>Function expressions don't need to be named, these are called anonymous functions.</p>
+<pre><code class="prettyprint">var myFunc = function(args){
+    ...     
+};
+</code></pre>       
+</div>
+
+<div class="slide" id="hoisting">
+    <h2>Hoisting</h2>
+    <p>There is one fundamental difference between function expressions and statements: hoisting.  Hoisting is when the JavaScript compiler takes a function or variable and moves it to the top of the current scope.</p>
+</div>
+
+<div class="slide" id="hoisting2">
+    <h2>Function Declaration Before Hoisting</h2>
+    <pre><code class="prettyprint">function hoistingExample(){
+    var firstVar;
+
+    firstVar = "";
+
+    var secondVar = "";
+
+    firstVar + secondVar;
+
+    var firstFun = function(){
+        //do something
+    };
+
+    function secondFunction(){
+        // do another thing
+    }
+}</code></pre>
+</div>
+
+<div class="slide" id="hoisting3">
+    <h2>Function Declaration After Hoisting</h2>
+    <pre><code class="prettyprint">function hoistingExample(){
+    function secondFunction(){
+        // do another thing
+    }
+
+    var firstVar;
+    var secondVar;
+    var firstFun;
+
+    firstVar = "";
+
+    secondVar = "";
+
+    firstVar + secondVar;
+
+    firstFun = function(){
+        //do something
+    }
+}</code></pre>
+</div>
+
+<div class="slide" id="function20"> 
+    <h2>Lexical Scoping</h2>
+    <p>Functions can be nested, each nested function has access to the scope of all its parents.</p>
+    <pre><code class="prettyprint">var lexical = function(){
+    var outer = &quot;outer&quot;;
+    
+    return function(){
+
+        var inner = "inner"; //outer function does not have access
+        console.log(outer);
+    };
+}​;</code></pre>
+<input type="button" id="lexBtn" value="Run">
+</div>
+
+<script type="text/javascript">
+    var lexBtn = document.getElementById("lexBtn");
+
+    var lexical = function(){
+        var outerVar = "outer";
+        
+        return function(){
+            console.log(outerVar);
+        };
+    };
+
+    lexBtn.addEventListener('click',function(){
+        var lex = lexical();
+        lex();
+    });
+</script>
+
+<div class="slide" id="function4">  
+    <h2>Function Arguments</h2>
+    <p>Just like in ColdFusion you can have named arguments and arguments that are outside of the named arguments.</p>
+    <p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
+    <pre><code class="prettyprint">var myFunc() = function{
+    console.log(arguments);
+};
+
+myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});
+</code></pre>
+<input type="button" value="Run" id="fnArgsBtn">
+</div>
+    
+<script type="text/javascript" charset="utf-8">
+    var fnArgs = function(){
+        console.log(arguments);
+    };  
+    
+    var funcButton = document.getElementById("fnArgsBtn");  
+    
+    funcButton.addEventListener("click",function(){
+        fnArgs("Hello", "World", function(){}); 
+    });
+</script>
+
+<div class="slide" id="function5">
+    <h2>Function Arguments</h2>
+    <p>Since JavaScript is a type-less language its always a good idea to check the type of arguments.</p>
+    <p>To do this we are provided with the <code class="prettyprint">typeof</code> operator</p>
+    <div class="slide" id="fnArg1">
+        <pre><code class="prettyprint">console.log("Type of string: " + typeof "hello");
+console.log("Type of number :" + typeof 1234);
+console.log("Type of object literal: " + typeof {});
+console.log("Type of array: " + typeof []);
+console.log("Type of fn: " + typeof function(){});
+</code></pre>
+    <input type="button" name="" value="Run" id="typeOfBtn">
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var typeOfBtn = document.getElementById("typeOfBtn");
+    
+    typeOfBtn.addEventListener("click",function(){
+        console.log("Type of string: " + typeof "hello");
+        console.log("Type of number: " + typeof 1234);
+        console.log("Type of object literal: " + typeof {});
+        console.log("Type of array: " + typeof []);
+        console.log("Type of fn: " + typeof function(){});
+    });
+</script>
+
+<div class="slide" id="function6">
+    <h2>Function Arguments</h2>
+    <p>Hit the brakes!</p>
+    <div class="slide" id="checktype">
+        <pre><code class="prettyprint">
+console.log(typeof []); //object ?!? 
+</code></pre>
+    </div>
+    <p class="slide" id="fnArg2">We have to work a little harder to check for an array</p>
+    <div class="slide" id="fnArg3">
+        <pre><code class="prettyprint">//borrowed from Douglas Crockford's "JavaScript: The Good Parts"
+var is_array = function (value) {
+    return Object.prototype.toString.apply(value) === '[object Array]';
+};</code></pre>
+    </div>
+</div>
+
+<div class="slide" id="functionConstructor1">
+    <h2>Constructor Functions</h2>
+    <p>JavaScript has a special type of function called a <code class="prettyprint">Constructor</code> function.</p>
+    <ul>
+        <li class="slide" id="const1">By convention the first letter of a constructor should be a capital letter.</li>
+        <li class="slide" id="const2">Never use a constructor function without first using the <code class="prettyprint">new</code> keyword!</li>
+        <li class="slide" id="const3">Using the new keyword will create a new scope for the function.</li>
+        <li class="slide" id="const4">Using the new keyword will also create the inheritance tree. Without new a function will only inherit from the Function Constructor.</li>
+    </ul>
+</div>
+
+<div class="slide" id="functionConstructor2">
+    <h2>Constructor Functions</h2>
+    <pre><code class="prettyprint">var Robot = function(robotName){
+    this.robotName = robotName;
+};
+//add a new property to the prototype
+Robot.prototype.walk = function(){
+    console.log(&quot;Go &quot; + this.robotName + &quot; go!&quot;);
+};
+
+var robot = new Robot(&quot;Ferbbot&quot;);
+
+robot.walk();
+
+var anotherRobot = Robot(&quot;phineasbot&quot;); //we just created a global!! 
+
+console.log(window.robotName); //note that robotName is now a property of window
+
+Robot.walk(); //doesn&#39;t exist</code></pre>
+<input type="button" id="constBtn" value="Run">
+</div>
+
+<script type="text/javascript">
+    var constBtn = document.getElementById("constBtn");
+
+    var Robot = function(robotName){
+        this.robotName = robotName;
+    };
+
+    Robot.prototype.walk = function(){
+        console.log("Go " + this.robotName + " go!");
+    };
+
+    var robot = new Robot("Ferbbot");
+    var anotherRobot = Robot("Phineasbot"); 
+
+    constBtn.addEventListener('click',function(){
+        robot.walk();
+        console.log(window.robotName); 
+        Robot.walk();
+    })
+</script>
+
+<div class="slide" id="function7">
+    <h2>Closures</h2>
+    <ul>
+        <li class="slide" id="cl1">Closures are functions that are enclosed, and returned within the context of another function.</li>
+        <li class="slide" id="cl2">The execution context of the outer function is saved wrapped around the inner function.</li>
+        <li class="slide" id="cl3">This effectively saves the "state" of the outer functions variables.</li>
+    </ul>
+</div>
+
+<div class="slide" id="function8">
+    <h2>Contrived Closure Example</h2>
+        <pre><code class="prettyprint">var timesCalled = function(){
+    var total = 0;
+    
+    return function(){
+        total++;
+        console.log(total);
+    }
+    
+};
+
+var callTimer = timesCalled(); //this call right here creates the closure
+
+callTimer();</code></pre>
+    <input type="button" value="Run" id="closuresBtn">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var timesCalled = function(){
+        var total = 0;
+        
+        return function(){
+            total++;
+            console.log(total);
+        }
+        
+    };
+
+    var closuresBtn = document.getElementById("closuresBtn");
+    
+    var callTimer = timesCalled();
+    
+    closuresBtn.addEventListener("click",function(){    
+        callTimer();
+    })
+</script>
+
+<!-- 
+This
+ -->
+
+<div class="slide" id="thisTitle">
+    <h1>This</h1>
+</div>
+
+<div class="slide" id="this1">
+    <h2>This</h2>
+    <p>The <code class="prettyprint">this</code> keyword one of JavaScript's most mis-understood keywords.</p>
+    <pre><code class="prettyprint">&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+    var myObj = {
+        myFunc : function(){ 
+            console.log(this);
+        }
+    };
+            
+    var myFunc = function(){
+        console.log(this);
+    };
+    
+    myObj.myFunc();
+    myFunc();
+&lt;/script&gt;</code></pre>
+<input type="button" id="thisBtn1" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var myObj = {myFunc : function(){ console.log(this)}};
+    
+    var myFunc = function(){
+        console.log(this);
+    }
+    
+    var thisBtn = document.getElementById("thisBtn1");
+    
+    thisBtn.addEventListener("click",function(){
+        myObj.myFunc();
+        myFunc();
+    });
+</script>
+
+<div class="slide" id="this2">
+    <h2>This</h2>
+    <p>What happened in the function call?  Why did this point to window and not the function?</p>
+    <p class="slide">In order to explain we must understand what "this" means in JavaScript.  This refers to the <strong>current execution context.</strong></p>
+    <p class="slide">When we called the myFunc function from within the object, the object was the current execution context.</p>
+    <p class="slide">When we called myFunc() from the root of the script tag, the window object was the current execution context</p>
+    </div>
+</div>
+
+<div class="slide" id="this6">
+    <h2>call() and apply()</h2>
+    <p>The <code class="prettyprint">call(this,arg1,arg2,arg3,...)</code> and <code class="prettyprint">apply(this,[args])</code> functions allow you to pass the value of <code class="prettyprint">this</code> as the first parameter.</p>
+    <p>The difference is that the call function takes in any number of arguments whereas the apply function takes an array of arguments as its second argument.</p>
+    <pre><code class="prettyprint">function whoAmI(){
+    console.log(&quot;I am: &quot; + this);
+    console.log(arguments);
+}
+whoAmI.call(&quot;Ryan&quot;,&quot;Hello World&quot;,undefined,{},[]);
+whoAmI.apply(&quot;Scott&quot;,[&quot;Hello World&quot;,undefined,{},[]]);</code></pre>
+<input type="button" name="" value="Run" id="thisBtn2">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var thisBtn2 = document.getElementById("thisBtn2");
+    
+    function whoAmI(){
+        console.log("I am: " + this);
+        console.log(arguments)
+    }
+
+    thisBtn2.addEventListener("click",function(){
+        whoAmI.call("Ryan","Hello World",undefined,{},[]);
+        whoAmI.apply("Scott",["Hello World",undefined,{},[]]);
+    });
+</script>
+
+<div class="slide" id="this3">
+    <h2>This</h2>
+    <p>Back to our "this" example</p>
+    <pre><code class="prettyprint">&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+
+var myFunc = function(){
+    console.log(this);
+}
+
+myFunc()
+&lt;/script&gt;</code></pre>
+<p>When a function is called from the root of the script tag its the same as:</p>
+<pre><code class="prettyprint">myFunc.call(window,arguments);</code></pre>
+</div>
+
+<div class="slide" id="this4">
+    <h2>This</h2>
+    <p>Lets take a look at "this" when using a constructor function to create a new instance.</p>
+    <pre><code class="prettyprint">function Person(name){
+    this.name = name;
+    
+    console.log(this);
+    console.log(this.name);
+}
+
+var person = new Person(&quot;Bart&quot;);</code></pre>
+<input type="button" id="thisBtn4" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var thisBtn4 = document.getElementById("thisBtn4");
+    
+    thisBtn4.addEventListener("click",function(){
+        var person = new Person("Bart");
+    });
+
+    function Person(name){
+        this.name = name;
+        
+        console.log(this);
+        console.log(this.name);
+    }
+</script>
+
+<div class="slide" id="this5">
+<h2>This In Object Literals</h2>
+<p>In an object literal <code class="prettyprint">this</code> refers to the current object</p>
+<pre><code class="prettyprint">var myObj = {
+    name : &quot;Homer&quot;,
+
+    sayHello : function(){
+        console.log(&quot;Hello, &quot; + this.name);
+    }</code></pre>
+<input type="button" id="thisObjBtn" value="Run" />
+</div>
+
+<script type="text/javascript">
+var objThis = document.getElementById('thisObjBtn');
+var myObjThis = {
+    name : "Homer",
+
+    sayHello : function(){
+        console.log("Hello, " + this.name);
+    }
+}
+
+objThis.addEventListener('click',function(){
+    myObjThis.sayHello();
+});
+</script>
+
+<div class="slide" id="this9">
+<h2>This In Object Literals</h2>
+<p>Be careful when using <code class="prettyprint">this</code> in nested functions!</p>
+<pre><code class="prettyprint">var myObj = {
+    name : &quot;Homer&quot;,
+
+    sayHello : function(){
+        //look what happens when this is used inside a nested function
+        return function(){
+
+            console.log(&quot;Hello, &quot; + this.name);
+            console.log(this);
+        }
+    }</code></pre>
+<input type="button" id="thisObj2Btn" value="Run" />
+<p class="slide">In nested functions <code class="prettyprint">this</code> referes back to global namespace!</p>
+</div>
+
+<script type="text/javascript">
+var obj2This = document.getElementById('thisObj2Btn');
+var myObj2This = {
+    myName : "Homer",
+
+    sayHello : function(){
+        return function(){
+            console.log("Hello, " + this.myName);   
+            console.log(this);
+        }
+        
+    }
+}
+
+obj2This.addEventListener('click',function(){
+    var myobj = myObj2This.sayHello();
+    myobj();
+});
+</script>
+
+<div class="slide" id="this10">
+    <h2>This and jQuery</h2>
+    <p>jQuery likes to normalize <code class="prettyprint">this</code>, which can cause issues if you expect <code class="prettyprint">this</code> to refer to the current object.</p>
+    <pre><code class="prettyprint">var obj = {
+    init : function(){
+        $("#readmore").on('click',function(){
+            console.log(this);
+        });     
+    }
+}
+
+obj.init();​</code></pre>
+<input id="thisjQuerytBtn" type="button" value="Run">
+</div>
+
+<script type="text/javascript">
+$(function(){
+        var jqueryBtnObj = {
+
+        init : function(){
+            $("#thisjQuerytBtn").on('click',function(){
+                console.log(this);
+            });     
+        }
+    };
+
+    jqueryBtnObj.init();
+});
+
+</script>
+
+<div class="slide" id="this7">
+    <h2>This and jQuery</h2>
+    <p>Luckily there is an easy fix that a lot of library authors have chosen to use.</p>
+    <pre><code class="prettyprint">var obj = {
+    init : function(){
+        var self = this; //create a ref to the current "this" scope
+
+        $("#readmore").on('click',function(){
+            console.log(self);
+        });     
+    }
+}
+
+obj.init();​</code></pre>
+<input id="thisjQueryBtn2" type="button" value="Run" />
+</div>
+
+<script type="text/javascript">
+$(function(){
+        var jqueryBtnObj2 = {
+
+        init : function(){
+            var self = this;
+
+            $("#thisjQueryBtn2").on('click',function(){
+                console.log(self);
+            });     
+        }
+    };
+
+    jqueryBtnObj2.init();
+});
+</script>
+
+<div class="slide" id="this8">
+    <h2>This</h2>
+    <p>For a much more comprehensive look at "this" and "function invocation" read:
+    <p class="slide" id="yehuda">Yehuda Kat's blog post: <a href="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/" target="_blank">http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/</a></p>
+    <p class="slide" id="digiweb">Scope In JavaScript: <a href="http://www.digital-web.com/articles/scope_in_javascript/">http://www.digital-web.com/articles/scope_in_javascript/</a></p>
+</div>
+
+<!-- 
+Inheritence
+ -->
+<div class="slide" id="inheritance">
+    <h1>Inheritance</h1>
+</div>
+
+
+
+<div class="slide" id="inheritance1">
+    <h2>Inheritance</h2>
+    <p>JavaScript uses a prototypical inheritance model.</p>
+    <pre><code class="prettyprint">var Car = function(){ };
+
+//add properties to Car's Prototype
+Car.prototype = {
+    wheels : 4, doors : 4,  manufacturer : ""
+};
+
+var R8 = function(){ }; 
+
+//set the R8's prototype to a new instance of car
+R8.prototype = new Car();
+
+R8.prototype.constructor = R8; //reset the R8's constructor
+
+var r8 = new R8();</code></pre>
+<input type="button" id="protoBtn1" value="Run" />
+</div>
+
+<script type="text/javascript">
+    var protoBtn1 = document.getElementById('protoBtn1');
+
+    var Car = function(){  };
+    //add properties to Car's Prototype
+    Car.prototype = {
+        wheels : 4, doors : 4,  manufacturer : ""
+    };
+    //create a new function, this will inherit from car
+    var R8 = function(){ };
+
+    //set the R8's prototype to a new instance of car
+    R8.prototype = new Car();
+    //important!  reset the R8's constructor
+    R8.prototype.constructor = R8;
+    //lastly create a new instance of R8 to complete the chain    
+    var r8 = new R8();
+
+    protoBtn1.addEventListener('click',function(){
+        console.log(r8);
+    });
+</script>
+
+<div class="slide" id="inheritance2">
+    <h2>So what is a "Prototype"</h2>
+    <p>A prototype is just an object, constructor functions have a hidden link (exposed as __proto__ in some browsers) to an object that is it's prototype.</p>
+    <p>JavaScript stops looking up the chain when it reaches Object.prototype</p>
+</div>
+
+<div class="slide" id="inheritance3">
+    <h2>Prototype's Members</h2>
+    <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all instances.</p>
+    <pre><code class="prettyprint">function RealObject(name){ //note captial letter denotes that this is a constructor function
+    this.name = name;
+};
+
+var instanceOfRealObject = new RealObject(&quot;Ryan&quot;);
+var anotherOfRealObject = new RealObject(&quot;Scott&quot;);
+
+//we can add to a prototype at any time
+RealObject.prototype.iRule = function(){ 
+    return this.name + &quot; Rules.&quot;;
+};
+
+console.log(instanceOfRealObject.iRule());
+console.log(anotherOfRealObject.iRule());</code></pre>
+<input type="button" id="objbtn2" value="Run">
+</div>
+
+<script type="text/javascript">
+    var objbtn2 = document.getElementById('objbtn2');
+
+    function RealObject(name){ //note captial letter denotes that this is a consctructor function
+    this.name = name;
+    };
+
+    var instanceOfRealObject = new RealObject("Ryan");
+    var anotherOfRealObject = new RealObject("Scott");
+
+    //we can add to a prototype at any time
+    RealObject.prototype.iRule = function(){ 
+        return this.name + " Rules.";
+    };
+
+    objbtn2.addEventListener('click',function(){
+        console.log(instanceOfRealObject.iRule());
+        console.log(anotherOfRealObject.iRule());
+    });
+</script>
+
+<div class="slide" id="objects9">
+    <h2>Prototype on native Objects</h2>
+    <p>You can also change the prototypes of the native objects like Object or Array</p>
+    <p>Since there is no "deep copy" method available to arrays, lets add one.</p>
+    <p><strong>Just because you can, doesn't mean you should!</strong></p>
+    <pre><code class="prettyprint">Array.prototype.deepCopy = function(){
+    return this.slice(); //this refers to the array object.  
+}
+
+var myArray = [&quot;Apple&quot;,&quot;Peach&quot;,&quot;Pear&quot;];
+var copiedArray = myArray.deepCopy();
+
+copiedArray[0] = &quot;Banana&quot;;</code></pre>
+<input type="button" id="objBtn9" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    var objBtn9 = document.getElementById("objBtn9");
+    
+    Array.prototype.deepCopy = function(){
+        return this.slice(); //this refers to the array object.  
+    }
+
+    objBtn9.addEventListener("click",function(){
+        var myArray = ["Apple","Peach","Pear"];
+        var copiedArray = myArray.deepCopy();
+        
+        copiedArray[0] = "Banana";
+        
+        console.log(myArray);
+        console.log(copiedArray);
+    });
+</script>
+
+<!-- 
+Design Patterns
+ -->
+
+<div class="slide" id="designPatterns1">
+    <h2>Some Common JavaScript-Centric Design Patterns</h2>
+</div>
+
+<div class="slide" id="designPatterns2">
+    <h2>Module Pattern</h2>
+    <p>The module pattern can be used to "hide" variables and functions.</p>
+    <pre><code class="prettyprint">var publicFunctions = (function(){
+    var name = &quot;foobar&quot;;
+    
+    var private = function(){
+        console.log(&quot;i am private&quot;);                            
+    };
+    
+    var public = {
+        sayHello : function(){
+            console.log(&quot;Hello, &quot; + name);
+        }
+    };
+    
+    return public;
+}());
+
+publicFunctions.sayHello();
+console.log(publicFunctions.name);</code></pre>
+<input type="button" id="runModule" value="Run">
+</div>
+
+<script type="text/javascript">
+    var runModule = document.getElementById('runModule');
+
+    var publicFunctions = (function(){
+        var name = "foobar";
+        
+        var private = function(){
+            console.log("i am private");
+        };
+        
+        var public = {
+            sayHello : function(){
+                console.log("Hello, " + name);
+            }
+        };
+        
+        return public;
+    }());
+
+runModule.addEventListener('click',function(){
+    publicFunctions.sayHello();
+    console.log(publicFunctions.name);
+});
+
+</script>
+
+<div class="slide" id="designPatterns7">
+    <h2>Options</h2>
+    <p>The options pattern is very common in libraries and jQuery plugins</P>
+<pre><code class="prettyprint">$.fn.myPlugin = function(options){
+    var defaults = {color: "blue", height: "200px" };
+
+    //remember to check the type of the argument!
+    if(typeof options === 'object'){
+        options = $.extend(defaults,options);
+    } else {
+        options = defaults;
+    }
+
+    console.log(options);
+};
+    
+$(document).myPlugin({color:'black', height: '500px'});
+$(document).myPlugin();
+​</code></pre>
+<input type="button" id="optionsBtn" value="Run">
+</div>
+
+<script type="text/javascript">
+var optionsBtn = document.getElementById('optionsBtn');
+
+$.fn.myPlugin = function(options){
+    var defaults = {
+        color: "blue",
+        height: "200px"
+    };
+
+    if(typeof options === 'object'){
+        options = $.extend(defaults,options);
+    }
+    else{
+        options = defaults;
+    }
+    
+    console.log(options);
+};
+
+optionsBtn.addEventListener('click',function(){
+    $(document).myPlugin({color:'black', height: '500px'}); 
+    $(document).myPlugin();     
+});
+</script>
+
+<div class="slide" id="designPatterns9">
+    <h2>Pub-Sub (AKA Observer)</h2>
+    <p>The pub-sub pattern specifies that there are "publishers" that publish events, and "subscribers" that can subscribe to those events.</p>
+    
+</div>
+
+<div class="slide" id="designPatterns8">
+    <h2>Pub-Sub (AKA Observer)</h2>
+    <p>This pattern you probably already use every day.</p>
+    <pre><code class="prettyprint">​&lt;a href=&quot;#&quot; id=&quot;clickMe&quot;&gt;Observe Me&lt;/a&gt;</code></pre>
+<pre><code class="prettyprint">​//clickme's click event is the "publisher" 
+//the anonymous function parameters are the subscribers
+
+$(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
+    console.log(&quot;First Observable of click&quot;);
+});
+    
+$(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
+    console.log(&quot;Second Observable of click&quot;);
+});</code></pre>
+</div>
+
+<div class="slide" id="designPatterns10">
+    <h2>Prototype</h2>
+    <p>Don't confuse the prototype pattern with an object's Prototype function!</p>
+    <p>The prototype pattern is a pattern where an object is used for the prototype of another object.</p>
+    <pre><code class="prettyprint">var motorcycle = {
+    wheels : 2,
+    go : function(){  }
+};
+    
+var sportbike = {
+    engine: "1000cc"
+};
+    
+for(var attr in motorcycle){
+    sportbike[attr] = motorcycle[attr];
+}</code></pre>
+<input type="button" id="protoPattBtn" value="Run">
+</div>
+
+<script type="text/javascript">
+var motorcycle = {
+    wheels : 2,
+    go : function(){  }
+};
+    
+var sportbike = {
+    engine: "1000cc"
+};
+    
+for(var attr in motorcycle){
+    sportbike[attr] = motorcycle[attr];
+}
+
+
+var protoPattBtn = document.getElementById('protoPattBtn');
+
+protoPattBtn.addEventListener('click',function(){
+    console.log(sportbike);
+});
+
+</script>
+
+<div class="slide" id="designPatterns11">
+    <h2>Prototype</h2>
+    <p>This pattern is used very extensively in both jQuery and Backbone applications.</p>
+    <p>In fact when you create a jQuery plugin you are using this pattern, using <code class="prettyprint">jQuery.fn</code> as your prototype.</p>
+    <p>jQuery and underscore.js have a function that helps with this pattern.</p>
+    <pre><code class="prettyprint">var mammal = {
+    hair : "brown",
+    breath : function(){}
+};
+
+var cat = $.extend(mammal,{
+    eyes: 2,
+    ears: 2
+});</code></pre>
+<input type="button" id="protoPattBtn2" value="Run">
+</div>
+
+<script type="text/javascript">
+    
+var mammal = {
+        hair : "brown",
+        breath : function(){}
+};
+
+var cat = $.extend(mammal,{
+    eyes: 2,
+    ears: 2
+});
+
+var protoPattBtn2 = document.getElementById('protoPattBtn2');
+
+protoPattBtn2.addEventListener('click',function(){
+    console.log(cat);
+});
+</script>
+
+<div class="slide" id="designPatterns12">
+    <h2>Design Patterns</h2>
+    <p>Be sure to check out Addi Osmani's "Essential JavaScript Design Patterns" open source book at: <a href="https://github.com/addyosmani/essential-js-design-patterns" target="_blank">https://github.com/addyosmani/essential-js-design-patterns</a></p>
+</div>
+
+<!-- 
+Resources
+ -->
+
+<div class="slide" id="resourcesTitle">
+    <h1>Resources</h1>
+</div>
+
+<div class="slide" id="resources">
+    <h2>Resources</h2>
+    <p>You can get really good at JavaScript without spending a single penny!</p>
+    <ul>
+        <li>JavaScript Enlightenment (now open source!) <a href="http://javascriptenlightenment.com/" target="_blank">http://javascriptenlightenment.com/</a></li>
+        <li>Marijn Haverbeke's Eloquent JavaScript <a href="http://eloquentjavascript.net/contents.html" target="_blank">http://eloquentjavascript.net/contents.html</a></li>
+        <li>Mozilla's JavaScript Reference <a href="https://developer.mozilla.org/en/JavaScript/Reference" target="_blank">https://developer.mozilla.org/en/JavaScript/Reference</a></li>
+        <li>JavaScript Koans <a href="https://github.com/liammclennan/JavaScript-Koans" target="_blank">https://github.com/liammclennan/JavaScript-Koans</a></li>
+        <li>JavaScript Garden <a href="http://bonsaiden.github.com/JavaScript-Garden/" target="_blank">http://bonsaiden.github.com/JavaScript-Garden/</a></li>
+        <li>AppendTo's excellent video lessons at: <a href="http://learn.appendto.com" target="_blank">http://learn.appendto.com</a></li>
+        <li>Nathan's Lessons <a href="http://nathansjslessons.appspot.com/" target="_blank">Interactive JavaScript Lessons</a></li>
+        <li>JSFiddle <a href="http://jsfiddle.net/" target="_blank">http://jsfiddle.net</a></li>
+        <li>This presentation of course, which is on <a href="http://bittersweetryan.github.com/javascript-for-coldfusion-devs" target="_blank">https://github.com/bittersweetryan/javascript-for-coldfusion-devs</a></li>
+    </ul>
+    <p>However I'd be remiss if I left out Douglas Crockford's "<a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">JavaScript: The Good Parts</a>".</p>
+</div>
+
+<div class="slide" id="giveaway">
+    <h2>Giveaway Time!</h2>
+    <p class="slide">In this presentation we created a "Robot" constructor function that took a name as a parameter.  What was the name of one of the robots we created?</p>
+    <p class="slide">Question 2 (just in case).  Name two things that ColdFusion and JavaScript have in common.</p>
+</div>
+
+
+<div class="slide" id="qna">
+    <h1>Questions?</h1>
+</div>
+
+<div class="slide" id="fin">
+    <h1>fin.</h1>
+</div>
+
+<form action="." method="get" class="goto-form">
+    <label for="goto-slide">Go to slide:</label>
+    <input type="number" name="slidenum" id="goto-slide">
+    <input type="submit" value="Go">
+</form>
+
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<p class="deck-status">
+    <span class="deck-status-current"></span>
+    /
+    <span class="deck-status-total"></span>
+</p>
+
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+
+
+<!-- Deck Core and extensions -->
+<script src="core/deck.core.js"></script>
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+
+<!-- Specific to this page -->
+<script src="introduction.js"></script>
+
+</body>
+</html>
