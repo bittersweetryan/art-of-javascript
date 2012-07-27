@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
     <link rel="stylesheet" href="extensions/status/deck.status.css">
     <link rel="stylesheet" href="extensions/hash/deck.hash.css">
-    
+    <link rel="stylesheet" href="extensions/codemirror/deck.codemirror.css">
+
     <!-- Theme CSS files (menu swaps these out) -->
     <link rel="stylesheet" id="style-theme-link" href="themes/style/web-2.0.css">
     <link rel="stylesheet" id="transition-theme-link" href="themes/transition/horizontal-slide.css">
@@ -32,6 +33,15 @@
     <script src="jquery-1.7.min.js"></script>
     <script src="modernizr.custom.js"></script>
     <script type="text/javascript" src="google-code-prettify/prettify.js"></script>
+    <script src="extensions/codemirror/codemirror.js"></script>
+
+    <!-- Syntax highlighting Modes -->
+
+    <!-- javascript -->
+    <script src="extensions/codemirror/mode/javascript/javascript.js"></script>
+
+    
+    <link rel="stylesheet" href="extensions/codemirror/themes/default.css">
 </head>
 
 <body class="deck-container" onload="prettyPrint()">
@@ -1658,6 +1668,15 @@ protoPattBtn2.addEventListener('click',function(){
 });
 </script>
 
+<div class="slide" id="designPatterns13">
+    <h2>$, window, undefined</h2>
+    <p>This isn't a pattern as much as it is a best practice.  This is just a way to make sure that $ is assigned to jQuery in your module,
+        that the window object is protected, and that undefined, is truly undefined.</p>
+    <pre><code class="prettyPrint">(function( $, window, undefined ){
+
+}( window.jQuery, window ))</code></pre>
+</div>
+
 <div class="slide" id="designPatterns12">
     <h2>Design Patterns</h2>
     <p>Be sure to check out Addi Osmani's "Essential JavaScript Design Patterns" open source book at: <a href="https://github.com/addyosmani/essential-js-design-patterns" target="_blank">https://github.com/addyosmani/essential-js-design-patterns</a></p>
@@ -1729,9 +1748,8 @@ Resources
 <script src="extensions/status/deck.status.js"></script>
 <script src="extensions/navigation/deck.navigation.js"></script>
 <script src="extensions/hash/deck.hash.js"></script>
-
-<!-- Specific to this page -->
-<script src="introduction.js"></script>
+<!-- enable codemirror plugin -->
+<script src="extensions/codemirror/deck.codemirror.js"></script>
 
 </body>
 </html>
