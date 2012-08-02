@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,26 +23,16 @@
     <link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
     <link rel="stylesheet" href="extensions/status/deck.status.css">
     <link rel="stylesheet" href="extensions/hash/deck.hash.css">
-    <link rel="stylesheet" href="extensions/codemirror/deck.codemirror.css">
 
+    <link rel="stylesheet" href="extensions/codemirror/deck.codemirror.css">
     <!-- Theme CSS files (menu swaps these out) -->
     <link rel="stylesheet" id="style-theme-link" href="themes/style/web-2.0.css">
     <link rel="stylesheet" id="transition-theme-link" href="themes/transition/horizontal-slide.css">
-    
     <!-- Custom CSS just for this page -->
     <link rel="stylesheet" href="introduction.css">
-    <script src="jquery-1.7.min.js"></script>
-    <script src="modernizr.custom.js"></script>
-    <script type="text/javascript" src="google-code-prettify/prettify.js"></script>
-    <script src="extensions/codemirror/codemirror.js"></script>
-
-    <!-- Syntax highlighting Modes -->
-
-    <!-- javascript -->
-    <script src="extensions/codemirror/mode/javascript/javascript.js"></script>
-
     
     <link rel="stylesheet" href="extensions/codemirror/themes/default.css">
+
 </head>
 
 <body class="deck-container" onload="prettyPrint()">
@@ -159,10 +152,10 @@ Variables
 
 <div class="slide" id="variables2">
     <h2>Scoping Example</h2>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function doSomething(){
-    myVar = &quot;foo&quot;; //this goes into the global scope which == bad
-    var myOtherVar = &quot;bar&quot;; //this goes into the function scope which == good     
-};
+     <textarea id="code27" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function doSomething(){
+    myVar = "foo"; //this goes into the global scope which == bad
+    var myOtherVar = "bar"; //this goes into the function scope which == good     
+}
 
 console.log(myVar); //foo 
 console.log(myOtherVar); //error
@@ -178,7 +171,7 @@ Numbers
         <p>All numbers in JavaScript are 64 bit floating point numbers.</p>
         <p>
             <pre class="prettyprint">0.06 + 0.01 = <a href="#" id="numberButton">??</a></pre>
-             <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
+             <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
                   var result = 0.06 + 0.01;
     console.log("0.06 + 0.01 = " + result); 
              </textarea>
@@ -224,15 +217,15 @@ Arrays
 <h2>Arrays</h2>
 <p>Arrays in JavaScript are passed <strong>by reference</strong>. Arrays in ColdFusion are passed by <strong>value</strong>.</p>
     <h3>JavaScript</h3>
-    <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function createArray(){
-    var myArray = [&quot;Foo&quot;,&quot;Bar&quot;,&quot;Bazz&quot;];
+    <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function createArray(){
+    var myArray = ["Foo","Bar","Bazz"];
     console.log(myArray);
     changeArray(myArray);
     console.log(myArray);       
 }
 
 function changeArray(theArray){
-    theArray[0] = &quot;Win!&quot;;
+    theArray[0] = "Win!";
     console.log(theArray);
 }</textarea>
 </div>
@@ -389,24 +382,24 @@ Operators
 <div class="slide" id="andor2">
     <h2>Logical Operators</h2>
     <h3>JavaScript OR Operator <pre class="prettyprint">||</pre></h3>
-    <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//returns the value of the first expression if it's true, otherwise returns the value of the second expression
+    <textarea id="code3" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//returns the value of the first expression if it's true, otherwise returns the value of the second expression
 
-console.log(false || &quot;hello&quot;); 
+console.log(false || "hello"); 
 
-console.log(&quot;world&quot; || &quot;foo&quot;);
+console.log("world" || "foo");
 </textarea>
 </div>
 
 <div class="slide" id="andor3">
     <h2>Logical Operators</h2>
     <p>The || operator can be used to set default values like so:</p>
-    <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myFunc = function(arg){
+    <textarea id="code4" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myFunc = function(arg){
 
     var myVal = document.getElementById(arg) || 
-        document.createElement(&quot;div&quot;); //if no arg was passed in myVal is &quot;defaultValue&quot;
+        document.createElement("div"); //if no arg was passed in myVal is "defaultValue"
 
     console.log(myVal);
-}
+};
 
 myFunc();
 myFunc("andor2");
@@ -416,10 +409,10 @@ myFunc("andor2");
 <div class="slide" id="andor3div">
     <h2>Logical</h2>
    <h3>JavaScript AND Operator <pre class="prettyprint">&&</pre></h3>
-    <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//returns the value of the first operator if it is false, otherwise it returns the value of the second:
+    <textarea id="code5" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//returns the value of the first operator if it is false, otherwise it returns the value of the second:
 
-console.log(false &amp;&amp; &quot;Foo&quot;);
-console.log(true &amp;&amp; &quot;Bar&quot;);
+console.log(false && "Foo");
+console.log(true && "Bar");
 </textarea>
 </div>
 
@@ -445,7 +438,7 @@ for(var myKey in myStruct){
     <p><strong style="color:red">Warning! </strong>
     When looping through an object using for-in you will get all of the objects properties AND all of the properites of its prototype chain.</p>
     <h3>JavaScript</h3>
-<textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
+<textarea id="code6" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
 
 for(var myKey in myObj){
     myVar = myObj[myKey];  
@@ -479,13 +472,13 @@ Objects
 <div class="slide" id="objects7">
     <h2>Objects</h2>
     <p>When accessing properties from other properties in an object, use the <pre>this</pre> keyword.</p>
-    <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">​var myObj = {
-    name: &quot;Homer&quot;,
+    <textarea id="code7" name="code" class="code" mode="javascript" style="display: none;" runnable="true">​var myObj = {
+    name: "Homer",
     sayHello: function(){
-        console.log(&quot;Hello, &quot; + name); 
-        console.log(&quot;Hello, &quot; + this.name);    
+        console.log("Hello, " + name); 
+        console.log("Hello, " + this.name);    
     }    
-}</textarea>
+};</textarea>
 </div>
 
 <div class="slide" id="objects1">
@@ -601,26 +594,27 @@ Functions
 <div class="slide" id="function20"> 
     <h2>Lexical Scoping</h2>
     <p>Functions can be nested, each nested function has access to the scope of all its parents.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var lexical = function(){
-    var outer = &quot;outer&quot;;
+<!-- may have issues -->
+     <textarea id="code8" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var lexical = function(){
+    var outerVar = 'outer';
     
     return function(){
 
-        var inner = "inner"; //outer function does not have access
-        console.log(outer);
+        var innerFn = "inner"; //outer function does not have access
+        console.log(outerVar);
     };
-}​;</textarea>
+};</textarea>
 </div>
 
 <div class="slide" id="function4">  
     <h2>Function Arguments</h2>
     <p>Just like in ColdFusion you can have named arguments and arguments that are outside of the named arguments.</p>
     <p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myFunc() = function{
+     <textarea id="code9" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myFunc = function(){
     console.log(arguments);
 };
 
-myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});
+myFunc("Hello", "World", function(){});
 </textarea>
 </div>
 
@@ -629,7 +623,7 @@ myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});
     <p>Since JavaScript is a type-less language its always a good idea to check the type of arguments.</p>
     <p>To do this we are provided with the <pre class="prettyprint">typeof</pre> operator</p>
     <div class="slide" id="fnArg1">
-         <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log("Type of string: " + typeof "hello");
+         <textarea id="code10" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log("Type of string: " + typeof "hello");
 console.log("Type of number :" + typeof 1234);
 console.log("Type of object literal: " + typeof {});
 console.log("Type of array: " + typeof []);
@@ -668,23 +662,23 @@ var is_array = function (value) {
 
 <div class="slide" id="functionConstructor2">
     <h2>Constructor Functions</h2>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var Robot = function(robotName){
+     <textarea id="code11" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var Robot = function(robotName){
     this.robotName = robotName;
 };
 //add a new property to the prototype
 Robot.prototype.walk = function(){
-    console.log(&quot;Go &quot; + this.robotName + &quot; go!&quot;);
+    console.log("Go " + this.robotName + " go!");
 };
 
-var robot = new Robot(&quot;Ferbbot&quot;);
+var robot = new Robot("Ferbbot");
 
 robot.walk();
 
-var anotherRobot = Robot(&quot;phineasbot&quot;); //we just created a global!! 
+var anotherRobot = Robot("phineasbot"); //we just created a global!! 
 
 console.log(window.robotName); //note that robotName is now a property of window
 
-Robot.walk(); //doesn&#39;t exist</textarea>
+Robot.walk(); //doesn't exist</textarea>
 </div>
 
 <div class="slide" id="function7">
@@ -698,13 +692,13 @@ Robot.walk(); //doesn&#39;t exist</textarea>
 
 <div class="slide" id="function8">
     <h2>Contrived Closure Example</h2>
-        <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var timesCalled = function(){
+        <textarea id="code12" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var timesCalled = function(){
     var total = 0;
     
     return function(){
         total++;
         console.log(total);
-    }
+    };
     
 };
 
@@ -724,7 +718,7 @@ This
 <div class="slide" id="this1">
     <h2>This</h2>
     <p>The <pre class="prettyprint">this</pre> keyword one of JavaScript's most mis-understood keywords.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
+     <textarea id="code13" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
     var myObj = {
         myFunc : function(){ 
             console.log(this);
@@ -752,7 +746,7 @@ This
     <h2>call() and apply()</h2>
     <p>The <pre class="prettyprint">call(this,arg1,arg2,arg3,...)</pre> and <pre class="prettyprint">apply(this,[args])</pre> functions allow you to pass the value of <pre class="prettyprint">this</pre> as the first parameter.</p>
     <p>The difference is that the call function takes in any number of arguments whereas the apply function takes an array of arguments as its second argument.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function whoAmI(){
+     <textarea id="code14" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function whoAmI(){
     console.log("I am: " + this);
     console.log(arguments);
 }
@@ -778,7 +772,7 @@ myFunc()
 <div class="slide" id="this4">
     <h2>This</h2>
     <p>Lets take a look at "this" when using a constructor function to create a new instance.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function Person(name){
+     <textarea id="code15" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function Person(name){
     this.name = name;
     
     console.log(this);
@@ -791,7 +785,7 @@ var person = new Person("Bart");</textarea>
 <div class="slide" id="this5">
 <h2>This In Object Literals</h2>
 <p>In an object literal <pre class="prettyprint">this</pre> refers to the current object</p>
- <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
+ <textarea id="code16" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
     name : "Homer",
 
     sayHello : function(){
@@ -803,7 +797,7 @@ var person = new Person("Bart");</textarea>
 <div class="slide" id="this9">
 <h2>This In Object Literals</h2>
 <p>Be careful when using <pre class="prettyprint">this</pre> in nested functions!</p>
- <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
+ <textarea id="code17" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
     name : "Homer",
 
     sayHello : function(){
@@ -820,7 +814,7 @@ var person = new Person("Bart");</textarea>
 <div class="slide" id="this10">
     <h2>This and jQuery</h2>
     <p>jQuery likes to normalize <pre class="prettyprint">this</pre>, which can cause issues if you expect <pre class="prettyprint">this</pre> to refer to the current object.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var obj = {
+     <textarea id="code18" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var obj = {
     init : function(){
         $('#readmore').on('click',function(){
             console.log(this);
@@ -828,26 +822,13 @@ var person = new Person("Bart");</textarea>
     }
 };
 
-obj.init();​</textarea>
+obj.init();</textarea>
 </div>
-
-<!--
-
-
-function above is broken!!!!!!
-
-
-
-
-
-
-
--->
 
 <div class="slide" id="this7">
     <h2>This and jQuery</h2>
     <p>Luckily there is an easy fix that a lot of library authors have chosen to use.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var obj = {
+     <textarea id="code19" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var obj = {
     init : function(){
         var self = this; //create a ref to the current "this" scope
 
@@ -855,9 +836,9 @@ function above is broken!!!!!!
             console.log(self);
         });     
     }
-}
+};
 
-obj.init();​</textarea>
+obj.init();</textarea>
 </div>
 
 <div class="slide" id="this8">
@@ -879,7 +860,7 @@ Inheritence
 <div class="slide" id="inheritance1">
     <h2>Inheritance</h2>
     <p>JavaScript uses a prototypical inheritance model.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var Car = function(){ };
+     <textarea id="code20" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var Car = function(){ };
 
 //add properties to Car's Prototype
 Car.prototype = {
@@ -905,16 +886,16 @@ var r8 = new R8();</textarea>
 <div class="slide" id="inheritance3">
     <h2>Prototype's Members</h2>
     <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all instances.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function RealObject(name){ //note captial letter denotes that this is a constructor function
-    this.name = name;
+     <textarea id="code21" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function RealObject(name){ //note captial letter denotes that this is a constructor function
+    this.name = name
 };
 
-var instanceOfRealObject = new RealObject(&quot;Ryan&quot;);
-var anotherOfRealObject = new RealObject(&quot;Scott&quot;);
+var instanceOfRealObject = new RealObject("Ryan");
+var anotherOfRealObject = new RealObject("Scott");
 
 //we can add to a prototype at any time
 RealObject.prototype.iRule = function(){ 
-    return this.name + &quot; Rules.&quot;;
+    return this.name + " Rules.";
 };
 
 console.log(instanceOfRealObject.iRule());
@@ -926,14 +907,14 @@ console.log(anotherOfRealObject.iRule());</textarea>
     <p>You can also change the prototypes of the native objects like Object or Array</p>
     <p>Since there is no "deep copy" method available to arrays, lets add one.</p>
     <p><strong>Just because you can, doesn't mean you should!</strong></p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">Array.prototype.deepCopy = function(){
+     <textarea id="code22" name="code" class="code" mode="javascript" style="display: none;" runnable="true">Array.prototype.deepCopy = function(){
     return this.slice(); //this refers to the array object.  
-}
+};
 
-var myArray = [&quot;Apple&quot;,&quot;Peach&quot;,&quot;Pear&quot;];
+var myArray = ["Apple","Peach","Pear"];
 var copiedArray = myArray.deepCopy();
 
-copiedArray[0] = &quot;Banana&quot;;</textarea>
+copiedArray[0] = "Banana";</textarea>
 </div>
 
 <!-- 
@@ -947,20 +928,20 @@ Design Patterns
 <div class="slide" id="designPatterns2">
     <h2>Module Pattern</h2>
     <p>The module pattern can be used to "hide" variables and functions.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var publicFunctions = (function(){
-    var name = &quot;foobar&quot;;
+     <textarea id="code23" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var publicFunctions = (function(){
+    var name = "foobar";
     
-    var private = function(){
-        console.log(&quot;i am private&quot;);                            
+    var privateFn = function(){
+        console.log("i am private");                            
     };
     
-    var public = {
+    var publicFn = {
         sayHello : function(){
-            console.log(&quot;Hello, &quot; + name);
+            console.log("Hello, " + name);
         }
     };
     
-    return public;
+    return publicFn;
 }());
 
 publicFunctions.sayHello();
@@ -970,7 +951,7 @@ console.log(publicFunctions.name);</textarea>
 <div class="slide" id="designPatterns7">
     <h2>Options</h2>
     <p>The options pattern is very common in libraries and jQuery plugins</P>
- <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">$.fn.myPlugin = function(options){
+ <textarea id="code24" name="code" class="code" mode="javascript" style="display: none;" runnable="true">$.fn.myPlugin = function(options){
     var defaults = {color: "blue", height: "200px" };
 
     //remember to check the type of the argument!
@@ -1014,7 +995,7 @@ $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
     <h2>Prototype</h2>
     <p>Don't confuse the prototype pattern with an object's Prototype function!</p>
     <p>The prototype pattern is a pattern where an object is used for the prototype of another object.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var motorcycle = {
+     <textarea id="code25" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var motorcycle = {
     wheels : 2,
     go : function(){  }
 };
@@ -1033,7 +1014,7 @@ for(var attr in motorcycle){
     <p>This pattern is used very extensively in both jQuery and Backbone applications.</p>
     <p>In fact when you create a jQuery plugin you are using this pattern, using <pre class="prettyprint">jQuery.fn</pre> as your prototype.</p>
     <p>jQuery and underscore.js have a function that helps with this pattern.</p>
-     <textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var mammal = {
+     <textarea id="code26" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var mammal = {
     hair : "brown",
     breath : function(){}
 };
@@ -1116,6 +1097,16 @@ Resources
 <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
 
+    <script src="jquery-1.7.min.js"></script>
+    <script src="modernizr.custom.js"></script>
+    
+   
+    <script src="extensions/codemirror/codemirror.js"></script>
+
+    <!-- Syntax highlighting Modes -->
+
+    <!-- javascript -->
+ 
 
 <!-- Deck Core and extensions -->
 <script src="core/deck.core.js"></script>
@@ -1124,6 +1115,15 @@ Resources
 <script src="extensions/status/deck.status.js"></script>
 <script src="extensions/navigation/deck.navigation.js"></script>
 <script src="extensions/hash/deck.hash.js"></script>
+
+<script src="extensions/codemirror/mode/javascript/javascript.js"></script>
+<script src="extensions/codemirror/mode/xml/xml.js"></script>
+<script src="extensions/codemirror/mode/css/css.js"></script>
+<script src="extensions/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+
+<script type="text/javascript" src="google-code-prettify/prettify.js"></script>
+<script src="introduction.js"></script>
+
 <!-- enable codemirror plugin -->
 <script src="extensions/codemirror/deck.codemirror.js"></script>
 
