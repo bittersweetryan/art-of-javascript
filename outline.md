@@ -1,20 +1,25 @@
-#JavaScript Fundamentals for ColdFusion Developers
+#The Art Of JavaScript
 
 ###Introduction
-* About JavaScript Fundamentals for ColdFusion Developers
-     * https://github.com/topherj/cfjs
 * About Me
 * Assumptions
 * What this presentation will cover
-	* Variables
+	* The Basic Stuff
 	* Arrays
 	* Operators
-	* Loops
 	* Objects
+ 	* Functions
+            * Constructors
+            * Closures
+            * Async Behaviors & Potential Pitfalls
 	* Scope
-	* Functions
 	* Inheritance
-	* Unit Testing
+        * Design Patterns
+            * Namespacing
+            * Module
+            * Pub / Sub
+            * Options
+            * Prototype
 	* Giveaway 
 * What this presentation will NOT Cover
     * DOM 
