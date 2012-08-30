@@ -25,9 +25,12 @@
     <link rel="stylesheet" href="extensions/hash/deck.hash.css">
 
     <link rel="stylesheet" href="extensions/codemirror/deck.codemirror.css">
-    <!-- Theme CSS files (menu swaps these out) -->
+
+    <!-- Theme CSS files (menu swaps these out) 
     <link rel="stylesheet" id="style-theme-link" href="themes/style/web-2.0.css">
+    -->
     <link rel="stylesheet" id="transition-theme-link" href="themes/transition/horizontal-slide.css">
+    
     <!-- Custom CSS just for this page -->
     <link rel="stylesheet" href="introduction.css">
     
@@ -65,18 +68,17 @@ Title
         <li>Technical Solutions Architect at IDL Solutions <a href="http://www.idl.com" target="_blank">http://www.idl.com</a>.
             <ul>
                 <li>Focus on Federal &amp; Local Government Projects</li>
-                <li>ColdFusion Shop Since Version 3.0 - Developed The First Wisconsin Lottery site in ColdFusion.</li>
                 <li>Lately focused on front end engineering for single page, enterprise apps.</li>
             </ul>
         </li>
-        <li>ColdFusion developer since 1996</li>
+        <li>Web developer since 1996</li>
         <li>Open Source
             <ul>
                 <li>
-                    <strong>Author</strong>: ColdFusion Koans, CFEvernote
+                    <strong>Author</strong>: ColdFusion Koans, GitHub News Filter, Envelope.js
                 </li>
                 <li>
-                    <strong>Contributor</strong>: JavaScript Koans, MXUnit
+                    <strong>Contributor</strong>: JavaScript Koans, MXUnit, FW/1
                 </li>
             </ul>
         </li>
@@ -137,31 +139,49 @@ Variables
 
 <div class="slide" id="variables">
     <h2>Variables</h2>
-    <p>Variables in ColdFusion and JavaScript both share the same problem: poor default scoping.</p>
-    <h3>ColdFusion</h3>
-    <pre class="prettyprint">&lt;cffunction name=&quot;doSomething&quot; returnType=&quot;void&quot;&gt;
-    &lt;cfset myVar = &quot;foo&quot;&gt; &lt;!--bad--&gt;
-    &lt;cfset var myOtherVar = &quot;bar&quot;&gt; &lt;!--good--&gt;        
-&lt;/cffunction&gt;</pre>
-<h3>JavaScript</h3>
-    <pre class="prettyprint">function doSomething(){
-    myVar = &quot;foo&quot;; //global scope = bad
-    var myOtherVar = &quot;bar&quot;; //good        
-}</pre>
-</div>
-
-<div class="slide" id="variables2">
-    <h2>Scoping Example</h2>
-     <textarea id="code27" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function doSomething(){
+    <p>Variables in JavaScript are very poorly scoped by default, any variable that is not declared with the var keyword goes into the global scope.</p>
+     <pre><code class="prettyprint">function doSomething(){
     myVar = "foo"; //this goes into the global scope which == bad
     var myOtherVar = "bar"; //this goes into the function scope which == good     
 }
 
 console.log(myVar); //foo 
 console.log(myOtherVar); //error
-</textarea>
+</code></pre>
+<input type="button" data-run="scoping" value="Run">
 </div>
 
+<div class="slide" id="variables2">
+    <h2>Meh!</h2>
+      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for(i = 0; i < 10; i++){
+    doMore();
+    console.log(i);
+}
+
+function doMore(){
+    for(i = 0; i < 10; i++){
+        
+    }
+};
+</textarea>
+
+</div>
+
+<div class="slide" id="variables1">
+    <h2>From Meh To Yeah!</h2>
+      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for(var i = 0; i < 10; i++){
+    doMore();
+    console.log(i);
+}
+
+function doMore(){
+    for(var i= 10 i < 10; i++){
+        
+    }
+};
+</textarea>
+
+</div>
 <!-- 
 Numbers
  -->
@@ -170,27 +190,23 @@ Numbers
     <h2>Numbers</h2>
         <p>All numbers in JavaScript are 64 bit floating point numbers.</p>
         <p>
-            <pre class="prettyprint">0.06 + 0.01 = <a href="#" id="numberButton">??</a></pre>
              <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
-                  var result = 0.06 + 0.01;
+    var result = 0.06 + 0.01;
     console.log("0.06 + 0.01 = " + result); 
              </textarea>
         </p>
         <p><a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
-</div>
 
-<div class="slide" id="variables31">
-    <h2>Numbers</h2>
-    <p>JavaScript has a BigNum library at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
+        <p>JavaScript has a BigNum library at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
 </div>
 
 <div class="slide" id="numbers2">
     <h2>Numbers</h2>
-    <p>In JavaScript there is also a special value, <pre class="prettyprint">NaN</pre>, which stands for "not a number".  You'll get NaN in situations like trying to do math on a var that is <pre class="prettyprint">undefined</pre> or trying to perform multiplication or division on a string.</p>
+    <p>In JavaScript there is also a special value, <code class="prettyprint">NaN</code>, which stands for "not a number".  You'll get NaN in situations like trying to do math on a var that is <code class="prettyprint">undefined</code> or trying to perform multiplication, division, or subtraction on a string.</p>
     <ul>
-        <li class="slide" id="nan1"><pre class="prettyprint">NaN is False</pre></li>
-        <li class="slide" id="nan2"><pre class="prettyprint">NaN !== NaN</pre></li>
-        <li class="slide" id="na3">Use <pre class="prettyprint">isNaN()</pre> to test for NaN</li>
+        <li class="slide" id="nan1"><code class="prettyprint">NaN is False</code></li>
+        <li class="slide" id="nan2"><code class="prettyprint">NaN !== NaN</code></li>
+        <li class="slide" id="na3">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
     </ul>
 </div>
 
@@ -206,19 +222,22 @@ Arrays
 <div class="slide" id="arrays">
     <h2>Arrays</h2>
         <P>Arrays can be created two ways:</P>
-        <pre class="prettyprint">var myArray = new Array() //ArrayNew(1) in ColdFusion</pre>
+        <code class="prettyprint">var myArray = new Array();</code>
+        <br><br>
         <p>AND</p>
-        <pre class="prettyprint">var myArray = ["item1", "item2", myObj, []];</pre>
-        <p>In order to create multi-dimensional arrays in JavaScript you nest arrays:
-        <pre class="prettyprint">myArray[0] = ["nested one", "nested two"];<br>myArray[0][1]; //nested two</pre>
+        <code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code>
+        <p>In order to create multi-dimensional arrays in JavaScript you nest arrays:</p>
+        <code class="prettyprint">myArray[0] = ["nested one", "nested two"];<br>myArray[0][1]; //nested two</code>
 </div>
 
 <div class="slide" id="arrays3">
 <h2>Arrays</h2>
-<p>Arrays in JavaScript are passed <strong>by reference</strong>. Arrays in ColdFusion are passed by <strong>value</strong>.</p>
-    <h3>JavaScript</h3>
-    <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function createArray(){
+<p>Arrays in JavaScript are passed <strong>by value</strong>!  No, this is not a typo!</p>
+    <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">createArray();
+
+function createArray(){
     var myArray = ["Foo","Bar","Bazz"];
+    
     console.log(myArray);
     changeArray(myArray);
     console.log(myArray);       
@@ -226,27 +245,26 @@ Arrays
 
 function changeArray(theArray){
     theArray[0] = "Win!";
-    console.log(theArray);
 }</textarea>
 </div>
 
 <div class="slide" id="arrays2">
     <h2>Arrays</h2>
     <p>Arrays are objects so they have methods, here are a few you'll commonly see used in projects: </p>
-        <div class="slide" id="arm1"><pre class="prettyprint">myArray.length //arrayLen() function in CFML
+        <div class="slide" id="arm1"><code class="prettyprint">myArray.length //arrayLen() function in CFML
 
 myArray.push("item 4") //arrayAppend in CFML, myArray is changed
 
 myArray.concat(anotherArray) //adds two arrays together, returns a new array. myArray unchanged!
 
 myArray.join(",") //combines elements into string, separated by argument
-</pre></div>
+</code></div>
 </div>
 
 <div class="slide" id="arrays13">
     <h2>Arrays</h2>
     <p>More methods:</p>
-        <div id="arm2"><pre class="prettyprint">
+        <div id="arm2"><code class="prettyprint">
 myArray.sort() //arraySort in CFML
 
 myArray.splice(1,2) //deletes 2 items from the array starting at position 1
@@ -255,7 +273,7 @@ myArray.slice(1,2) //returns 2 items from the array starting at position 1
 
 myArray.pop() //removes the last element of the array and returns it
 
-myArray.shift() //removes the first element of the array and returns it</pre></div>
+myArray.shift() //removes the first element of the array and returns it</code></div>
 </div>
 
 
@@ -285,30 +303,30 @@ Operators
 <div class="slide" id="comparisons2">
     <h2>Comparisons</h2>
     <p>What does this mean to you as a JavaScript programmer?
-    <pre class="prettyprint">1 == "1" //true</pre>
+    <code class="prettyprint">1 == "1" //true</code>
     but
-    <pre class="prettyprint">1 === "1" //false</pre>
+    <code class="prettyprint">1 === "1" //false</code>
     </p>
     <p>So, which one do you use?</p>
     <p class="slide">
-    Always use === when comparing <pre class="prettyprint">0</pre>, <pre class="prettyprint">undefined</pre>, and empty strings.
+    Always use === when comparing <code class="prettyprint">0</code>, <code class="prettyprint">undefined</code>, and empty strings.
     </p>
 
 </div>
 
 <div class="slide" id="comparisons3">
     <h2>Comparisons</h2>
-    <h3>If I'm using === and I know "<pre class="prettyprint">1</pre>" is a numeric value how do I get "<pre class="prettyprint">1</pre>" to equal <pre class="prettyprint">1</pre>?</h3>
+    <h3>If I'm using === and I know "<code class="prettyprint">1</code>" is a numeric value how do I get "<code class="prettyprint">1</code>" to equal <code class="prettyprint">1</code>?</h3>
     <p>There are a few ways, some of the most common are:</p>
     <ol>
         <li class="slide" id="comp7">
-            Use the Number object: <pre class="prettyprint">var num = Number("1").</pre>
+            Use the Number object: <code class="prettyprint">var num = Number("1").</code>
         </li>
         <li class="slide" id="comp8">
-            Use the parseInt function: <pre class="prettyprint">var num = parseInt("01",10)</pre>.<br>The second param is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.
+            Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10)</code>.<br>The second param is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.
         </li>
         <li class="slide" id="comp9">
-            If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <pre class="prettyprint">var num = +&quot;3&quot;</pre>.
+            If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <code class="prettyprint">var num = +&quot;3&quot;</code>.
         </li>       
     </ol>
 </div>
@@ -381,7 +399,7 @@ Operators
 
 <div class="slide" id="andor2">
     <h2>Logical Operators</h2>
-    <h3>JavaScript OR Operator <pre class="prettyprint">||</pre></h3>
+    <h3>JavaScript OR Operator <code class="prettyprint">||</code></h3>
     <textarea id="code3" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//returns the value of the first expression if it's true, otherwise returns the value of the second expression
 
 console.log(false || "hello"); 
@@ -408,7 +426,7 @@ myFunc("andor2");
 
 <div class="slide" id="andor3div">
     <h2>Logical</h2>
-   <h3>JavaScript AND Operator <pre class="prettyprint">&&</pre></h3>
+   <h3>JavaScript AND Operator <code class="prettyprint">&&</code></h3>
     <textarea id="code5" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//returns the value of the first operator if it is false, otherwise it returns the value of the second:
 
 console.log(false && "Foo");
@@ -425,11 +443,11 @@ console.log(true && "Bar");
     <h3>for-in loops</h3>
     <p>In JavaScript you can loop through the properties of an object like you can loop through the keys of a Struct</p>
     <h3>ColdFusion</h3>
-<pre class="prettyprint">var myStruct = {foo = "Foo", bar = "Bar", baz = "Baz"};
+<code class="prettyprint">var myStruct = {foo = "Foo", bar = "Bar", baz = "Baz"};
 
 for(var myKey in myStruct){
     <a href="http://localhost:8500/test.cfm?section=forin" target="_blank">myVar</a> = myStruct[key];
-}</pre>
+}</code>
 </div>
 
 <div class="slide" id="foriinloops2">
@@ -466,12 +484,12 @@ Objects
     <h2>Objects</h2>
     <p>Objects in JavaScript can be thought of as being similar to a ColdFusion struct.</p>
     <h3>JavaScript</h3>
-    <pre class="prettyprint">myObject = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, anotherObject : {baz : &quot;Baz&quot;, pez = &quot;Pez&quot;}}; //this is called an object literal.  It's equal to new Object();</pre>
+    <code class="prettyprint">myObject = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, anotherObject : {baz : &quot;Baz&quot;, pez = &quot;Pez&quot;}}; //this is called an object literal.  It's equal to new Object();</code>
 </div>
 
 <div class="slide" id="objects7">
     <h2>Objects</h2>
-    <p>When accessing properties from other properties in an object, use the <pre>this</pre> keyword.</p>
+    <p>When accessing properties from other properties in an object, use the <pre>this</code> keyword.</p>
     <textarea id="code7" name="code" class="code" mode="javascript" style="display: none;" runnable="true">​var myObj = {
     name: "Homer",
     sayHello: function(){
@@ -484,24 +502,24 @@ Objects
 <div class="slide" id="objects1">
     <h2>Objects</h2>
     <p>You can access an object's properties with "dot" notation or with associative array notation</p>
-    <pre class="prettyprint">myObject.foo = "Foo"; 
+    <code class="prettyprint">myObject.foo = "Foo"; 
 myObject['foo']; //Foo
 
 myObject['foo bar'] = "foo bar"; //non standard property names
 
 myObject['foo ' + 'bar'] = "foo bar";
-</pre>
+</code>
 </div>
 
 <div class="slide" id="objects2">
     <h2>Objects</h2>
-    <p>Similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method and the <pre>in</pre> operator.</p>
+    <p>Similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method and the <pre>in</code> operator.</p>
     <h3>ColdFusion</h3>
-    <pre class="prettyprint">structKeyExists(myStruct,"foo"); //true</pre>
+    <code class="prettyprint">structKeyExists(myStruct,"foo"); //true</code>
     <h3>JavaScript</h3>
-    <pre class="prettyprint">myObject.hasOwnProperty("foo"); //true (only searches current object)
+    <code class="prettyprint">myObject.hasOwnProperty("foo"); //true (only searches current object)
         
-'foo' in myObject //true (this searches all the way up the inheritance tree)</pre>
+'foo' in myObject //true (this searches all the way up the inheritance tree)</code>
 </div>
 <!-- 
 Functions
@@ -517,12 +535,12 @@ Functions
     <p>They have many similarities to functions in ColdFusion:</p>
     <ul>
         <li class="slide" id="fn1">Functions are first class citizens.</li>
-        <li class="slide" id="fn2">Arguments are type-less, it would be the same as having all arguments having <pre class="prettyprint">type="any"</pre>.</li>
+        <li class="slide" id="fn2">Arguments are type-less, it would be the same as having all arguments having <code class="prettyprint">type="any"</code>.</li>
         <li class="slide" id="fn3">Arguments are passed in an array-like structure called arguments.</li>
     </ul>
     <p class="slide">There are some subtle differences</p>
     <ul>
-        <li class="slide" id="fn8">All functions return something!  If there is no <pre class="prettyprint">return</pre> statement a function will return the keyword <pre class="prettyprint">undefined</pre>.</li>
+        <li class="slide" id="fn8">All functions return something!  If there is no <code class="prettyprint">return</code> statement a function will return the keyword <code class="prettyprint">undefined</code>.</li>
         <li class="slide" id="fn9">There is only function scope in JavaScript.</li>
     </ul>
 </div>
@@ -530,16 +548,16 @@ Functions
 <div class="slide" id="function3">
     <h2>Creating Functions</h2>
     <h3>Function Statement</h3>
-    <pre class="prettyprint">function myFunc(args) {
+    <code class="prettyprint">function myFunc(args) {
     ...     
 };
-</pre>   
+</code>   
     <h3>Function Expression</h3>
     <p>Function expressions don't need to be named, these are called anonymous functions.</p>
-<pre class="prettyprint">var myFunc = function(args){
+<code class="prettyprint">var myFunc = function(args){
     ...     
 };
-</pre>       
+</code>       
 </div>
 
 <div class="slide" id="hoisting">
@@ -549,7 +567,7 @@ Functions
 
 <div class="slide" id="hoisting2">
     <h2>Function Declaration Before Hoisting</h2>
-    <pre class="prettyprint">function hoistingExample(){
+    <code class="prettyprint">function hoistingExample(){
     var firstVar;
 
     firstVar = "";
@@ -565,12 +583,12 @@ Functions
     function secondFunction(){
         // do another thing
     }
-}</pre>
+}</code>
 </div>
 
 <div class="slide" id="hoisting3">
     <h2>Function Declaration After Hoisting</h2>
-    <pre class="prettyprint">function hoistingExample(){
+    <code class="prettyprint">function hoistingExample(){
     function secondFunction(){
         // do another thing
     }
@@ -588,7 +606,7 @@ Functions
     firstFun = function(){
         //do something
     }
-}</pre>
+}</code>
 </div>
 
 <div class="slide" id="function20"> 
@@ -621,7 +639,7 @@ myFunc("Hello", "World", function(){});
 <div class="slide" id="function5">
     <h2>Function Arguments</h2>
     <p>Since JavaScript is a type-less language its always a good idea to check the type of arguments.</p>
-    <p>To do this we are provided with the <pre class="prettyprint">typeof</pre> operator</p>
+    <p>To do this we are provided with the <code class="prettyprint">typeof</code> operator</p>
     <div class="slide" id="fnArg1">
          <textarea id="code10" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log("Type of string: " + typeof "hello");
 console.log("Type of number :" + typeof 1234);
@@ -636,25 +654,25 @@ console.log("Type of fn: " + typeof function(){});
     <h2>Function Arguments</h2>
     <p>Hit the brakes!</p>
     <div class="slide" id="checktype">
-        <pre class="prettyprint">
+        <code class="prettyprint">
 console.log(typeof []); //object ?!? 
-</pre>
+</code>
     </div>
     <p class="slide" id="fnArg2">We have to work a little harder to check for an array</p>
     <div class="slide" id="fnArg3">
-        <pre class="prettyprint">//borrowed from Douglas Crockford's "JavaScript: The Good Parts"
+        <code class="prettyprint">//borrowed from Douglas Crockford's "JavaScript: The Good Parts"
 var is_array = function (value) {
     return Object.prototype.toString.apply(value) === '[object Array]';
-};</pre>
+};</code>
     </div>
 </div>
 
 <div class="slide" id="functionConstructor1">
     <h2>Constructor Functions</h2>
-    <p>JavaScript has a special type of function called a <pre class="prettyprint">Constructor</pre> function.</p>
+    <p>JavaScript has a special type of function called a <code class="prettyprint">Constructor</code> function.</p>
     <ul>
         <li class="slide" id="const1">By convention the first letter of a constructor should be a capital letter.</li>
-        <li class="slide" id="const2">Never use a constructor function without first using the <pre class="prettyprint">new</pre> keyword!</li>
+        <li class="slide" id="const2">Never use a constructor function without first using the <code class="prettyprint">new</code> keyword!</li>
         <li class="slide" id="const3">Using the new keyword will create a new scope for the function.</li>
         <li class="slide" id="const4">Using the new keyword will also create the inheritance tree. Without new a function will only inherit from the Function Constructor.</li>
     </ul>
@@ -717,7 +735,7 @@ This
 
 <div class="slide" id="this1">
     <h2>This</h2>
-    <p>The <pre class="prettyprint">this</pre> keyword one of JavaScript's most mis-understood keywords.</p>
+    <p>The <code class="prettyprint">this</code> keyword one of JavaScript's most mis-understood keywords.</p>
      <textarea id="code13" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
     var myObj = {
         myFunc : function(){ 
@@ -744,7 +762,7 @@ This
 
 <div class="slide" id="this6">
     <h2>call() and apply()</h2>
-    <p>The <pre class="prettyprint">call(this,arg1,arg2,arg3,...)</pre> and <pre class="prettyprint">apply(this,[args])</pre> functions allow you to pass the value of <pre class="prettyprint">this</pre> as the first parameter.</p>
+    <p>The <code class="prettyprint">call(this,arg1,arg2,arg3,...)</code> and <code class="prettyprint">apply(this,[args])</code> functions allow you to pass the value of <code class="prettyprint">this</code> as the first parameter.</p>
     <p>The difference is that the call function takes in any number of arguments whereas the apply function takes an array of arguments as its second argument.</p>
      <textarea id="code14" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function whoAmI(){
     console.log("I am: " + this);
@@ -757,16 +775,16 @@ whoAmI.apply("Scott",["Hello World",undefined,{},[]]);</textarea>
 <div class="slide" id="this3">
     <h2>This</h2>
     <p>Back to our "this" example</p>
-    <pre class="prettyprint">&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+    <code class="prettyprint">&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
 
 var myFunc = function(){
     console.log(this);
 }
 
 myFunc()
-&lt;/script&gt;</pre>
+&lt;/script&gt;</code>
 <p>When a function is called from the root of the script tag its the same as:</p>
-<pre class="prettyprint">myFunc.call(window,arguments);</pre>
+<code class="prettyprint">myFunc.call(window,arguments);</code>
 </div>
 
 <div class="slide" id="this4">
@@ -784,7 +802,7 @@ var person = new Person("Bart");</textarea>
 
 <div class="slide" id="this5">
 <h2>This In Object Literals</h2>
-<p>In an object literal <pre class="prettyprint">this</pre> refers to the current object</p>
+<p>In an object literal <code class="prettyprint">this</code> refers to the current object</p>
  <textarea id="code16" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
     name : "Homer",
 
@@ -796,7 +814,7 @@ var person = new Person("Bart");</textarea>
 
 <div class="slide" id="this9">
 <h2>This In Object Literals</h2>
-<p>Be careful when using <pre class="prettyprint">this</pre> in nested functions!</p>
+<p>Be careful when using <code class="prettyprint">this</code> in nested functions!</p>
  <textarea id="code17" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
     name : "Homer",
 
@@ -808,12 +826,12 @@ var person = new Person("Bart");</textarea>
         };
     }
 };</textarea>
-<p class="slide">In nested functions <pre class="prettyprint">this</pre> referes back to global namespace!</p>
+<p class="slide">In nested functions <code class="prettyprint">this</code> referes back to global namespace!</p>
 </div>
 
 <div class="slide" id="this10">
     <h2>This and jQuery</h2>
-    <p>jQuery likes to normalize <pre class="prettyprint">this</pre>, which can cause issues if you expect <pre class="prettyprint">this</pre> to refer to the current object.</p>
+    <p>jQuery likes to normalize <code class="prettyprint">this</code>, which can cause issues if you expect <code class="prettyprint">this</code> to refer to the current object.</p>
      <textarea id="code18" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var obj = {
     init : function(){
         $('#readmore').on('click',function(){
@@ -978,8 +996,8 @@ $(document).myPlugin();
 <div class="slide" id="designPatterns8">
     <h2>Pub-Sub (AKA Observer)</h2>
     <p>This pattern you probably already use every day.</p>
-    <pre class="prettyprint">​&lt;a href=&quot;#&quot; id=&quot;clickMe&quot;&gt;Observe Me&lt;/a&gt;</pre>
-<pre class="prettyprint">​//clickme's click event is the "publisher" 
+    <code class="prettyprint">​&lt;a href=&quot;#&quot; id=&quot;clickMe&quot;&gt;Observe Me&lt;/a&gt;</code>
+<code class="prettyprint">​//clickme's click event is the "publisher" 
 //the anonymous function parameters are the subscribers
 
 $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
@@ -988,7 +1006,7 @@ $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
     
 $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
     console.log(&quot;Second Observable of click&quot;);
-});</pre>
+});</code>
 </div>
 
 <div class="slide" id="designPatterns10">
@@ -1012,7 +1030,7 @@ for(var attr in motorcycle){
 <div class="slide" id="designPatterns11">
     <h2>Prototype</h2>
     <p>This pattern is used very extensively in both jQuery and Backbone applications.</p>
-    <p>In fact when you create a jQuery plugin you are using this pattern, using <pre class="prettyprint">jQuery.fn</pre> as your prototype.</p>
+    <p>In fact when you create a jQuery plugin you are using this pattern, using <code class="prettyprint">jQuery.fn</code> as your prototype.</p>
     <p>jQuery and underscore.js have a function that helps with this pattern.</p>
      <textarea id="code26" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var mammal = {
     hair : "brown",
@@ -1029,9 +1047,9 @@ var cat = $.extend(mammal,{
     <h2>$, window, undefined</h2>
     <p>This isn't a pattern as much as it is a best practice.  This is just a way to make sure that $ is assigned to jQuery in your module,
         that the window object is protected, and that undefined, is truly undefined.</p>
-    <pre class="prettyprint">(function( $, window, undefined ){
+    <code class="prettyprint">(function( $, window, undefined ){
 
-}( window.jQuery, window ))</pre>
+}( window.jQuery, window ))</code>
 </div>
 
 <div class="slide" id="designPatterns12">
@@ -1126,6 +1144,8 @@ Resources
 
 <!-- enable codemirror plugin -->
 <script src="extensions/codemirror/deck.codemirror.js"></script>
+
+<script src="samples.js"></script>
 
 </body>
 </html>
