@@ -162,8 +162,7 @@ function doMore(){
     for(i = 0; i < 10; i++){
         
     }
-};
-</textarea>
+};</textarea>
 
 </div>
 
@@ -175,11 +174,10 @@ function doMore(){
 }
 
 function doMore(){
-    for(var i= 10 i < 10; i++){
+    for(var i = 10; i < 10; i++){
         
     }
-};
-</textarea>
+};</textarea>
 
 </div>
 <!-- 
@@ -190,10 +188,8 @@ Numbers
     <h2>Numbers</h2>
         <p>All numbers in JavaScript are 64 bit floating point numbers.</p>
         <p>
-             <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
-    var result = 0.06 + 0.01;
-    console.log("0.06 + 0.01 = " + result); 
-             </textarea>
+             <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var result = 0.06 + 0.01;
+    console.log("0.06 + 0.01 = " + result);</textarea>
         </p>
         <p><a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
 
@@ -222,60 +218,77 @@ Arrays
 <div class="slide" id="arrays">
     <h2>Arrays</h2>
         <P>Arrays can be created two ways:</P>
-        <code class="prettyprint">var myArray = new Array();</code>
-        <br><br>
+        <pre><code class="prettyprint">var myArray = new Array();</code></pre>
         <p>AND</p>
-        <code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code>
+        <pre><code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code></pre>
         <p>In order to create multi-dimensional arrays in JavaScript you nest arrays:</p>
-        <code class="prettyprint">myArray[0] = ["nested one", "nested two"];<br>myArray[0][1]; //nested two</code>
-</div>
-
-<div class="slide" id="arrays3">
-<h2>Arrays</h2>
-<p>Arrays in JavaScript are passed <strong>by value</strong>!  No, this is not a typo!</p>
-    <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">createArray();
-
-function createArray(){
-    var myArray = ["Foo","Bar","Bazz"];
-    
-    console.log(myArray);
-    changeArray(myArray);
-    console.log(myArray);       
-}
-
-function changeArray(theArray){
-    theArray[0] = "Win!";
-}</textarea>
+        <pre><code class="prettyprint">myArray[0] = ["nested one", "nested two"];
+myArray[0][1]; //nested two</code></pre>
 </div>
 
 <div class="slide" id="arrays2">
     <h2>Arrays</h2>
     <p>Arrays are objects so they have methods, here are a few you'll commonly see used in projects: </p>
-        <div class="slide" id="arm1"><code class="prettyprint">myArray.length //arrayLen() function in CFML
+        <div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length
 
-myArray.push("item 4") //arrayAppend in CFML, myArray is changed
+myArray.push(item) //append item to the end of the array
+
+myArray.pop() //removes the last element of the array and returns it
 
 myArray.concat(anotherArray) //adds two arrays together, returns a new array. myArray unchanged!
 
 myArray.join(",") //combines elements into string, separated by argument
-</code></div>
+</code></pre></div>
 </div>
+
+<div class="slide" id="arrays2Demo">
+    <h2>Arrays</h2>
+    <p>Use push & pop together to create a stack (LIFO)</p>
+     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myStack = ['Aaron','Drew','Tom','Peyton'];
+
+myStack.push('Eli');
+
+console.log(myStack.pop());</textarea>
+</div>
+
 
 <div class="slide" id="arrays13">
     <h2>Arrays</h2>
     <p>More methods:</p>
-        <div id="arm2"><code class="prettyprint">
-myArray.sort() //arraySort in CFML
+        <div id="arm2"><pre><code class="prettyprint">
+myArray.sort() //sorts an array
 
 myArray.splice(1,2) //deletes 2 items from the array starting at position 1
 
 myArray.slice(1,2) //returns 2 items from the array starting at position 1
 
-myArray.pop() //removes the last element of the array and returns it
-
-myArray.shift() //removes the first element of the array and returns it</code></div>
+myArray.shift() //removes the first element of the array and returns it
+</code></pre></div>
 </div>
 
+<div class="slide" id="arrays3Demo">
+    <h2>Arrays</h2>
+    <p>Use push & shift together to create a queue (FIFO)</p>
+     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myStack = ['Aaron','Drew','Tom','Peyton'];
+
+        myStack.push('Eli');
+
+        console.log(myStack.shift());</textarea>
+</div>
+
+<div class="slide" id="arrays3Demo2">
+    <h2>Arrays</h2>
+<p>Use use slice() to make a one level deep copy of an Array.</p>
+     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myArray = ['Aaron','Drew','Tom','Peyton'];
+var myArray2 = myArray; //holds a reference to myArray
+var myArray3 = myArray.slice(); //is truly a new array
+
+myArray2[2] = 'Cam'; //changes myArray
+myArray3[1] = 'Phillip'
+
+console.log(myArray);
+console.log(myArray3);</textarea>
+</div>
 
 <!-- 
 Operators
@@ -303,13 +316,16 @@ Operators
 <div class="slide" id="comparisons2">
     <h2>Comparisons</h2>
     <p>What does this mean to you as a JavaScript programmer?
-    <code class="prettyprint">1 == "1" //true</code>
-    but
-    <code class="prettyprint">1 === "1" //false</code>
-    </p>
+    <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( "1" == 1);
+
+console.log( "1" === 1);
+
+console.log( [7] == 7);  //automatically calls toString() on  
+                                 //eachelement in the array
+console.log( [7] === 7);</textarea>
     <p>So, which one do you use?</p>
     <p class="slide">
-    Always use === when comparing <code class="prettyprint">0</code>, <code class="prettyprint">undefined</code>, and empty strings.
+    Always use === when comparing <code class="prettyprint">0</code>, <code class="prettyprint">undefined,</code>, booleans, and empty strings.
     </p>
 
 </div>
@@ -333,95 +349,59 @@ Operators
 
 <div class="slide" id="comparisons4">
     <h2>Truthy / Falsy Values</h2>
-        <table class="datatable">
-            <caption>Falsy Values</caption>
-            <thead>
-            <tr>
-                <th>ColdFusion</th>
-                <th>JavaScript</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>false</td>
-                <td>false</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>"false"</td>
-                <td>""</td>
-            </tr>
-            <tr>
-                <td>"no"</td>
-                <td>undefined</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>NaN</td>
-            </tr>
-        </table>
-        
-        <table class="datatable">
-            <caption>Truthy Values</caption>
-            <thead>
-            <tr>
-                <th>ColdFusion</th>
-                <th>JavaScript</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>true</td>
-                <td>Anything that is NOT falsy</td>
-            </tr>
-            <tr>
-                <td>numbers != 0</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>"true"</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>"yes"</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
+    <h3>Falsy Values</h3>
+        <ul>
+            <li>
+                <code class="prettyprint">false</code>
+            </li>
+            <li>
+                <code class="prettyprint">0</code>
+            </li>
+            <li>
+                ""
+            </li>
+            <li>
+                <code class="prettyprint">undefined</code>
+            </li>
+            <li>
+                <code class="prettyprint">NaN</code>
+            </li>
+            <li>
+                <code class="prettyprint">null</code>
+            </li>
+        </ul>
+        <p>Anything that is not falsy is truthy in JavaScript.</p>
+        <p>Use <code class="prettyprint">null</code> when initializing an object with no value.</p>
 </div>
 
 <div class="slide" id="andor">
-    <h2>Logical Operators</h2>
-    <p>Logical operators in JavaScript work slightly differnt than what you are used to in other languages.</p>
+    <h1>Logical Operators</h1>
 </div>
 
 <div class="slide" id="andor2">
     <h2>Logical Operators</h2>
     <h3>JavaScript OR Operator <code class="prettyprint">||</code></h3>
-    <textarea id="code3" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//returns the value of the first expression if it's true, otherwise returns the value of the second expression
+    <p>The || operator returns the value of the first expression if it's true otherwise returns the value of the second expression.
+    <textarea id="code3" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
+    console.log(null || "hello"); 
 
-console.log(false || "hello"); 
-
-console.log("world" || "foo");
-</textarea>
+    console.log("world" || "foo");</textarea>
 </div>
 
 <div class="slide" id="andor3">
     <h2>Logical Operators</h2>
-    <p>The || operator can be used to set default values like so:</p>
-    <textarea id="code4" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myFunc = function(arg){
+    <p>The || operator can be used to set default values.</p>
+    <pre><code class="prettyprint">var myFunc = function(arg){
 
     var myVal = document.getElementById(arg) || 
         document.createElement("div"); //if no arg was passed in myVal is "defaultValue"
 
-    console.log(myVal);
+        console.log(myVal);
 };
 
 myFunc();
-myFunc("andor2");
-</textarea>
+myFunc("andor3");</code></pre>
+<input type="button" data-run="andor3" value="Run">
 </div>
 
 <div class="slide" id="andor3div">
@@ -558,6 +538,32 @@ Functions
     ...     
 };
 </code>       
+</div>
+
+<div class="slide" id="arguments">
+<h2>Function Arguments</h2>
+<p>All arguments JavaScript are passed <strong>by value</strong>!  No, this is not a typo!</p>
+    <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">createObject();
+
+function createObject(){
+    var myCar = {
+        make : "Ford",
+        model : "Fusion"
+    };
+
+    changeCar(myCar);
+    console.log(myCar);        
+}
+
+function changeCar(theObj){
+    theObj.make = "Chevy";
+    theObj.model = "Traverse";
+
+    theObj = {};
+    theObj.make = "Honda";
+
+    console.log(theObj);
+}</textarea>
 </div>
 
 <div class="slide" id="hoisting">
