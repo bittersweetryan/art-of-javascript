@@ -832,10 +832,11 @@ var person = new Person("Bart");</code></pre>
 <h2>This In Object Literals</h2>
 <p>In an object literal <code class="prettyprint">this</code> refers to the current object</p>
  <textarea id="code16" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
-    name : "Homer",
+    firstName : "Homer",
 
     sayHello : function(){
-        console.log("Hello, " + this.name);
+        //omitting this would cause an error
+        console.log("Hello, " + this.firstName); 
     }
 };
 
@@ -859,7 +860,7 @@ myObj.sayHello();</textarea>
 
 myObj.sayHello();</code></pre>
 <input type="button" data-run="this3" value="Run"><br><br>
-<p class="slide">In nested functions <code class="prettyprint">this</code> referes back to global namespace!</p>
+<p class="slide">In nested functions <code class="prettyprint">this</code> refers back to global namespace!</p>
 </div>
 
 <div class="slide" id="this10">
@@ -1054,24 +1055,31 @@ $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
     <p>The prototype pattern is a pattern where an object is used for the prototype of another object.</p>
      <textarea id="code25" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var motorcycle = {
     wheels : 2,
-    go : function(){  }
+    go : function(){ console.log("Rumble rumble rumble."); }
 };
     
 var sportbike = {
-    engine: "1000cc"
+    engine: "1000cc",
+    go : function(){ console.log("Waaaaaaaaa"); }
 };
     
 for(var attr in motorcycle){
-    sportbike[attr] = motorcycle[attr];
-}</textarea>
+    if(!sportbike[attr]){
+        sportbike[attr] = motorcycle[attr];
+    }
+}
+
+console.log(sportbike);
+sportbike.go();
+motorcycle.go();</textarea>
 </div>
 
 <div class="slide" id="designPatterns11">
     <h2>Prototype</h2>
     <p>This pattern is used very extensively in both jQuery and Backbone applications.</p>
     <p>In fact when you create a jQuery plugin you are using this pattern, using <code class="prettyprint">jQuery.fn</code> as your prototype.</p>
-    <p>jQuery and underscore.js have a function that helps with this pattern.</p>
-     <textarea id="code26" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var mammal = {
+    <p>jQuery and underscore.js have a function called <code class="prettyprint">extend</code> makes implemtations of this pattern trivial.</p>
+     <pre><code class="prettyprint">var mammal = {
     hair : "brown",
     breath : function(){}
 };
@@ -1079,16 +1087,7 @@ for(var attr in motorcycle){
 var cat = $.extend(mammal,{
     eyes: 2,
     ears: 2
-});</textarea>
-</div>
-
-<div class="slide" id="designPatterns13">
-    <h2>$, window, undefined</h2>
-    <p>This isn't a pattern as much as it is a best practice.  This is just a way to make sure that $ is assigned to jQuery in your module,
-        that the window object is protected, and that undefined, is truly undefined.</p>
-    <code class="prettyprint">(function( $, window, undefined ){
-
-}( window.jQuery, window ))</code>
+});</code></pre>
 </div>
 
 <div class="slide" id="designPatterns12">
@@ -1124,7 +1123,7 @@ Resources
 <div class="slide" id="giveaway">
     <h2>Giveaway Time!</h2>
     <p class="slide">In this presentation we created a "Robot" constructor function that took a name as a parameter.  What was the name of one of the robots we created?</p>
-    <p class="slide">Question 2 (just in case).  Name two things that ColdFusion and JavaScript have in common.</p>
+    <p class="slide">Question 2 (just in case).  Name the 6 data types available in JavaScript.</p>
 </div>
 
 

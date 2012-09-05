@@ -214,7 +214,7 @@
               
               // set the old logging behavior back.
               console.log = real_console_log;
-            }
+            };
           }(editor, output));
         }
       }
@@ -244,6 +244,5 @@
     }
   });
 })(jQuery, 'deck', this);
-
 
 
