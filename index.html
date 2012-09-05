@@ -55,7 +55,7 @@ Title
 </div>
 
 <div class="slide" id="introslide">
-    <h1>JavaScript Fundamentals for ColdFusion Developers</h1>
+    <h1>The Art of JavaScript: Level Up Your Skills In 60 Minutes</h1>
 </div>
 
 <div class="slide" id="about-me">
@@ -199,13 +199,19 @@ Numbers
 <div class="slide" id="variables3">
     <h2>Numbers</h2>
         <p>All numbers in JavaScript are 64 bit floating point numbers.</p>
-        <p>
-             <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var result = 0.06 + 0.01;
-    console.log( "0.06 + 0.01 = " + result );</textarea>
-        </p>
+        <div>
+        <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var result = 0.06 + 0.01;
+console.log( "0.06 + 0.01 = " + result );</textarea>
+</div>
         <p><a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
 
         <p>JavaScript has a BigNum library at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
+        <p>Use the <code class="prettyprint">toFixed()</code> method to round to a fixed number of decimal places.</p>
+        <div>
+            <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//
+//toFixed rounds to a fixed number of decimals
+console.log( 3.14159.toFixed(2) ); </textarea>
+        </div>
 </div>
 
 <div class="slide" id="numbers2">
@@ -217,7 +223,6 @@ Numbers
         <li class="slide" id="na3">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
     </ul>
 </div>
-
 
 <!-- 
 Arrays
@@ -517,7 +522,8 @@ Functions
     <h2>Functions</h2>
     <p>JavaScript functions are the beating heart of a JavaScript application and are one of the most powerful features of the language.</p>
     <ul>
-        <li class="slide" id="fn8">All functions return something!  If there is no <code class="prettyprint">return</code> statement a function will return the keyword <code class="prettyprint">undefined</code>.</li>
+        <li class="slide">All functions return something!  If there is no <code class="prettyprint">return</code> statement a function will return the keyword <code class="prettyprint">undefined</code>.</li>
+        <li class="slide">Functions can have properties just like objects.</li>
     </ul>
 </div>
 
@@ -536,32 +542,6 @@ Functions
 </code></pre>
 </div>
 
-<div class="slide" id="arguments">
-<h2>Function Arguments</h2>
-<p>All arguments JavaScript are passed <strong>by value</strong>!  No, this is not a typo!</p>
-    <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function createCar(){
-    var myCar = {
-        make : "Ford",
-        model : "Fusion"
-    };
-
-    changeCar(myCar);
-    console.log(myCar);        
-}
-
-function changeCar(theObj){
-    theObj.make = "Chevy";
-    theObj.model = "Traverse";
-
-    theObj = {};
-    theObj.make = "Honda";
-
-    console.log(theObj);
-}
-
-createObject();</textarea>
-</div>
-
 <div class="slide" id="hoisting">
     <h2>Hoisting</h2>
     <p>There is one fundamental difference between function expressions and statements: hoisting.  Hoisting is when the JavaScript compiler takes a function or variable and moves it to the top of the current scope.</p>
@@ -569,7 +549,7 @@ createObject();</textarea>
 
 <div class="slide" id="hoisting2">
     <h2>Function Declaration Before Hoisting</h2>
-    <code class="prettyprint">function hoistingExample(){
+    <pre><code class="prettyprint">function hoistingExample(){
     var firstVar;
 
     firstVar = "";
@@ -585,20 +565,23 @@ createObject();</textarea>
     function secondFunction(){
         // do another thing
     }
-}</code>
+}</code></pre>
 </div>
 
 <div class="slide" id="hoisting3">
     <h2>Function Declaration After Hoisting</h2>
-    <code class="prettyprint">function hoistingExample(){
-    function secondFunction(){
+    <pre><code class="prettyprint">function hoistingExample(){
+    //the function statement has been brought to the top of the scope
+    function secondFunction(){ 
         // do another thing
     }
 
+    //declared the variables
     var firstVar;
     var secondVar;
     var firstFun;
 
+    //instantiate the variables where they are in the code
     firstVar = "";
 
     secondVar = "";
@@ -608,34 +591,18 @@ createObject();</textarea>
     firstFun = function(){
         //do something
     }
-}</code>
-</div>
-
-<div class="slide" id="function20"> 
-    <h2>Lexical Scoping</h2>
-    <p>Functions can be nested, each nested function has access to the scope of all its parents.</p>
-<!-- may have issues -->
-     <textarea id="code8" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var lexical = function(){
-    var outerVar = 'outer';
-    
-    return function(){
-
-        var innerFn = "inner"; //outer function does not have access
-        console.log(outerVar);
-    };
-};</textarea>
+}</code></pre>
 </div>
 
 <div class="slide" id="function4">  
     <h2>Function Arguments</h2>
-    <p>Just like in ColdFusion you can have named arguments and arguments that are outside of the named arguments.</p>
     <p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
-     <textarea id="code9" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myFunc = function(){
+    <pre><code class="prettyprint">var myFunc = function(){
     console.log(arguments);
 };
 
-myFunc("Hello", "World", function(){});
-</textarea>
+myFunc("Hello", "World", function(){});</code></pre>
+<input type="button" data-run="args" value="Run">
 </div>
 
 <div class="slide" id="function5">
@@ -656,18 +623,70 @@ console.log("Type of fn: " + typeof function(){});
     <h2>Function Arguments</h2>
     <p>Hit the brakes!</p>
     <div class="slide" id="checktype">
-        <code class="prettyprint">
+        <pre><code class="prettyprint">
 console.log(typeof []); //object ?!? 
-</code>
+</code></pre>
     </div>
     <p class="slide" id="fnArg2">We have to work a little harder to check for an array</p>
     <div class="slide" id="fnArg3">
-        <code class="prettyprint">//borrowed from Douglas Crockford's "JavaScript: The Good Parts"
+        <pre><code class="prettyprint">//borrowed from Douglas Crockford's "JavaScript: The Good Parts"
 var is_array = function (value) {
     return Object.prototype.toString.apply(value) === '[object Array]';
-};</code>
+};</code></pre>
     </div>
 </div>
+
+<div class="slide" id="arguments">
+<h2>Function Arguments</h2>
+<p>All arguments JavaScript are passed <strong>by value</strong>!  No, this is not a typo!</p>
+    <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function createCar(){
+    var myCar = {
+        make : "Ford",
+        model : "Fusion"
+    };
+
+    changeCar(myCar);
+
+    //if mycar was passed by ref it would now be a Honda!
+    console.log(myCar);        
+}
+
+function changeCar(theObj){
+    theObj.make = "Chevy";
+    theObj.model = "Traverse";
+
+    theObj = {};
+    theObj.make = "Honda";
+
+    console.log(theObj);
+}
+
+createCar();</textarea>
+</div>
+
+<div class="slide" id="function20"> 
+    <h2>Lexical Scoping</h2>
+    <p>Functions can be nested inside of other functions.  Each nested function has access to the scope of all its parents.  This is called lexical scoping. </p>
+<!-- may have issues -->
+     <textarea id="code8" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var lexical = function(){
+    var outerVar = 'outer';
+    
+    return function(){
+
+        var innerVar = "inner"; //outer function does not have access
+
+        console.log(outerVar);
+
+            return function(){
+                console.log(innerVar, outerVar);
+            }();
+    }();
+};
+
+lexical();</textarea>
+</div>
+
+
 
 <div class="slide" id="functionConstructor1">
     <h2>Constructor Functions</h2>
@@ -682,16 +701,20 @@ var is_array = function (value) {
 
 <div class="slide" id="functionConstructor2">
     <h2>Constructor Functions</h2>
-     <textarea id="code11" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var Robot = function(robotName){
+     <textarea id="code11" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//create a new constuctor function called Robot
+var Robot = function(robotName){
     this.robotName = robotName;
 };
-//add a new property to the prototype
+
+//add a new property to the prototype (more on this soon)
 Robot.prototype.walk = function(){
     console.log("Go " + this.robotName + " go!");
 };
 
+//create a new instance of the robot using the new keyword
 var robot = new Robot("Ferbbot");
 
+//now we can tell the robot to walk
 robot.walk();
 
 var anotherRobot = Robot("phineasbot"); //we just created a global!! 
@@ -704,15 +727,15 @@ Robot.walk(); //doesn't exist</textarea>
 <div class="slide" id="function7">
     <h2>Closures</h2>
     <ul>
-        <li class="slide" id="cl1">Closures are functions that are enclosed, and returned within the context of another function.</li>
-        <li class="slide" id="cl2">The execution context of the outer function is saved wrapped around the inner function.</li>
-        <li class="slide" id="cl3">This effectively saves the "state" of the outer functions variables.</li>
+        <li class="slide" id="cl1">Closures are functions that are enclosed, and invoked within the context of another function.</li>
+        <li class="slide" id="cl2">The execution context of the outer function(s) are saved and "wrapped" around the inner function.</li>
+        <li class="slide" id="cl3">This effectively saves the "state" of the outer functions variables at the time the inner function is run.</li>
     </ul>
 </div>
 
 <div class="slide" id="function8">
     <h2>Contrived Closure Example</h2>
-        <textarea id="code12" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var timesCalled = function(){
+        <pre><code class="prettyprint">var timesCalled = function(){
     var total = 0;
     
     return function(){
@@ -724,7 +747,8 @@ Robot.walk(); //doesn't exist</textarea>
 
 var callTimer = timesCalled(); //this call right here creates the closure
 
-callTimer();</textarea>
+callTimer();</code></pre>
+<input type="button" data-run="closure" value="Run">
 </div>
 
 <!-- 
@@ -738,7 +762,7 @@ This
 <div class="slide" id="this1">
     <h2>This</h2>
     <p>The <code class="prettyprint">this</code> keyword one of JavaScript's most mis-understood keywords.</p>
-     <textarea id="code13" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
+    <pre><code class="prettyprint">
     var myObj = {
         myFunc : function(){ 
             console.log(this);
@@ -751,7 +775,8 @@ This
     
     myObj.myFunc();
     myFunc();
-</textarea>
+</code></pre>
+<input type="button" data-run="this1" value="Run">
 </div>
 
 <div class="slide" id="this2">
@@ -777,14 +802,14 @@ whoAmI.apply("Scott",["Hello World",undefined,{},[]]);</textarea>
 <div class="slide" id="this3">
     <h2>This</h2>
     <p>Back to our "this" example</p>
-    <code class="prettyprint">&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+    <pre><code class="prettyprint">&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
 
 var myFunc = function(){
     console.log(this);
 }
 
 myFunc()
-&lt;/script&gt;</code>
+&lt;/script&gt;</code></pre>
 <p>When a function is called from the root of the script tag its the same as:</p>
 <code class="prettyprint">myFunc.call(window,arguments);</code>
 </div>
@@ -792,14 +817,15 @@ myFunc()
 <div class="slide" id="this4">
     <h2>This</h2>
     <p>Lets take a look at "this" when using a constructor function to create a new instance.</p>
-     <textarea id="code15" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function Person(name){
+     <pre><code class="prettyprint">function Person(name){
     this.name = name;
     
     console.log(this);
     console.log(this.name);
 }
 
-var person = new Person("Bart");</textarea>
+var person = new Person("Bart");</code></pre>
+<input type="button" data-run="this2" value="Run">
 </div>
 
 <div class="slide" id="this5">
@@ -811,13 +837,15 @@ var person = new Person("Bart");</textarea>
     sayHello : function(){
         console.log("Hello, " + this.name);
     }
-};</textarea>
+};
+
+myObj.sayHello();</textarea>
 </div>
 
 <div class="slide" id="this9">
 <h2>This In Object Literals</h2>
 <p>Be careful when using <code class="prettyprint">this</code> in nested functions!</p>
- <textarea id="code17" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
+ <pre><code class="prettyprint">var myObj = {
     name : "Homer",
 
     sayHello : function(){
@@ -827,38 +855,43 @@ var person = new Person("Bart");</textarea>
             console.log(this);
         };
     }
-};</textarea>
+};
+
+myObj.sayHello();</code></pre>
+<input type="button" data-run="this3" value="Run"><br><br>
 <p class="slide">In nested functions <code class="prettyprint">this</code> referes back to global namespace!</p>
 </div>
 
 <div class="slide" id="this10">
     <h2>This and jQuery</h2>
     <p>jQuery likes to normalize <code class="prettyprint">this</code>, which can cause issues if you expect <code class="prettyprint">this</code> to refer to the current object.</p>
-     <textarea id="code18" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var obj = {
+    <pre><code class="prettyprint">var obj = {
     init : function(){
-        $('#readmore').on('click',function(){
+        $('#thisButton').on('click',function(){
             console.log(this);
         });     
     }
 };
 
-obj.init();</textarea>
+obj.init();</code></pre>
+<input type="button" id="thisButton" value="Run">
 </div>
 
 <div class="slide" id="this7">
     <h2>This and jQuery</h2>
     <p>Luckily there is an easy fix that a lot of library authors have chosen to use.</p>
-     <textarea id="code19" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var obj = {
+     <pre><code class="prettyprint">var obj = {
     init : function(){
         var self = this; //create a ref to the current "this" scope
 
-        $("#readmore").on('click',function(){
+        $("#this4").on('click',function(){
             console.log(self);
         });     
     }
 };
 
-obj.init();</textarea>
+obj.init();</code></pre>
+<input type="button" id="thisButton1" value="Run">
 </div>
 
 <div class="slide" id="this8">
@@ -875,12 +908,10 @@ Inheritence
     <h1>Inheritance</h1>
 </div>
 
-
-
 <div class="slide" id="inheritance1">
     <h2>Inheritance</h2>
     <p>JavaScript uses a prototypical inheritance model.</p>
-     <textarea id="code20" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var Car = function(){ };
+     <pre><code class="prettyprint">var Car = function(){ };
 
 //add properties to Car's Prototype
 Car.prototype = {
@@ -894,7 +925,11 @@ R8.prototype = new Car();
 
 R8.prototype.constructor = R8; //reset the R8's constructor
 
-var r8 = new R8();</textarea>
+var r8 = new R8();
+
+console.log( r8 );
+console.log( r8.wheels );</code></pre>
+<input type="button" data-run="inheritance1" value="Run">
 </div>
 
 <div class="slide" id="inheritance2">
@@ -906,7 +941,7 @@ var r8 = new R8();</textarea>
 <div class="slide" id="inheritance3">
     <h2>Prototype's Members</h2>
     <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all instances.</p>
-     <textarea id="code21" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function RealObject(name){ //note captial letter denotes that this is a constructor function
+     <textarea id="code21" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function RealObject(name){ 
     this.name = name
 };
 
@@ -934,7 +969,9 @@ console.log(anotherOfRealObject.iRule());</textarea>
 var myArray = ["Apple","Peach","Pear"];
 var copiedArray = myArray.deepCopy();
 
-copiedArray[0] = "Banana";</textarea>
+copiedArray[0] = "Banana";
+
+console.log(copiedArray);</textarea>
 </div>
 
 <!-- 
@@ -962,7 +999,7 @@ Design Patterns
     };
     
     return publicFn;
-}());
+}()); //remember the closure slide? This function is immediately invoked creating a closure
 
 publicFunctions.sayHello();
 console.log(publicFunctions.name);</textarea>
@@ -971,7 +1008,7 @@ console.log(publicFunctions.name);</textarea>
 <div class="slide" id="designPatterns7">
     <h2>Options</h2>
     <p>The options pattern is very common in libraries and jQuery plugins</P>
- <textarea id="code24" name="code" class="code" mode="javascript" style="display: none;" runnable="true">$.fn.myPlugin = function(options){
+ <pre><code class="prettyprint">$.fn.myPlugin = function(options){
     var defaults = {color: "blue", height: "200px" };
 
     //remember to check the type of the argument!
@@ -985,8 +1022,8 @@ console.log(publicFunctions.name);</textarea>
 };
     
 $(document).myPlugin({color:'black', height: '500px'});
-$(document).myPlugin();
-​</textarea>
+$(document).myPlugin();</code></pre>
+​<input type="button" data-run="optionsPattern" value="run">
 </div>
 
 <div class="slide" id="designPatterns9">
@@ -998,8 +1035,8 @@ $(document).myPlugin();
 <div class="slide" id="designPatterns8">
     <h2>Pub-Sub (AKA Observer)</h2>
     <p>This pattern you probably already use every day.</p>
-    <code class="prettyprint">​&lt;a href=&quot;#&quot; id=&quot;clickMe&quot;&gt;Observe Me&lt;/a&gt;</code>
-<code class="prettyprint">​//clickme's click event is the "publisher" 
+    <pre><code class="prettyprint">​&lt;a href=&quot;#&quot; id=&quot;clickMe&quot;&gt;Observe Me&lt;/a&gt;</code></pre>
+<pre><code class="prettyprint">​//clickme's click event is the "publisher" 
 //the anonymous function parameters are the subscribers
 
 $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
@@ -1008,7 +1045,7 @@ $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
     
 $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
     console.log(&quot;Second Observable of click&quot;);
-});</code>
+});</code></pre>
 </div>
 
 <div class="slide" id="designPatterns10">
