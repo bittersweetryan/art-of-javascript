@@ -104,7 +104,7 @@ Cover
 <div class="slide" id="what-well-cover">
     <h2>What we'll cover</h2>
     <ul>
-        <li class="slide" id="basics">
+        <li class="slide" id="basics">`
             <h3>Basics  (variables, loops, arrays, etc)</h3>
         </li>
         <li class="slide" id="coverObj">
@@ -244,7 +244,7 @@ Arrays
         <P>Arrays can be created two ways:</P>
         <pre><code class="prettyprint">var myArray = new Array();</code></pre>
         <p>AND</p>
-        <pre><code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code></pre>
+        <pre><code class="prettyprint">var myArray = ["item1", "item2", myObj, []]; //prefered</code></pre>
         <p>In order to create multi-dimensional arrays in JavaScript you nest arrays:</p>
         <pre><code class="prettyprint">myArray[0] = ["nested one", "nested two"];
 myArray[0][1]; //nested two</code></pre>
@@ -358,7 +358,7 @@ Operators
 </div>
 <div class="slide" id="comparisons2">
     <h2>Comparisons</h2>
-    <p>What does this mean to you as a JavaScript programmer?
+    <p>What exactly is type coersion?</p>
     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( "1" == 1 );
 
 console.log( "1" === 1 );
@@ -492,7 +492,8 @@ console.log( myObject['foo ' + 'bar'] );</textarea>
     <textarea id="code7" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
     firstName : 'Homer',
     sayHello: function(){
-        console.log('Hello, ' + this.firstName);
+        //omitting the this keyword below would generate an error
+        console.log('Hello, ' + this.firstName); 
     }    
 };
 
@@ -501,11 +502,11 @@ myObj.sayHello();</textarea>
 
 <div class="slide" id="objects2">
     <h2>Objects</h2>
-    <p>To check if a property exists in an objects use the<code class="prettyprint">hasOwnProperty()</code> method or the <code class="prettyprint">in</code> operator. <code class="prettyprint">hasOwnProperty</code> will only search the current object whereas <code class="prettyprint">in</code> will search all the way up the prototype chain.</p>
+    <p>To check if a property exists in an objects use the <code class="prettyprint">hasOwnProperty()</code> method or the <code class="prettyprint">in</code> operator. <code class="prettyprint">hasOwnProperty</code> will only search the current object for a property whereas <code class="prettyprint">in</code> will search all the way up the prototype chain.</p>
     <h3>JavaScript</h3>
     <textarea id="code66" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObject = {foo : 'Foo'};
 
-myObject.__proto__ = { baz : "Baz" };
+myObject.__proto__ = { baz : "Baz" }; //we'll talk about this later
 
 console.log( 'baz' in myObject );
 
@@ -546,7 +547,7 @@ Functions
 
 <div class="slide" id="hoisting">
     <h2>Hoisting</h2>
-    <p>There is one fundamental difference between function expressions and statements: hoisting.  Hoisting is when the JavaScript compiler takes a function or variable and moves it to the top of the current scope.</p>
+    <p>There is one fundamental difference between function expressions and statements: hoisting.  Hoisting is when the JavaScript parser takes a function or variable and moves it to the top of the current scope.</p>
 </div>
 
 <div class="slide" id="hoisting2">
