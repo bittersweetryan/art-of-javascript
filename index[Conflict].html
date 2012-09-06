@@ -187,8 +187,8 @@ function doMore(){
         <li>string</li>
         <li>number</li>
         <li>object (functions and arrays are technically objects)</li>
-        <li>undefined (dont initialize values to undefined, its symanticlly incorrect)</li>
-        <li>null (use null to initialize empty values)</li>
+        <li>undefined</li>
+        <li>null</li>
         <li>boolean</li>
     </ul>
 </div>
@@ -317,8 +317,14 @@ console.log( myArray3 );</textarea>
 Operators
  -->
 
-<div class="slide" id="operators">
+<div class="slide" id="statementsTitle">
     <h1>Operators</h1>
+</div>
+
+<div class="slide" id="operators">
+    <h2>Operators</h2>
+    <p>Most of the operators in JavaScript are very similar to what we have available in ColdFusion, but there are some
+        subtle differences to be aware of.</p>
 </div>
 
 <div class="slide" id="comparisons">
@@ -330,32 +336,6 @@ Operators
     </ul>
 </div>
 
-<div class="slide" id="comparisons4">
-    <h2>Truthy / Falsy Values</h2>
-    <p>The following values evaluate to <code class="prettyprint">false</code>. Since not all of them not primitive booleans they are said to be "falsy".</p>
-    <h3>Falsy Values</h3>
-        <ul>
-            <li>
-                <code class="prettyprint">false</code>
-            </li>
-            <li>
-                <code class="prettyprint">0</code>
-            </li>
-            <li>
-                ""
-            </li>
-            <li>
-                <code class="prettyprint">undefined</code>
-            </li>
-            <li>
-                <code class="prettyprint">NaN</code>
-            </li>
-            <li>
-                <code class="prettyprint">null</code>
-            </li>
-        </ul>
-        <p><strong>Anything that is not falsy is truthy in JavaScript.</strong></p>
-</div>
 <div class="slide" id="comparisons2">
     <h2>Comparisons</h2>
     <p>What does this mean to you as a JavaScript programmer?
@@ -382,14 +362,39 @@ console.log( [7] === 7 );</textarea>
             Use the Number object: <code class="prettyprint">var num = Number("1").</code>
         </li>
         <li class="slide" id="comp8">
-            <p>
-            Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10)</code>.</p>
-            <p>The second param is the radix. If it is omitted some browsers will treat numbers starting with 0 as an octal, and some a decimal.  This is why its extremely important to always pass the radix parameter.</p>
+            Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10)</code>.<br>The second param is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.
         </li>
         <li class="slide" id="comp9">
             If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <code class="prettyprint">var num = +&quot;3&quot;</code>.
         </li>       
     </ol>
+</div>
+
+<div class="slide" id="comparisons4">
+    <h2>Truthy / Falsy Values</h2>
+    <h3>Falsy Values</h3>
+        <ul>
+            <li>
+                <code class="prettyprint">false</code>
+            </li>
+            <li>
+                <code class="prettyprint">0</code>
+            </li>
+            <li>
+                ""
+            </li>
+            <li>
+                <code class="prettyprint">undefined</code>
+            </li>
+            <li>
+                <code class="prettyprint">NaN</code>
+            </li>
+            <li>
+                <code class="prettyprint">null</code>
+            </li>
+        </ul>
+        <p>Anything that is not falsy is truthy in JavaScript.</p>
+        <p>Use <code class="prettyprint">null</code> when initializing an object with no value.</p>
 </div>
 
 <div class="slide" id="andor">
@@ -921,7 +926,7 @@ Inheritence
 
 <div class="slide" id="inheritance1">
     <h2>Inheritance</h2>
-    <p>JavaScript uses a prototype-based inheritance model.</p>
+    <p>JavaScript uses a prototypical inheritance model.</p>
      <pre><code class="prettyprint">var Car = function(){ };
 
 //add properties to Car's Prototype
@@ -951,7 +956,7 @@ console.log( r8.wheels );</code></pre>
 
 <div class="slide" id="inheritance3">
     <h2>Prototype's Members</h2>
-    <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all existing instances.</p>
+    <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all instances.</p>
      <textarea id="code21" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function RealObject(name){ 
     this.name = name
 };
@@ -997,24 +1002,23 @@ Design Patterns
     <h2>Module Pattern</h2>
     <p>The module pattern can be used to "hide" variables and functions.</p>
      <textarea id="code23" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var publicFunctions = (function(){
-    var firstName = 'Aaron', //private
-        lastName = 'Rodgers'; //private
+    var name = "foobar";
     
-    var getFullName = function(){ //private
-        return firstName + ' ' + lastName;                         
+    var privateFn = function(){
+        console.log("i am private");                            
     };
     
     var publicFn = {
         sayHello : function(){
-            console.log("Hello, " + getFullName());
+            console.log("Hello, " + name);
         }
     };
     
-    return publicFn; //only what is returned is public
-}()); /*remember the closure slide? This function is immediately 
-        invoked creating a closure */
+    return publicFn;
+}()); //remember the closure slide? This function is immediately invoked creating a closure
 
-publicFunctions.sayHello();</textarea>
+publicFunctions.sayHello();
+console.log(publicFunctions.name);</textarea>
 </div>
 
 <div class="slide" id="designPatterns7">
@@ -1085,10 +1089,10 @@ $("#clickMe").on('click',function(){
         //update the collection
         $(this).trigger('change');
     }
-}; //publisher
+};
 
 $(contacts).on('change',function(){
-    var contactSelect = $('select[name="contact"]'); //subscribers
+    var contactSelect = $('select[name="contact"]');
     contactSelect.find('option').remove();
 
     for(var i = 0; i < contacts.collection.length; i++){
