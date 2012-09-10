@@ -58,6 +58,10 @@ Title
     <h1>The Art of JavaScript: Level Up Your Skills In 60 Minutes</h1>
 </div>
 
+<!-- 
+About me
+ -->
+
 <div class="slide" id="about-me">
     <h2>Obligitory About me</h2>
     <p>ryan.anklam@gmail.com<br>
@@ -87,45 +91,34 @@ Title
 </div>
 
 <!-- 
-About me
- -->
-
-<div class="slide" id="introduction">
-    <h2>Introduction</h2>
-    <p>
-        JavaScript Rules.  
-    </p>
-</div>
-
-<!-- 
 Cover
  -->
 
 <div class="slide" id="what-well-cover">
     <h2>What we'll cover</h2>
     <ul>
-        <li class="slide" id="basics">`
+        <li class="slide">
             <h3>Basics  (variables, loops, arrays, etc)</h3>
         </li>
-        <li class="slide" id="coverObj">
+        <li class="slide">
             <h3>Objects</h3>
         </li>
-        <li class="slide" id="coverFn">
+        <li class="slide">
             <h3>Functions</h3>
         </li>
-        <li class="slide" id="coverInheritance">
+        <li class="slide">
             <h3>Inheritance</h3>
         </li>
-        <li class="slide" id="coverThis">
+        <li class="slide">
             <h3>This</h3>
         </li>
-        <li class="slide" id="coverPatterns">
+        <li class="slide">
             <h3>Design Patterns</h3>
         </li>
     </ul>
 </div>
 
-<div class="slide" id="basicsTitle">
+<div class="slide" id="basics">
     <h1>Let's Start With Some Basics</h1>
 </div>
 
@@ -133,11 +126,11 @@ Cover
 Variables
  -->
 
-<div class="slide" id="variablesTitle">
+<div class="slide">
     <h1>Variables</h1>
 </div>
 
-<div class="slide" id="variables">
+<div class="slide">
     <h2>Variables</h2>
     <p>Variables in JavaScript are very poorly scoped by default, any variable that is not declared with the var keyword goes into the global scope.</p>
      <pre><code class="prettyprint">function doSomething(){
@@ -151,7 +144,7 @@ console.log( myOtherVar ); //error
 <input type="button" data-run="scoping" value="Run">
 </div>
 
-<div class="slide" id="variables2">
+<div class="slide">
     <h2>Meh!</h2>
       <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for(i = 0; i < 10; i++){
     doMore();
@@ -166,7 +159,7 @@ function doMore(){
 
 </div>
 
-<div class="slide" id="variables1">
+<div class="slide">
     <h2>From Meh To Yeah!</h2>
       <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for(var i = 0; i < 10; i++){
     doMore();
@@ -180,23 +173,23 @@ function doMore(){
 };</textarea>
 </div>
 
-<div class="slide" id="variables4">
+<div class="slide">
     <h2>Variables</h2>
     <h4>There are 6 data types in JavaScript</h4>
     <ul>
-        <li>string</li>
-        <li>number</li>
-        <li>object (functions and arrays are technically objects)</li>
-        <li>undefined (dont initialize values to undefined, its symanticlly incorrect)</li>
-        <li>null (use null to initialize empty values)</li>
-        <li>boolean</li>
+        <li class="slide">string</li>
+        <li class="slide">number</li>
+        <li class="slide">object (functions and arrays are technically objects)</li>
+        <li class="slide">undefined (dont initialize values to undefined, its symanticlly incorrect)</li>
+        <li class="slide">null (use null to initialize empty values)</li>
+        <li class="slide">boolean</li>
     </ul>
 </div>
 <!-- 
 Numbers
  -->
 
-<div class="slide" id="variables3">
+<div class="slide">
     <h2>Numbers</h2>
         <p>All numbers in JavaScript are 64 bit floating point numbers.</p>
         <div>
@@ -216,7 +209,7 @@ console.log( "0.06 + 0.01 = " + result );</textarea>
         </div>
 </div>
 
-<div class="slide" id="numbers2">
+<div class="slide">
     <h2>Numbers</h2>
     <code class="prettyprint">NaN</code>, is a special value in JavaScript. You'll get NaN in situations like trying to do math on a variable that is <code class="prettyprint">undefined</code> or trying to perform multiplication, division, or subtraction on a string.</p>
     <ul class="slide">
@@ -235,11 +228,11 @@ console.log( 12 / 0 * - 1);</textarea>
 Arrays
  -->
 
-<div class="slide" id="arraysTitle">
+<div class="slide" id="arrays">
     <h1>Arrays</h1>
 </div>
 
-<div class="slide" id="arrays">
+<div class="slide">
     <h2>Arrays</h2>
         <P>Arrays can be created two ways:</P>
         <pre><code class="prettyprint">var myArray = new Array();</code></pre>
@@ -250,10 +243,10 @@ Arrays
 myArray[0][1]; //nested two</code></pre>
 </div>
 
-<div class="slide" id="arrays2">
+<div class="slide">
     <h2>Arrays</h2>
     <p>Arrays are objects so they have methods, here are a few you'll commonly see used in projects: </p>
-        <div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //mutable in JS, set length to resize arary
+        <div class="slide"><pre><code class="prettyprint">myArray.length //mutable in JS, set length to resize arary
 
 myArray.push(item) //append item to the end of the array
 
@@ -265,7 +258,7 @@ myArray.join(",") //combines elements into string, separated by argument
 </code></pre></div>
 </div>
 
-<div class="slide" id="arrays2Demo">
+<div class="slide">
     <h2>Arrays</h2>
     <p>Use push & pop together to create a stack (LIFO)</p>
      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myStack = ['Aaron','Drew','Tom','Peyton'];
@@ -276,7 +269,7 @@ console.log( myStack.pop() );</textarea>
 </div>
 
 
-<div class="slide" id="arrays13">
+<div class="slide">
     <h2>Arrays</h2>
     <p>More methods:</p>
         <div id="arm2"><pre><code class="prettyprint">myArray.sort() //sorts an array
@@ -289,7 +282,7 @@ myArray.shift() //removes the first element of the array and returns it
 </code></pre></div>
 </div>
 
-<div class="slide" id="arrays3Demo">
+<div class="slide">
     <h2>Arrays</h2>
     <p>Use push & shift together to create a queue (FIFO)</p>
      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myStack = ['Aaron','Drew','Tom','Peyton'];
@@ -299,7 +292,7 @@ myStack.push('Eli');
 console.log( myStack.shift() );</textarea>
 </div>
 
-<div class="slide" id="arrays3Demo2">
+<div class="slide">
     <h2>Arrays</h2>
 <p>Use use slice() to make a one level deep copy of an Array.</p>
      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myArray = ['Aaron','Drew','Tom','Peyton'];
@@ -321,16 +314,16 @@ Operators
     <h1>Operators</h1>
 </div>
 
-<div class="slide" id="comparisons">
+<div class="slide">
     <h2>Comparisons</h2>
     <p>In JavaScript there are TWO sets of comparison operators;</p>
     <ul>
-        <li class="slide" id="comp1">Type coercion operators: == and !=</li>
-        <li class="slide" id="comp2">Non-type coercion operators: === and !==</li>
+        <li class="slide">Type coercion operators: == and !=</li>
+        <li class="slide">Non-type coercion operators: === and !==</li>
     </ul>
 </div>
 
-<div class="slide" id="comparisons4">
+<div class="slide">
     <h2>Truthy / Falsy Values</h2>
     <p>The following values evaluate to <code class="prettyprint">false</code>. Since not all of them not primitive booleans they are said to be "falsy".</p>
     <h3>Falsy Values</h3>
@@ -356,7 +349,7 @@ Operators
         </ul>
         <p><strong>Anything that is not falsy is truthy in JavaScript.</strong></p>
 </div>
-<div class="slide" id="comparisons2">
+<div class="slide">
     <h2>Comparisons</h2>
     <p>What exactly is type coersion?</p>
     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( "1" == 1 );
@@ -373,30 +366,30 @@ console.log( [7] === 7 );</textarea>
 
 </div>
 
-<div class="slide" id="comparisons3">
+<div class="slide">
     <h2>Comparisons</h2>
     <h3>If I'm using === and I know "<code class="prettyprint">1</code>" is a numeric value how do I get "<code class="prettyprint">1</code>" to equal <code class="prettyprint">1</code>?</h3>
     <p>There are a few ways, some of the most common are:</p>
     <ol>
-        <li class="slide" id="comp7">
+        <li class="slide">
             Use the Number object: <code class="prettyprint">var num = Number("1").</code>
         </li>
-        <li class="slide" id="comp8">
+        <li class="slide">
             <p>
             Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10)</code>.</p>
             <p>The second param is the radix. If it is omitted some browsers will treat numbers starting with 0 as an octal, and some a decimal.  This is why its extremely important to always pass the radix parameter.</p>
         </li>
-        <li class="slide" id="comp9">
+        <li class="slide">
             If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <code class="prettyprint">var num = +&quot;3&quot;</code>.
         </li>       
     </ol>
 </div>
 
-<div class="slide" id="andor">
+<div class="slide" id="logical">
     <h1>Logical Operators</h1>
 </div>
 
-<div class="slide" id="andor2">
+<div class="slide">
     <h2>Logical Operators</h2>
     <h3>JavaScript OR Operator <code class="prettyprint">||</code></h3>
     <p>The || operator returns the value of the first expression if it's true otherwise returns the value of the second expression.
@@ -406,7 +399,7 @@ console.log( [7] === 7 );</textarea>
     console.log( "world" || "foo" );</textarea>
 </div>
 
-<div class="slide" id="andor3">
+<div class="slide">
     <h2>Logical Operators</h2>
     <p>The || operator can be used to set default values.</p>
     <pre><code class="prettyprint">var myFunc = function(arg){
@@ -422,7 +415,7 @@ myFunc("andor3");</code></pre>
 <input type="button" data-run="andor3" value="Run">
 </div>
 
-<div class="slide" id="andor3div">
+<div class="slide">
     <h2>Logical</h2>
    <h3>JavaScript AND Operator <code class="prettyprint">&&</code></h3>
    <p>The <code class="prettyprint">&&</code> returns the value of the first operator if it is false, otherwise it returns the value of the second.</p>
@@ -431,11 +424,11 @@ myFunc("andor3");</code></pre>
 console.log( true && "Bar" );</textarea>
 </div>
 
-<div class="slide" id="loopsTitle">
+<div class="slide" id="loops">
     <h1>Loops</h1>
 </div>
 
-<div class="slide" id="foriinloops">
+<div class="slide">
     <h2>Loops</h2>
     <h3>for-in loops</h3>
     <p>In JavaScript you can loop through the properties of an object using a for-in loop.</p>
@@ -456,11 +449,11 @@ for(var myKey in myObj){
 Objects
  -->
 
-<div class="slide" id="objectsTitle">
+<div class="slide" id="objects">
     <h1>Objects</h1>
 </div>
 
-<div class="slide" id="objects">
+<div class="slide">
     <h2>Objects</h2>
     <p>Objects in JavaScript can be though of as a set of key-value pairs.</p>
     <pre><code class="prettyprint">myObject = {
@@ -473,7 +466,7 @@ Objects
 }; //this is called an object literal.  It's equal to new Object();</code></pre>
 </div>
 
-<div class="slide" id="objects1">
+<div class="slide">
     <h2>Objects</h2>
     <p>You can access an object's properties with "dot" notation or with associative array notation</p>
     <textarea id="code66" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObject = {foo : 'Foo'};
@@ -486,7 +479,7 @@ myObject['foo bar'] = 'foo bar'; //non standard property names
 console.log( myObject['foo ' + 'bar'] );</textarea>
 </div>
 
-<div class="slide" id="objects7">
+<div class="slide">
     <h2>Objects</h2>
     <p>When accessing properties from other properties in an object, use the <code class="prettyprint">this</code> keyword.</p>
     <textarea id="code7" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
@@ -500,7 +493,7 @@ console.log( myObject['foo ' + 'bar'] );</textarea>
 myObj.sayHello();</textarea>
 </div>
 
-<div class="slide" id="objects2">
+<div class="slide">
     <h2>Objects</h2>
     <p>To check if a property exists in an objects use the <code class="prettyprint">hasOwnProperty()</code> method or the <code class="prettyprint">in</code> operator. <code class="prettyprint">hasOwnProperty</code> will only search the current object for a property whereas <code class="prettyprint">in</code> will search all the way up the prototype chain.</p>
     <h3>JavaScript</h3>
@@ -517,11 +510,11 @@ console.log( myObject.hasOwnProperty( 'baz' ) );</textarea>
 Functions
  -->
 
-<div class="slide" id="functionsTitle">
+<div class="slide" id="functions">
     <h1>Functions</h1>
 </div>
 
-<div class="slide" id="functions">
+<div class="slide">
     <h2>Functions</h2>
     <p>JavaScript functions are the beating heart of a JavaScript application and are one of the most powerful features of the language.</p>
     <ul>
@@ -545,12 +538,12 @@ Functions
 </code></pre>
 </div>
 
-<div class="slide" id="hoisting">
+<div class="slide">
     <h2>Hoisting</h2>
     <p>There is one fundamental difference between function expressions and statements: hoisting.  Hoisting is when the JavaScript parser takes a function or variable and moves it to the top of the current scope.</p>
 </div>
 
-<div class="slide" id="hoisting2">
+<div class="slide">
     <h2>Function Declaration Before Hoisting</h2>
     <pre><code class="prettyprint">function hoistingExample(){
     var firstVar;
@@ -571,7 +564,7 @@ Functions
 }</code></pre>
 </div>
 
-<div class="slide" id="hoisting3">
+<div class="slide">
     <h2>Function Declaration After Hoisting</h2>
     <pre><code class="prettyprint">function hoistingExample(){
     //the function statement has been brought to the top of the scope
@@ -597,7 +590,7 @@ Functions
 }</code></pre>
 </div>
 
-<div class="slide" id="function4">  
+<div class="slide">  
     <h2>Function Arguments</h2>
     <p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
     <pre><code class="prettyprint">var myFunc = function(){
@@ -608,11 +601,11 @@ myFunc("Hello", "World", function(){});</code></pre>
 <input type="button" data-run="args" value="Run">
 </div>
 
-<div class="slide" id="function5">
+<div class="slide">
     <h2>Function Arguments</h2>
     <p>Since JavaScript is a type-less language its always a good idea to check the type of arguments.</p>
     <p>To do this we are provided with the <code class="prettyprint">typeof</code> operator</p>
-    <div class="slide" id="fnArg1">
+    <div class="slide">
          <textarea id="code10" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log("Type of string: " + typeof "hello");
 console.log("Type of number :" + typeof 1234);
 console.log("Type of object literal: " + typeof {});
@@ -622,7 +615,7 @@ console.log("Type of fn: " + typeof function(){});
     </div>
 </div>
 
-<div class="slide" id="function6">
+<div class="slide">
     <h2>Function Arguments</h2>
     <p>Hit the brakes!</p>
     <div class="slide" id="checktype">
@@ -630,8 +623,8 @@ console.log("Type of fn: " + typeof function(){});
 console.log(typeof []); //object ?!? 
 </code></pre>
     </div>
-    <p class="slide" id="fnArg2">We have to work a little harder to check for an array</p>
-    <div class="slide" id="fnArg3">
+    <p class="slide">We have to work a little harder to check for an array</p>
+    <div class="slide">
         <pre><code class="prettyprint">//borrowed from Douglas Crockford's "JavaScript: The Good Parts"
 var is_array = function (value) {
     return Object.prototype.toString.apply(value) === '[object Array]';
@@ -639,7 +632,7 @@ var is_array = function (value) {
     </div>
 </div>
 
-<div class="slide" id="arguments">
+<div class="slide">
 <h2>Function Arguments</h2>
 <p>All arguments JavaScript are passed <strong>by value</strong>!  No, this is not a typo!</p>
     <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function createCar(){
@@ -667,7 +660,7 @@ function changeCar(theObj){
 createCar();</textarea>
 </div>
 
-<div class="slide" id="arguments2">
+<div class="slide">
 <h2>Function Arguments</h2>
 <div>
     <p>A variable that holds an object is a pointer to the memory location of that object.  When the argument is passed a copy is made of that pointer.  When a new object is created the pointer now points to a different memory location.</p>
@@ -675,7 +668,7 @@ createCar();</textarea>
 </div>
 </div>
 
-<div class="slide" id="function20"> 
+<div class="slide"> 
     <h2>Lexical Scoping</h2>
     <p>Functions can be nested inside of other functions.  Each nested function has access to the scope of all its parents.  This is called lexical scoping. </p>
 <!-- may have issues -->
@@ -699,18 +692,18 @@ lexical();</textarea>
 
 
 
-<div class="slide" id="functionConstructor1">
+<div class="slide">
     <h2>Constructor Functions</h2>
     <p>JavaScript has a special type of function called a <code class="prettyprint">Constructor</code> function.</p>
     <ul>
-        <li class="slide" id="const1">By convention the first letter of a constructor should be a capital letter.</li>
-        <li class="slide" id="const2">Never use a constructor function without first using the <code class="prettyprint">new</code> keyword!</li>
-        <li class="slide" id="const3">Using the new keyword will create a new scope for the function.</li>
-        <li class="slide" id="const4">Using the new keyword will also create the inheritance tree. Without new a function will only inherit from the Function Constructor.</li>
+        <li class="slide">By convention the first letter of a constructor should be a capital letter.</li>
+        <li class="slide">Never use a constructor function without first using the <code class="prettyprint">new</code> keyword!</li>
+        <li class="slide">Using the new keyword will create a new scope for the function.</li>
+        <li class="slide">Using the new keyword will also create the inheritance tree. Without new a function will only inherit from the Function Constructor.</li>
     </ul>
 </div>
 
-<div class="slide" id="functionConstructor2">
+<div class="slide">
     <h2>Constructor Functions</h2>
      <textarea id="code11" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//create a new constuctor function called Robot
 var Robot = function(robotName){
@@ -735,16 +728,16 @@ console.log(window.robotName); //note that robotName is now a property of window
 Robot.walk(); //doesn't exist</textarea>
 </div>
 
-<div class="slide" id="function7">
+<div class="slide">
     <h2>Closures</h2>
     <ul>
-        <li class="slide" id="cl1">Closures are functions that are enclosed, and invoked within the context of another function.</li>
-        <li class="slide" id="cl2">The execution context of the outer function(s) are saved and "wrapped" around the inner function.</li>
-        <li class="slide" id="cl3">This effectively saves the "state" of the outer functions variables at the time the inner function is run.</li>
+        <li class="slide">Closures are functions that are enclosed, and invoked within the context of another function.</li>
+        <li class="slide">The execution context of the outer function(s) are saved and "wrapped" around the inner function.</li>
+        <li class="slide">This effectively saves the "state" of the outer functions variables at the time the inner function is run.</li>
     </ul>
 </div>
 
-<div class="slide" id="function8">
+<div class="slide">
     <h2>Contrived Closure Example</h2>
         <pre><code class="prettyprint">var timesCalled = function(){
     var total = 0;
@@ -766,11 +759,11 @@ callTimer();</code></pre>
 This
  -->
 
-<div class="slide" id="thisTitle">
+<div class="slide" id="this">
     <h1>This</h1>
 </div>
 
-<div class="slide" id="this1">
+<div class="slide">
     <h2>This</h2>
     <p>The <code class="prettyprint">this</code> keyword one of JavaScript's most mis-understood keywords.</p>
     <pre><code class="prettyprint">
@@ -790,7 +783,7 @@ This
 <input type="button" data-run="this1" value="Run">
 </div>
 
-<div class="slide" id="this2">
+<div class="slide">
     <h2>This</h2>
     <p>What happened in the function call?  Why did this point to window and not the function?</p>
     <p class="slide">In order to explain we must understand what "this" means in JavaScript.  This refers to the <strong>current execution context.</strong></p>
@@ -798,7 +791,7 @@ This
     <p class="slide">When we called myFunc() from the root of the script tag, the window object was the current execution context</p>
 </div>
 
-<div class="slide" id="this6">
+<div class="slide">
     <h2>call() and apply()</h2>
     <p>The <code class="prettyprint">call(this,arg1,arg2,arg3,...)</code> and <code class="prettyprint">apply(this,[args])</code> functions allow you to pass the value of <code class="prettyprint">this</code> as the first parameter.</p>
     <p>The difference is that the call function takes in any number of arguments whereas the apply function takes an array of arguments as its second argument.</p>
@@ -810,7 +803,7 @@ whoAmI.call("Ryan","Hello World",undefined,{},[]);
 whoAmI.apply("Scott",["Hello World",undefined,{},[]]);</textarea>
 </div>
 
-<div class="slide" id="this3">
+<div class="slide">
     <h2>This</h2>
     <p>Back to our "this" example</p>
     <pre><code class="prettyprint">&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
@@ -825,7 +818,7 @@ myFunc()
 <code class="prettyprint">myFunc.call(window,arguments);</code>
 </div>
 
-<div class="slide" id="this4">
+<div class="slide">
     <h2>This</h2>
     <p>Lets take a look at "this" when using a constructor function to create a new instance.</p>
      <pre><code class="prettyprint">function Person(name){
@@ -839,7 +832,7 @@ var person = new Person("Bart");</code></pre>
 <input type="button" data-run="this2" value="Run">
 </div>
 
-<div class="slide" id="this5">
+<div class="slide">
 <h2>This In Object Literals</h2>
 <p>In an object literal <code class="prettyprint">this</code> refers to the current object</p>
  <textarea id="code16" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObj = {
@@ -854,7 +847,7 @@ var person = new Person("Bart");</code></pre>
 myObj.sayHello();</textarea>
 </div>
 
-<div class="slide" id="this9">
+<div class="slide">
 <h2>This In Object Literals</h2>
 <p>Be careful when using <code class="prettyprint">this</code> in nested functions!</p>
  <pre><code class="prettyprint">var myObj = {
@@ -874,7 +867,7 @@ myObj.sayHello();</code></pre>
 <p class="slide">In nested functions <code class="prettyprint">this</code> refers back to global namespace!</p>
 </div>
 
-<div class="slide" id="this10">
+<div class="slide">
     <h2>This and jQuery</h2>
     <p>jQuery likes to normalize <code class="prettyprint">this</code>, which can cause issues if you expect <code class="prettyprint">this</code> to refer to the current object.</p>
     <pre><code class="prettyprint">var obj = {
@@ -889,7 +882,7 @@ obj.init();</code></pre>
 <input type="button" id="thisButton" value="Run">
 </div>
 
-<div class="slide" id="this7">
+<div class="slide">
     <h2>This and jQuery</h2>
     <p>Luckily there is an easy fix that a lot of library authors have chosen to use.</p>
      <pre><code class="prettyprint">var obj = {
@@ -906,11 +899,11 @@ obj.init();</code></pre>
 <input type="button" id="thisButton1" value="Run">
 </div>
 
-<div class="slide" id="this8">
+<div class="slide">
     <h2>This</h2>
     <p>For a much more comprehensive look at "this" and "function invocation" read:
-    <p class="slide" id="yehuda">Yehuda Kat's blog post: <a href="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/" target="_blank">http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/</a></p>
-    <p class="slide" id="digiweb">Scope In JavaScript: <a href="http://www.digital-web.com/articles/scope_in_javascript/">http://www.digital-web.com/articles/scope_in_javascript/</a></p>
+    <p class="slide">Yehuda Kat's blog post: <a href="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/" target="_blank">http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/</a></p>
+    <p class="slide">Scope In JavaScript: <a href="http://www.digital-web.com/articles/scope_in_javascript/">http://www.digital-web.com/articles/scope_in_javascript/</a></p>
 </div>
 
 <!-- 
@@ -920,7 +913,7 @@ Inheritence
     <h1>Inheritance</h1>
 </div>
 
-<div class="slide" id="inheritance1">
+<div class="slide">
     <h2>Inheritance</h2>
     <p>JavaScript uses a prototype-based inheritance model.</p>
      <pre><code class="prettyprint">var Car = function(){ };
@@ -944,13 +937,13 @@ console.log( r8.wheels );</code></pre>
 <input type="button" data-run="inheritance1" value="Run">
 </div>
 
-<div class="slide" id="inheritance2">
+<div class="slide">
     <h2>So what is a "Prototype"</h2>
     <p>A prototype is just an object, constructor functions have a hidden link (exposed as __proto__ in some browsers) to an object that is it's prototype.</p>
     <p>JavaScript stops looking up the chain when it reaches Object.prototype</p>
 </div>
 
-<div class="slide" id="inheritance3">
+<div class="slide">
     <h2>Prototype's Members</h2>
     <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all existing instances.</p>
      <textarea id="code21" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function RealObject(name){ 
@@ -969,7 +962,7 @@ console.log(instanceOfRealObject.iRule());
 console.log(anotherOfRealObject.iRule());</textarea>
 </div>
 
-<div class="slide" id="objects9">
+<div class="slide">
     <h2>Prototype on native Objects</h2>
     <p>You can also change the prototypes of the native objects like Object or Array</p>
     <p>Since there is no "deep copy" method available to arrays, lets add one.</p>
@@ -990,11 +983,55 @@ console.log(copiedArray);</textarea>
 Design Patterns
  -->
 
-<div class="slide" id="designPatterns1">
+<div class="slide" id="designPatterns">
     <h1>Common JavaScript-Centric Design Patterns</h1>
 </div>
 
-<div class="slide" id="designPatterns2">
+<div class="slide">
+    <h2>Namespacing</h2>
+    <p>Namespacing is a way of limiting polluting a namespace for smaller sized applications.</p>
+    <p>Its a quick and easy way to clean up a lot of code in the $(document).ready() callback.</p>
+    <pre><code class="prettyprint">$(document).ready(function(){
+    $('#getUsers').on('click',function(){
+        //get users
+    });
+
+    var addUser = function(){
+    //add
+}
+
+    var userDiv = $("#userDiv");
+});</code></pre>
+</div>
+
+<div class="slide">
+    <h2>Namespacing</h2>
+     <pre><code class="prettyprint">var userApp = {
+        init : function(){
+             $('#getUsers').on('click',$.proxy(this,this.getUsers);
+
+             this.userDIv = $("#userDiv");
+        },
+
+        userDiv : null;
+
+        getUsers : function(){
+            //get users
+            this.addUser(user);
+        },
+
+        addUser = function(user){
+            this.userDiv.append(user);
+        }
+    };
+}
+
+$(document).ready(function(){
+    userApp.init();
+});</code></pre>
+</div>
+
+<div class="slide">
     <h2>Module Pattern</h2>
     <p>The module pattern can be used to "hide" variables and functions.</p>
      <textarea id="code23" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var publicFunctions = (function(){
@@ -1018,7 +1055,7 @@ Design Patterns
 publicFunctions.sayHello();</textarea>
 </div>
 
-<div class="slide" id="designPatterns7">
+<div class="slide">
     <h2>Options</h2>
     <p>The options pattern is very common in libraries and jQuery plugins</P>
  <pre><code class="prettyprint">$.fn.myPlugin = function(options){
@@ -1039,7 +1076,7 @@ $(document).myPlugin();</code></pre>
 ​<input type="button" data-run="optionsPattern" value="run">
 </div>
 
-<div class="slide" id="designPatterns11">
+<div class="slide">
     <h2>Prototype</h2>
     <p>This pattern is used very extensively in both jQuery and Backbone applications.</p>
     <p>In fact when you create a jQuery plugin you are using this pattern, using <code class="prettyprint">jQuery.fn</code> as your prototype.</p>
@@ -1055,13 +1092,13 @@ var cat = $.extend(mammal,{
 });</code></pre>
 </div>
 
-<div class="slide" id="designPatterns9">
+<div class="slide">
     <h2>Pub-Sub (AKA Observer)</h2>
     <p>The pub-sub pattern specifies that there are "publishers" that publish events, and "subscribers" that can subscribe to those events.</p>
     <img src="assets/pub_sub.png">
 </div>
 
-<div class="slide" id="designPatterns8">
+<div class="slide">
     <h2>Pub-Sub (AKA Observer)</h2>
     <p>This pattern you probably already use every day.</p>
     <pre><code class="prettyprint">​&lt;a href=&quot;#&quot; id=&quot;clickMe&quot;&gt;Observe Me&lt;/a&gt;</code></pre>
@@ -1078,7 +1115,7 @@ $("#clickMe").on('click',function(){
 });</code></pre>
 </div>
 
-<div class="slide" id="designPatterns13">
+<div class="slide">
     <h2>Pub-Sub (AKA Observer)</h2>
 <pre><code class="prettyprint">​var contacts = {
     collection : ['Aaron','Drew','Tom'],
@@ -1112,7 +1149,7 @@ contacts.update();
 <input type="button" data-run="pubSub" value="Run">
 </div>
 
-<div class="slide" id="designPatterns10">
+<div class="slide">
     <h2>Prototype</h2>
     <p>Don't confuse the prototype pattern with an object's Prototype function!</p>
     <p>The prototype pattern is a pattern where an object is used for the prototype of another object.</p>
@@ -1138,7 +1175,7 @@ motorcycle.go();</textarea>
 </div>
 
 
-<div class="slide" id="designPatterns12">
+<div class="slide">
     <h2>Design Patterns</h2>
     <p>Be sure to check out Addi Osmani's "Essential JavaScript Design Patterns" open source book at: <a href="https://github.com/addyosmani/essential-js-design-patterns" target="_blank">https://github.com/addyosmani/essential-js-design-patterns</a></p>
 </div>
@@ -1147,11 +1184,11 @@ motorcycle.go();</textarea>
 Resources
  -->
 
-<div class="slide" id="resourcesTitle">
+<div class="slide" id="resources">
     <h1>Resources</h1>
 </div>
 
-<div class="slide" id="resources">
+<div class="slide">
     <h2>Resources</h2>
     <p>You can get really good at JavaScript without spending a single penny!</p>
     <ul>
@@ -1175,7 +1212,7 @@ Resources
 </div>
 
 
-<div class="slide" id="qna">
+<div class="slide" id="questions">
     <h1>Questions?</h1>
 </div>
 
