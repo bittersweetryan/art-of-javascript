@@ -92,6 +92,45 @@ $(function(){
 		optionsPattern : function(){
 			$(document).myPlugin({color:'black', height: '500px'});
 			$(document).myPlugin();
+		},
+
+		pubSub : function(){
+			var contacts = {
+				collection : ['Aaron','Drew','Tom'],
+				update : function(){
+					this.collection[0] = 'Arian';
+					this.collection[1] = 'Adrian';
+					this.collection[2] = 'Ray';
+					
+					$(this).trigger('change');
+				}
+			};
+
+			$(contacts).on('change',function(){
+				var contactSelect = $('select[name="contact"]');
+
+				contactSelect.find('option').remove();
+
+				for(var i = 0; i < contacts.collection.length; i++){
+					contactSelect.append('<option value="">' + contacts.collection[i] + '</option>');
+				}
+			});
+
+			contacts.update();
+		},
+
+		extendPattern : function(){
+			var mammal = {
+				hair : "brown",
+				breath : function(){}
+			};
+
+			var cat = $.extend(mammal,{
+				eyes: 2,
+				ears: 2
+			});
+
+			console.log(cat);
 		}
 	};
 
@@ -107,48 +146,48 @@ $(function(){
 
 //intentional globals
 var myFunc = function(){
-    console.log(this);
+	console.log(this);
 };
 
 var obj = {
-    init : function(){
-        $('#thisButton').on('click',function(){
-            console.log(this);
-        });
-    }
+	init : function(){
+		$('#thisButton').on('click',function(){
+			console.log(this);
+		});
+	}
 };
 
 obj.init();
 
 var obj1 = {
-    init : function(){
-        var self = this; //create a ref to the current "this" scope
+	init : function(){
+		var self = this; //create a ref to the current "this" scope
 
-        $("#thisButton1").on('click',function(){
-            console.log(self);
-        });
-    }
+		$("#thisButton1").on('click',function(){
+			console.log(self);
+		});
+	}
 };
 
 obj1.init();
 
 function Person(name){
-    this.name = name;
-    
-    console.log(this);
-    console.log(this.name);
+	this.name = name;
+	
+	console.log(this);
+	console.log(this.name);
 }
 
 $.fn.myPlugin = function(options){
-    var defaults = {color: "blue", height: "200px" };
+	var defaults = {color: "blue", height: "200px" };
 
-    //remember to check the type of the argument!
-    if(typeof options === 'object'){
-        options = $.extend(defaults,options);
-    } else {
-        options = defaults;
-    }
+	//remember to check the type of the argument!
+	if(typeof options === 'object'){
+		options = $.extend(defaults,options);
+	} else {
+		options = defaults;
+	}
 
-    console.log(options);
+	console.log(options);
 };
 
