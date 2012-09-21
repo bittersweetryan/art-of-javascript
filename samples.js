@@ -117,6 +117,20 @@ $(function(){
 			});
 
 			contacts.update();
+		},
+
+		extendPattern : function(){
+			var mammal = {
+				hair : "brown",
+				breath : function(){}
+			};
+
+			var cat = $.extend(mammal,{
+				eyes: 2,
+				ears: 2
+			});
+
+			console.log(cat);
 		}
 	};
 

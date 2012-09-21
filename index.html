@@ -132,7 +132,7 @@ Variables
 
 <div class="slide">
     <h2>Variables</h2>
-    <p>Variables in JavaScript are very poorly scoped by default, any variable that is not declared with the var keyword goes into the global scope.</p>
+    <p>Variables in JavaScript are poorly scoped by default, any variable that is not declared with the var keyword goes into the global scope.</p>
      <pre><code class="prettyprint">function doSomething(){
     myVar = "foo"; //this goes into the global scope which == bad
     var myOtherVar = "bar"; //this goes into the function scope which == good     
@@ -145,7 +145,7 @@ console.log( myOtherVar ); //error
 </div>
 
 <div class="slide">
-    <h2>Meh!</h2>
+    <h2>D'oh!</h2>
       <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for(i = 0; i < 10; i++){
     doMore();
     console.log( i );
@@ -160,14 +160,14 @@ function doMore(){
 </div>
 
 <div class="slide">
-    <h2>From Meh To Yeah!</h2>
+    <h2>Thats better!</h2>
       <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for(var i = 0; i < 10; i++){
     doMore();
     console.log( i );
 }
 
 function doMore(){
-    for(var i = 10; i < 10; i++){
+    for(var i = 1; i < 10; i++){
         
     }
 };</textarea>
@@ -177,12 +177,12 @@ function doMore(){
     <h2>Variables</h2>
     <h4>There are 6 data types in JavaScript</h4>
     <ul>
-        <li class="slide">string</li>
-        <li class="slide">number</li>
-        <li class="slide">object (functions and arrays are technically objects)</li>
-        <li class="slide">undefined (dont initialize values to undefined, its symanticlly incorrect)</li>
-        <li class="slide">null (use null to initialize empty values)</li>
-        <li class="slide">boolean</li>
+        <li class="slide"><code class="prettyPrint">string</code></li>
+        <li class="slide"><code class="prettyPrint">number</code></li>
+        <li class="slide"><code class="prettyPrint">object</code> (functions and arrays are technically objects)</li>
+        <li class="slide"><code class="prettyPrint">undefined</code> (dont initialize values to undefined, its semantically incorrect)</li>
+        <li class="slide"><code class="prettyPrint">null</code> (use null to initialize empty values)</li>
+        <li class="slide"><code class="prettyPrint">boolean</code></li>
     </ul>
 </div>
 <!-- 
@@ -191,37 +191,40 @@ Numbers
 
 <div class="slide">
     <h2>Numbers</h2>
+        <div class="slide">
         <p>All numbers in JavaScript are 64 bit floating point numbers.</p>
+        <p>Floating point arithmatic sometimes give strange results (<a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a>).</p>
         <div>
         <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var result = 0.06 + 0.01;
 console.log( "0.06 + 0.01 = " + result );</textarea>
-</div>
-        <p><a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
-
-        <p>JavaScript has a BigNum library at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
-        <div>
-            <p>Use the <code class="prettyprint">toFixed()</code> method to round to a fixed number of decimal places.</p>
+        </div>
+        <p>JavaScript has a BigNum library which will improve the accuracy of floating point expressions at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
+    </div>
+        <div class="slide">
+            <p>Use the <code class="prettyprint">toFixed()</code> method to round a number to a specified number of decimal places.</p>
             <div>
-                <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//
-    //toFixed rounds to a fixed number of decimals
-    console.log( 3.14159.toFixed(2) ); </textarea>
+                <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( 3.14159.toFixed(2) ); </textarea>
             </div>
         </div>
 </div>
 
 <div class="slide">
     <h2>Numbers</h2>
-    <code class="prettyprint">NaN</code>, is a special value in JavaScript. You'll get NaN in situations like trying to do math on a variable that is <code class="prettyprint">undefined</code> or trying to perform multiplication, division, or subtraction on a string.</p>
+    <p><code class="prettyprint">NaN</code>, is a special value in JavaScript. You'll get NaN in situations like trying to do math on a variable that is <code class="prettyprint">undefined</code> or trying to perform multiplication, division, or subtraction on a string.</p>
     <ul class="slide">
         <li id="nan1"><code class="prettyprint">NaN is False</code></li>
         <li id="nan2"><code class="prettyprint">NaN !== NaN</code></li>
         <li id="na3">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
     </ul>
+</div>
+<div class="slide">
+    <h2>Numbers</h2>
+    <p class="slide">There is no "division by zero" error in JavaScript.</p>
     <div class="slide">
-        <p>There is no "division by zero" error in JavaScript.</p>
         <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( 12 / 0 );
 console.log( 12 / 0 * - 1);</textarea>
     </div>
+    <p class="slide"><code class="prettyprint">Infinity</code> is another special value.  It represents any number outside the confines of a 64 bit floating point number.</p>
 </div>
 
 <!-- 
@@ -235,18 +238,18 @@ Arrays
 <div class="slide">
     <h2>Arrays</h2>
         <P>Arrays can be created two ways:</P>
-        <pre><code class="prettyprint">var myArray = new Array();</code></pre>
+        <pre><code class="prettyprint">var myArray = new Array('item1','item2',myobj,[]);</code></pre>
         <p>AND</p>
-        <pre><code class="prettyprint">var myArray = ["item1", "item2", myObj, []]; //prefered</code></pre>
+        <pre><code class="prettyprint">var myArray = [ "item1", "item2", myObj, [] ]; //prefered</code></pre>
         <p>In order to create multi-dimensional arrays in JavaScript you nest arrays:</p>
-        <pre><code class="prettyprint">myArray[0] = ["nested one", "nested two"];
+        <pre><code class="prettyprint">myArray[0] = [ "nested one", "nested two" ];
 myArray[0][1]; //nested two</code></pre>
 </div>
 
 <div class="slide">
     <h2>Arrays</h2>
     <p>Arrays are objects so they have methods, here are a few you'll commonly see used in projects: </p>
-        <div class="slide"><pre><code class="prettyprint">myArray.length //mutable in JS, set length to resize arary
+        <div><pre><code class="prettyprint">myArray.length //mutable in JS, set length to resize arary
 
 myArray.push(item) //append item to the end of the array
 
@@ -261,9 +264,11 @@ myArray.join(",") //combines elements into string, separated by argument
 <div class="slide">
     <h2>Arrays</h2>
     <p>Use push & pop together to create a stack (LIFO)</p>
-     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myStack = ['Aaron','Drew','Tom','Peyton'];
+     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myStack = [ 'Aaron', 'Drew', 'Tom', 'Peyton' ];
 
-myStack.push('Eli');
+myStack.push( 'Eli' );
+
+console.log( myStack )
 
 console.log( myStack.pop() );</textarea>
 </div>
@@ -272,11 +277,11 @@ console.log( myStack.pop() );</textarea>
 <div class="slide">
     <h2>Arrays</h2>
     <p>More methods:</p>
-        <div id="arm2"><pre><code class="prettyprint">myArray.sort() //sorts an array
+    <div><pre><code class="prettyprint">myArray.sort() //sorts an array
 
-myArray.splice(1,2) //deletes 2 items from the array starting at position 1
+myArray.splice( 1,2 ) //deletes 2 items from the array starting at position 1
 
-myArray.slice(1,2) //returns 2 items from the array starting at position 1
+myArray.slice( 1,2 ) //returns 2 items from the array starting at position 1
 
 myArray.shift() //removes the first element of the array and returns it
 </code></pre></div>
@@ -285,24 +290,27 @@ myArray.shift() //removes the first element of the array and returns it
 <div class="slide">
     <h2>Arrays</h2>
     <p>Use push & shift together to create a queue (FIFO)</p>
-     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myStack = ['Aaron','Drew','Tom','Peyton'];
+     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myStack = [ 'Aaron', 'Drew', 'Tom', 'Peyton' ];
 
-myStack.push('Eli');
+myStack.push( 'Eli' );
+
+console.log( myStack )
 
 console.log( myStack.shift() );</textarea>
 </div>
 
 <div class="slide">
     <h2>Arrays</h2>
-<p>Use use slice() to make a one level deep copy of an Array.</p>
-     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myArray = ['Aaron','Drew','Tom','Peyton'];
+<p>Use use <code class="prettyprint">slice()</code> to make a one level deep copy of an Array.</p>
+     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myArray = [ 'Aaron', 'Drew', 'Tom', 'Peyton' ];
 var myArray2 = myArray; //holds a reference to myArray
 var myArray3 = myArray.slice(); //is truly a new array
 
-myArray2[2] = 'Cam'; //changes myArray
-myArray3[1] = 'Phillip'
+myArray2[ 2 ] = 'Cam'; //changes myArray
+myArray3[ 1 ] = 'Phillip'
 
 console.log( myArray );
+console.log( myArray2 );
 console.log( myArray3 );</textarea>
 </div>
 
@@ -318,14 +326,14 @@ Operators
     <h2>Comparisons</h2>
     <p>In JavaScript there are TWO sets of comparison operators;</p>
     <ul>
-        <li class="slide">Type coercion operators: == and !=</li>
-        <li class="slide">Non-type coercion operators: === and !==</li>
+        <li class="slide">Type coercion operators: <code class="prettyprint">==</code> and <code class="prettyprint">!=</code></li>
+        <li class="slide">Non-type coercion operators: <code class="prettyprint">===</code> and <code class="prettyprint">!==</code></li>
     </ul>
 </div>
 
 <div class="slide">
     <h2>Truthy / Falsy Values</h2>
-    <p>The following values evaluate to <code class="prettyprint">false</code>. Since not all of them not primitive booleans they are said to be "falsy".</p>
+    <p>The following values evaluate to <code class="prettyprint">false</code>, since some of them not primitive boolean datatypes they are said to be "falsy".</p>
     <h3>Falsy Values</h3>
         <ul>
             <li>
@@ -352,6 +360,7 @@ Operators
 <div class="slide">
     <h2>Comparisons</h2>
     <p>What exactly is type coersion?</p>
+    <div>
     <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( "1" == 1 );
 
 console.log( "1" === 1 );
@@ -359,7 +368,7 @@ console.log( "1" === 1 );
 console.log( [7] == 7 );  //automatically calls toString() on  
                                  //eachelement in the array
 console.log( [7] === 7 );</textarea>
-    <p>So, which one do you use?</p>
+</div><br>
     <p class="slide">
     Always use === when comparing <code class="prettyprint">0</code>, <code class="prettyprint">undefined,</code>, booleans, and empty strings.
     </p>
@@ -369,7 +378,6 @@ console.log( [7] === 7 );</textarea>
 <div class="slide">
     <h2>Comparisons</h2>
     <h3>If I'm using === and I know "<code class="prettyprint">1</code>" is a numeric value how do I get "<code class="prettyprint">1</code>" to equal <code class="prettyprint">1</code>?</h3>
-    <p>There are a few ways, some of the most common are:</p>
     <ol>
         <li class="slide">
             Use the Number object: <code class="prettyprint">var num = Number("1").</code>
@@ -426,11 +434,13 @@ console.log( true && "Bar" );</textarea>
 
 <div class="slide">
     <h3>Ternary</h3>
-    <p>The ternary operator is a more terse way to do a simple if/else statement.</p>
+    <p>The ternary operator is a terse way to do a simple if/else statement.</p>
     <pre><code class="prettyprint">( conditional ) ? trueStatement : false Statement ;</code></pre>
     <textarea id="code5" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myVar = 10;
+
 var myValue = ( myVar < 10 ) ? 'less than ten' :  
     'greater than or equal to ten';
+
 console.log( myValue );</textarea>
 </div>
 
@@ -473,7 +483,7 @@ Objects
         baz : &quot;Baz&quot;, 
         pez = &quot;Pez&quot;
     }
-}; //this is called an object literal.  It's equal to new Object();</code></pre>
+}; //this is called an object literal pattern</code></pre>
 </div>
 
 <div class="slide">
@@ -505,7 +515,7 @@ myObj.sayHello();</textarea>
 
 <div class="slide">
     <h2>Objects</h2>
-    <p>To check if a property exists in an objects use the <code class="prettyprint">hasOwnProperty()</code> method or the <code class="prettyprint">in</code> operator. <code class="prettyprint">hasOwnProperty</code> will only search the current object for a property whereas <code class="prettyprint">in</code> will search all the way up the prototype chain.</p>
+    <p>To check if a property exists in an object use the <code class="prettyprint">hasOwnProperty()</code> method or the <code class="prettyprint">in</code> operator. <code class="prettyprint">hasOwnProperty</code> will only search the current object for a property whereas <code class="prettyprint">in</code> will search all the way up the prototype chain.</p>
     <h3>JavaScript</h3>
     <textarea id="code66" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObject = {foo : 'Foo'};
 
@@ -617,11 +627,14 @@ myFunc("Hello", "World", function(){});</code></pre>
     <p>To do this we are provided with the <code class="prettyprint">typeof</code> operator</p>
     <div class="slide">
          <textarea id="code10" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log("Type of string: " + typeof "hello");
-console.log("Type of number :" + typeof 1234);
+
+console.log("Type of number: " + typeof 1234);
+
 console.log("Type of object literal: " + typeof {});
+
 console.log("Type of array: " + typeof []);
-console.log("Type of fn: " + typeof function(){});
-</textarea>
+
+console.log("Type of function: " + typeof function(){});</textarea>
     </div>
 </div>
 
@@ -629,9 +642,7 @@ console.log("Type of fn: " + typeof function(){});
     <h2>Function Arguments</h2>
     <p>Hit the brakes!</p>
     <div class="slide" id="checktype">
-        <pre><code class="prettyprint">
-console.log(typeof []); //object ?!? 
-</code></pre>
+        <pre><code class="prettyprint">console.log(typeof []); //object ?!?</code></pre>
     </div>
     <p class="slide">We have to work a little harder to check for an array</p>
     <div class="slide">
@@ -644,12 +655,9 @@ var is_array = function (value) {
 
 <div class="slide">
 <h2>Function Arguments</h2>
-<p>All arguments JavaScript are passed <strong>by value</strong>!  No, this is not a typo!</p>
+<p>All arguments JavaScript are passed <strong>by value</strong>, even though they act like they are being passed by reference.</p>
     <textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function createCar(){
-    var myCar = {
-        make : "Ford",
-        model : "Fusion"
-    };
+    var myCar = { make : "Ford", model : "Fusion" };
 
     changeCar(myCar);
 
@@ -661,7 +669,7 @@ function changeCar(theObj){
     theObj.make = "Chevy";
     theObj.model = "Traverse";
 
-    theObj = {};
+    theObj = {}; //this breaks the link between the value passed in and its reference
     theObj.make = "Honda";
 
     console.log(theObj);
@@ -714,31 +722,6 @@ lexical();</textarea>
 </div>
 
 <div class="slide">
-    <h2>Constructor Functions</h2>
-     <textarea id="code11" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//create a new constuctor function called Robot
-var Robot = function(robotName){
-    this.robotName = robotName;
-};
-
-//add a new property to the prototype (more on this soon)
-Robot.prototype.walk = function(){
-    console.log("Go " + this.robotName + " go!");
-};
-
-//create a new instance of the robot using the new keyword
-var robot = new Robot("Ferbbot");
-
-//now we can tell the robot to walk
-robot.walk();
-
-var anotherRobot = Robot("phineasbot"); //we just created a global!! 
-
-console.log(window.robotName); //note that robotName is now a property of window
-
-Robot.walk(); //doesn't exist</textarea>
-</div>
-
-<div class="slide">
     <h2>Closures</h2>
     <ul>
         <li class="slide">Closures are functions that are enclosed, and invoked within the context of another function.</li>
@@ -763,6 +746,31 @@ var callTimer = timesCalled(); //this call right here creates the closure
 
 callTimer();</code></pre>
 <input type="button" data-run="closure" value="Run">
+</div>
+
+<div class="slide">
+    <h2>Constructor Functions</h2>
+     <textarea id="code11" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//create a new constuctor function called Robot
+var Robot = function(robotName){
+    this.robotName = robotName;
+};
+
+//add a new property to the prototype (more on this soon)
+Robot.prototype.walk = function(){
+    console.log("Go " + this.robotName + " go!");
+};
+
+//create a new instance of the robot using the new keyword
+var robot = new Robot("Ferbbot");
+
+//now we can tell the robot to walk
+robot.walk();
+
+var anotherRobot = Robot("phineasbot"); //we just created a global!! 
+
+console.log(window.robotName); //note that robotName is now a property of window
+
+Robot.walk(); //doesn't exist</textarea>
 </div>
 
 <!-- 
@@ -1001,7 +1009,7 @@ Design Patterns
     <h2>Namespacing</h2>
     <p>Namespacing is a way of limiting polluting a namespace for smaller sized applications.</p>
     <p>Its a quick and easy way to clean up a lot of code in the $(document).ready() callback.</p>
-    <pre><code class="prettyprint">$(document).ready(function(){
+    <pre><code class="prettyprint">$(function(){
     $('#getUsers').on('click',function(){
         //get users
     });
@@ -1017,10 +1025,11 @@ Design Patterns
 <div class="slide">
     <h2>Namespacing</h2>
      <pre><code class="prettyprint">var userApp = {
+
         init : function(){
              $('#getUsers').on('click',$.proxy(this,this.getUsers);
 
-             this.userDIv = $("#userDiv");
+             this.userDiv = $("#userDiv");
         },
 
         userDiv : null;
@@ -1036,7 +1045,7 @@ Design Patterns
     };
 }
 
-$(document).ready(function(){
+$(function(){
     userApp.init();
 });</code></pre>
 </div>
@@ -1062,12 +1071,15 @@ $(document).ready(function(){
 }()); /*remember the closure slide? This function is immediately 
         invoked creating a closure */
 
-publicFunctions.sayHello();</textarea>
+publicFunctions.sayHello();
+
+console.log( typeof publicFunctions.sayHello );
+console.log( typeof publicFunctions.getFullName );</textarea>
 </div>
 
 <div class="slide">
     <h2>Options</h2>
-    <p>The options pattern is very common in libraries and jQuery plugins</P>
+    <p>The options pattern is a way to specify options and default values using a single argument.</P>
  <pre><code class="prettyprint">$.fn.myPlugin = function(options){
     var defaults = {color: "blue", height: "200px" };
 
@@ -1091,7 +1103,7 @@ $(document).myPlugin();</code></pre>
     <p>This pattern is used very extensively in both jQuery and Backbone applications.</p>
     <p>In fact when you create a jQuery plugin you are using this pattern, using <code class="prettyprint">jQuery.fn</code> as your prototype.</p>
     <p>jQuery and underscore.js have a function called <code class="prettyprint">extend</code> makes implemtations of this pattern trivial.</p>
-     <pre><code class="prettyprint">var mammal = {
+    <pre><code class="prettyprint">var mammal = {
     hair : "brown",
     breath : function(){}
 };
@@ -1100,6 +1112,7 @@ var cat = $.extend(mammal,{
     eyes: 2,
     ears: 2
 });</code></pre>
+<input type="button" data-run="extendPattern" value="run">
 </div>
 
 <div class="slide">
@@ -1130,7 +1143,10 @@ $("#clickMe").on('click',function(){
 <pre><code class="prettyprint">​var contacts = {
     collection : ['Aaron','Drew','Tom'],
     update : function(){
-        //update the collection
+        this.collection[0] = 'Arian';
+        this.collection[1] = 'Adrian';
+        this.collection[2] = 'Ray';
+
         $(this).trigger('change');
     }
 }; //publisher
@@ -1144,8 +1160,7 @@ $(contacts).on('change',function(){
     }
 });
 
-contacts.update();
-}</code></pre>
+contacts.update();</code></pre>
 <select name="contact">
     <option value="">Aaron</option>
     <option value="">Drew</option>
@@ -1225,8 +1240,9 @@ Resources
 </div>
 
 <div class="slide" id="fin">
-    <h1>fin.</h1>
-    <h3>http://bittersweetryan.github.com/art-of-javascript</h3>
+    <h2>fin.</h2>
+    <p>You can view this presentation online at:</p>
+    <h3><a href="http://bittersweetryan.github.com/art-of-javascript">http://bittersweetryan.github.com/art-of-javascript</a></h3>
 </div>
 
 <form action="." method="get" class="goto-form">
