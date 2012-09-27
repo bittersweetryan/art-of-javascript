@@ -422,10 +422,10 @@ console.log( [7] === 7 );</textarea>
     <div id="andor3">
     <h2>Logical Operators</h2>
     <p>The || operator can be used to set default values.</p>
-    <pre><code class="prettyprint">var myFunc = function(arg){
+    <pre><code class="prettyprint">var myFunc = function( arg ){
 
-    var myVal = document.getElementById(arg) || 
-        document.createElement(&quot;div&quot;); //if no arg was passed in myVal is &quot;defaultValue&quot;
+    var myVal = document.getElementById( arg ) || 
+        document.createElement( &quot;div&quot; ); //defaultValue
 
         console.log( myVal );
 };
@@ -446,6 +446,7 @@ console.log( 1 + 1 && "Bar" );</textarea>
 </div>
 
 <div class="slide">
+    <h2>Logical</h2>
     <h3>Ternary</h3>
     <p>The ternary operator is a terse way to do a simple if/else statement.</p>
     <pre><code class="prettyprint">( conditional ) ? trueStatement : falseStatement ;</code></pre>
@@ -481,14 +482,16 @@ Objects
 <div class="slide">
     <h2>Objects</h2>
     <p>You can access an object's properties with "dot" notation or with associative array notation</p>
-    <textarea id="code66" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObject = {foo : 'Foo'};
+    <textarea id="code66" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObject = {
+    foo : 'Foo'
+};
 
 console.log( myObject.foo );
-console.log( myObject['foo'] );
+console.log( myObject[ 'foo' ] );
 
-myObject['foo bar'] = 'foo bar'; //non standard property names
+myObject[ 'foo bar' ] = 'foo bar'; //non standard property names
 
-console.log( myObject['foo ' + 'bar'] );</textarea>
+console.log( myObject ['foo ' + 'bar' ] );</textarea>
 </div>
 
 <!--
@@ -570,7 +573,7 @@ Functions
 
     var secondVar = &quot;&quot;;
 
-    firstVar + secondVar;
+   secondFunction( firstVar + secondVar );
 
     var firstFun = function(){
         //do something
@@ -651,6 +654,7 @@ var is_array = function (value) {
     </div>
 </div>
 
+<!--
 <div class="slide">
 <h2>Function Arguments</h2>
 <p>All arguments JavaScript are passed <strong>by value</strong>, even though they act like they are being passed by reference.</p>
@@ -676,7 +680,7 @@ function changeCar( theObj ){
 
 createCar();</textarea>
 </div>
-
+-->
 <div class="slide">
 <h2>Function Arguments</h2>
 <div>
@@ -1033,6 +1037,7 @@ console.log( instanceOfRealObject.iRule() );
 console.log( anotherOfRealObject.iRule() );</textarea>
 </div>
 
+<!--
 <div class="slide">
     <h2>Prototype on native Objects</h2>
     <p>You can also change the prototypes of the native objects like Object or Array</p>
@@ -1050,7 +1055,7 @@ copiedArray[ 0 ] = "Banana";
 console.log( copiedArray );
 console.log( myArray );</textarea>
 </div>
-
+-->
 <!-- 
 Design Patterns
  -->
@@ -1080,13 +1085,15 @@ Design Patterns
     <h2>Namespacing</h2>
      <pre><code class="prettyprint">var userApp = {
 
+        $userDiv : null,
+        $getUsers : null,
+
         init : function(){
-             $( &#39;#getUsers&#39; ).on( &#39;click&#39;,$.proxy( this,this.getUsers );
+             this.$userDiv = $( &quot;#userDiv&quot; );
+             this.$getUsers = $( &quot;#getUsers&quot; )
 
-             this.userDiv = $( &quot;#userDiv&quot; );
+             this.$getUsers.on( &#39;click&#39;,$.proxy( this,this.getUsers );
         },
-
-        userDiv : null;
 
         getUsers : function(){
             //get users
@@ -1097,7 +1104,7 @@ Design Patterns
             this.userDiv.append( user );
         }
     };
-}
+};
 
 $( function(){
     userApp.init();
@@ -1125,7 +1132,7 @@ $( function(){
     };
     
     return publicFn; //only what is returned is public
-}()); /*remember the closure slide? This function is immediately 
+} () ); /*remember the closure slide? This function is immediately 
         invoked creating a closure */
 
 publicFunctions.sayHello();
@@ -1215,6 +1222,7 @@ contacts.update();</code></pre>
 <input type="button" data-run="pubSub" value="Run">
 </div>
 
+<!--
 <div class="slide">
     <h2>Prototype</h2>
     <p>Don't confuse the prototype pattern with prototypical inheritance we talked about earlier!</p>
@@ -1241,7 +1249,7 @@ console.log( sportbike );
 sportbike.go();
 motorcycle.go();</textarea>
 </div>
-
+-->
 
 <div class="slide">
     <h2>Design Patterns</h2>
