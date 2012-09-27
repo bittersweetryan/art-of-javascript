@@ -1208,7 +1208,8 @@ $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
 }; //publisher
 
 $( contacts ).on( &#39;change&#39;,function(){
-    var contactSelect = $( &#39;select[ name=&quot;contact&quot; ]&#39; ); //subscribers
+    //subscribers
+    var contactSelect = $( &#39;select[ name=&quot;contact&quot; ]&#39; );
     contactSelect.find( &#39;option&#39; ).remove();
 
     for(var i = 0; i &lt; contacts.collection.length; i++){
