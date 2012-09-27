@@ -98,7 +98,7 @@ Cover
     <p>We will cover A LOT of ground! Please feel free to stop me in the halls, email me, or tweet at me to talk about any part of this presentation!</p>
     <ul>
         <li class="slide">
-            <h3>Basics  (variables, arrays, etc)</h3>
+            <h3>Basics</h3>
         </li>
         <li class="slide">
             <h3>Objects</h3>
@@ -128,6 +128,19 @@ Variables
 
 <div class="slide">
     <h1>Variables</h1>
+</div>
+
+<div class="slide">
+    <h2>Variables</h2>
+    <h4>There are 6 data types in JavaScript</h4>
+    <ul>
+        <li class="slide"><code class="prettyPrint">string</code></li>
+        <li class="slide"><code class="prettyPrint">number</code></li>
+        <li class="slide"><code class="prettyPrint">object</code> (functions and arrays are technically objects)</li>
+        <li class="slide"><code class="prettyPrint">undefined</code> (dont initialize values to undefined, its semantically incorrect)</li>
+        <li class="slide"><code class="prettyPrint">null</code> (use null to initialize empty values)</li>
+        <li class="slide"><code class="prettyPrint">boolean</code></li>
+    </ul>
 </div>
 
 <div class="slide">
@@ -173,18 +186,7 @@ function doMore(){
 };</textarea>
 </div>
 
-<div class="slide">
-    <h2>Variables</h2>
-    <h4>There are 6 data types in JavaScript</h4>
-    <ul>
-        <li class="slide"><code class="prettyPrint">string</code></li>
-        <li class="slide"><code class="prettyPrint">number</code></li>
-        <li class="slide"><code class="prettyPrint">object</code> (functions and arrays are technically objects)</li>
-        <li class="slide"><code class="prettyPrint">undefined</code> (dont initialize values to undefined, its semantically incorrect)</li>
-        <li class="slide"><code class="prettyPrint">null</code> (use null to initialize empty values)</li>
-        <li class="slide"><code class="prettyPrint">boolean</code></li>
-    </ul>
-</div>
+
 <!-- 
 Numbers
  -->
@@ -218,15 +220,6 @@ console.log( "0.06 + 0.01 = " + result );</textarea>
         <li class="slide"><code class="prettyprint">NaN !== NaN</code></li>
         <li class="slide">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
     </ul>
-</div>
-<div class="slide">
-    <h2>Numbers</h2>
-    <p class="slide">There is no "division by zero" error in JavaScript.</p>
-    <div class="slide">
-        <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( 12 / 0 );
-console.log( 12 / 0 * - 1);</textarea>
-    </div>
-    <p class="slide"><code class="prettyprint">Infinity</code> is another special value.  It represents any number outside the confines of a 64 bit floating point number.</p>
 </div>
 
 <!-- 
@@ -391,6 +384,7 @@ console.log( [7] === 7 );</textarea>
 
 </div>
 
+<!--
 <div class="slide">
     <h2>Comparisons</h2>
     <p>If I'm using === and I know "<code class="prettyprint">1</code>" is a numeric value how do I get "<code class="prettyprint">1</code>" to equal <code class="prettyprint">1</code>?</p>
@@ -408,6 +402,7 @@ console.log( [7] === 7 );</textarea>
         </li>       
     </ol>
 </div>
+-->
 
 <div class="slide" id="logical">
     <h1>Logical Operators</h1>
@@ -496,6 +491,7 @@ myObject['foo bar'] = 'foo bar'; //non standard property names
 console.log( myObject['foo ' + 'bar'] );</textarea>
 </div>
 
+<!--
 <div class="slide">
     <h2>Objects</h2>
     <p>When accessing properties from other properties in an object, use the <code class="prettyprint">this</code> keyword.</p>
@@ -511,7 +507,9 @@ console.log( myObject['foo ' + 'bar'] );</textarea>
 
 myObj.sayHello();</textarea>
 </div>
+-->
 
+<!--
 <div class="slide">
     <h2>Objects</h2>
     <p>To check if a property exists in an object use the <code class="prettyprint">hasOwnProperty()</code> method or the <code class="prettyprint">in</code> operator. <code class="prettyprint">hasOwnProperty</code> will only search the current object for a property whereas <code class="prettyprint">in</code> will search all the way up the prototype chain.</p>
@@ -524,6 +522,7 @@ console.log( 'baz' in myObject );
 
 console.log( myObject.hasOwnProperty( 'baz' ) );</textarea>
 </div>
+-->
 
 <!-- 
 Functions
@@ -769,7 +768,7 @@ var anotherRobot = Robot( "Phineasbot" ); //we just created a global!!
 
 console.log( window.robotName ); //note that robotName is now a property of window
 
-Robot.walk(); //doesn't exist</textarea>
+//anotherRobot.walk(); //doesn't exist</textarea>
 </div>
 
 <div class="slide">
@@ -852,21 +851,6 @@ myFunc();</code></pre>
 whoAmI.call( "Ryan", "Hello World", undefined, {}, [] );
 
 whoAmI.apply( "Scott", [ "Hello World", undefined, {}, [] ] );</textarea>
-</div>
-
-<div class="slide">
-    <h2>This</h2>
-    <p>Back to our "this" example</p>
-    <pre><code class="prettyprint">&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
-
-var myFunc = function(){
-    console.log( this );
-}
-
-myFunc()
-&lt;/script&gt;</code></pre>
-<p>When a function is called from the root of the script tag its the same as:</p>
-<code class="prettyprint">myFunc.call( window, arguments );</code>
 </div>
 
 <div class="slide">
