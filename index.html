@@ -145,7 +145,7 @@ Variables
 
 <div class="slide">
     <h2>Variables</h2>
-    <p>Variables in JavaScript are poorly scoped by default, any variable that is not declared with the var keyword goes into the global scope.</p>
+    <p>Function ariables in JavaScript are poorly scoped by default, any variable that is  declared in a function without the var keyword goes into the global scope.</p>
      <pre><code class="prettyprint">function doSomething(){
     myVar = &quot;foo&quot;; //this goes into the global scope which == bad
     var myOtherVar = &quot;bar&quot;; //this goes into the function scope which == good     
@@ -159,13 +159,13 @@ console.log( myOtherVar ); //error
 
 <div class="slide">
     <h2>D'oh!</h2>
-      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for(i = 0; i < 10; i++){
+      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for( i = 0; i < 10; i++ ){
     doMore();
     console.log( i );
 }
 
 function doMore(){
-    for(i = 0; i < 10; i++){
+    for( i = 0; i < 10; i++ ){
         
     }
 };</textarea>
@@ -174,13 +174,13 @@ function doMore(){
 
 <div class="slide">
     <h2>Thats better!</h2>
-      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for(var i = 0; i < 10; i++){
+      <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">for( var i = 0; i < 10; i++ ){
     doMore();
     console.log( i );
 }
 
 function doMore(){
-    for(var i = 1; i < 10; i++){
+    for( var i = 1; i < 10; i++ ){
         
     }
 };</textarea>
@@ -202,12 +202,12 @@ console.log( "0.06 + 0.01 = " + result );</textarea>
         </div>
         <br>
 
-        <p>JavaScript has a BigNum library which will improve the accuracy of floating point expressions at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
+        <p class="slide">JavaScript has a BigNum library which will improve the accuracy of floating point expressions at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
     </div>
         <div class="slide">
             <p>Use the <code class="prettyprint">toFixed()</code> method to round a number to a specified number of decimal places.</p>
             <div>
-                <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( 3.14159.toFixed(2) ); </textarea>
+                <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( 3.14159.toFixed( 2 ) ); </textarea>
             </div>
         </div>
 </div>
@@ -217,7 +217,8 @@ console.log( "0.06 + 0.01 = " + result );</textarea>
     <p><code class="prettyprint">NaN</code>, is a special value in JavaScript. You'll get NaN in situations like trying to do math on a variable that is <code class="prettyprint">undefined</code> or trying to perform multiplication, division, or subtraction on a string.</p>
     <ul>
         <li class="slide"><code class="prettyprint">NaN is False</code></li>
-        <li class="slide"><code class="prettyprint">NaN !== NaN</code></li>
+        <li class="slide"><code class="prettyprint">NaN !== NaN (NaN is not even == NaN)</code></li>
+        <li class="slide"><code class="prettyprint">typeof NaN</code> is number.</li>
         <li class="slide">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
     </ul>
 </div>
@@ -233,26 +234,26 @@ Arrays
 <div class="slide">
     <h2>Arrays</h2>
         <P>Arrays can be created two ways:</P>
-        <pre><code class="prettyprint">var myArray = new Array('item1','item2',myobj,[]);</code></pre>
+        <pre><code class="prettyprint">var myArray = new Array( 'item1', 'item2', myobj, [] );</code></pre>
         <p>AND</p>
         <pre><code class="prettyprint">var myArray = [ "item1", "item2", myObj, [] ]; //prefered</code></pre>
         <p>In order to create multi-dimensional arrays in JavaScript you nest arrays:</p>
-        <pre><code class="prettyprint">myArray[0] = [ "nested one", "nested two" ];
-myArray[0][1]; //nested two</code></pre>
+        <pre><code class="prettyprint">myArray[ 0 ] = [ "nested one", "nested two" ];
+myArray[ 0 ][ 1 ]; //nested two</code></pre>
 </div>
 
 <div class="slide">
     <h2>Arrays</h2>
-    <p>Arrays are objects so they have methods, here are a few you'll commonly see used in projects: </p>
+    <p>Arrays are objects so they have methods.</p>
         <div><pre><code class="prettyprint">myArray.length //mutable in JS, set length to resize arary
 
-myArray.push(item) //append item to the end of the array
+myArray.push( item ) //append item to the end of the array
 
 myArray.pop() //removes the last element of the array and returns it
 
-myArray.concat(anotherArray) //adds two arrays together, returns a new array. myArray unchanged!
+myArray.concat( anotherArray ) //adds two arrays together, returns a new array. myArray unchanged!
 
-myArray.join(&quot;,&quot;) //combines elements into string, separated by argument</code></pre></div>
+myArray.join( &quot;,&quot; ) //combines elements into string, separated by argument</code></pre></div>
 </div>
 
 <div class="slide">
@@ -266,8 +267,6 @@ myArray.join(&quot;,&quot;) //combines elements into string, separated by argume
     //elements are equal
     return 0;
 })//sorts an array
-
-myArray.splice( 1, 2 ) //deletes 2 items from the array starting at position 1
 
 myArray.slice( 1, 2 ) //returns 2 items from the array starting at position 1
 
@@ -338,6 +337,27 @@ Operators
 </div>
 
 <div class="slide">
+    <h2>Comparisons</h2>
+    <p>What exactly is type coersion?</p>
+    <div>
+    <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( "1" == 1 );
+
+console.log( "1" === 1 );
+
+console.log( [7] == 7 );  
+                          
+console.log( [7] === 7 );</textarea>
+</div><br>
+    <p class="slide">
+        When using the comparison operator on arrays, JavaScript calls the toString() method on the array.
+    </p>
+    <p class="slide">
+    Always use === when comparing a variable <code class="prettyprint">0</code>, <code class="prettyprint">undefined</code>, booleans, <code class="prettyprint">null</code>, and empty strings "".
+    </p>
+
+</div>
+
+<div class="slide">
     <h2>Truthy / Falsy Values</h2>
     <p>The following values evaluate to <code class="prettyprint">false</code>, since some of them not primitive boolean datatypes they are said to be "falsy".</p>
     <h3>Falsy Values</h3>
@@ -363,27 +383,6 @@ Operators
         </ul>
         <p><strong>Anything that is not falsy is truthy in JavaScript.</strong></p>
 </div>
-<div class="slide">
-    <h2>Comparisons</h2>
-    <p>What exactly is type coersion?</p>
-    <div>
-    <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( "1" == 1 );
-
-console.log( "1" === 1 );
-
-console.log( [7] == 7 );  
-                          
-console.log( [7] === 7 );</textarea>
-</div><br>
-    <p class="slide">
-        When using the comparison operator on arrays, JavaScript calls the toString() method on the array.
-    </p>
-    <p class="slide">
-    Always use === when comparing <code class="prettyprint">0</code>, <code class="prettyprint">undefined</code>, booleans, and empty strings "".
-    </p>
-
-</div>
-
 <!--
 <div class="slide">
     <h2>Comparisons</h2>
@@ -615,10 +614,10 @@ Functions
     <h2>Function Arguments</h2>
     <p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
     <pre><code class="prettyprint">var myFunc = function(){
-    console.log(arguments);
+    console.log( arguments );
 };
 
-myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});</code></pre>
+myFunc( &quot;Hello&quot;, &quot;World&quot;, function(){} );</code></pre>
 <input type="button" data-run="args" value="Run">
 </div>
 
@@ -629,27 +628,31 @@ myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});</code></pre>
     <div class="slide">
          <textarea id="code10" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log("Type of string: " + typeof "hello");
 
-console.log("Type of number: " + typeof 1234);
+console.log( "Type of number: " + typeof 1234 );
 
-console.log("Type of object literal: " + typeof {});
+console.log( "Type of object literal: " + typeof {} );
 
-console.log("Type of array: " + typeof []);
+console.log( "Type of array: " + typeof [] );
 
-console.log("Type of function: " + typeof function(){});</textarea>
+console.log( "Type of function: " + typeof function(){} );
+
+console.log( "Type of function: " + typeof undefinedVar );</textarea>
     </div>
+    <br>
+    <p class="slide">To check if a variable is defined or not you can call typeof on it.  Doing <code class="prettyprint">if( undefinedVar === 'undefined')</code> will throw an error.<p>
 </div>
 
 <div class="slide">
     <h2>Function Arguments</h2>
     <p>Hit the brakes!</p>
     <div class="slide" id="checktype">
-        <pre><code class="prettyprint">console.log(typeof []); //object ?!?</code></pre>
+        <pre><code class="prettyprint">console.log( typeof [] ); //object ?!?</code></pre>
     </div>
     <p class="slide">We have to work a little harder to check for an array</p>
     <div class="slide">
         <pre><code class="prettyprint">//borrowed from Douglas Crockford&#39;s &quot;JavaScript: The Good Parts&quot;
-var is_array = function (value) {
-    return Object.prototype.toString.apply(value) === &#39;[object Array]&#39;;
+var is_array = function ( value ) {
+    return Object.prototype.toString.apply( value ) === &#39;[object Array]&#39;;
 };</code></pre>
     </div>
 </div>
@@ -700,10 +703,10 @@ createCar();</textarea>
 
         var innerVar = "inner"; //outer function does not have access
 
-        console.log(outerVar);
+        console.log( outerVar );
 
             return function(){
-                console.log(innerVar, outerVar);
+                console.log( innerVar, outerVar );
             }();
     }();
 };
@@ -728,7 +731,7 @@ lexical();</textarea>
     
     return function(){
         total++;
-        console.log(total);
+        console.log( total );
     };
     
 };
@@ -808,6 +811,7 @@ console.log( window.robotName ); //note that robotName is now a property of wind
 };
 </code></pre>
 </div>
+
 <!-- 
 This
  -->
@@ -997,6 +1001,13 @@ Car.prototype = {
 
 Fusion.prototype = new Car();
 </code></pre>
+<p>
+    Notice that we use <code class="prettyprint">Fusion.prototype = new Car()</code> and not:
+    <pre><code class="prettyprint">var Fusion = function(){ 
+        this.prototype = new Car();
+};</code></pre>
+</p>
+<p>Setting <code class="prettyprint">this.prototype</code> will just add a new property to each <strong>instance</strong> of Fusion.</p>
 </div>
 
 <div class="slide">
@@ -1013,7 +1024,7 @@ fusion instanceof Fusion //true</code></pre>
 
 <div class="slide">
     <h2>What is a "Prototype"</h2>
-    <p class="slide">A prototype is just an object, constructor functions and objects have a hidden link (exposed as __proto__ in some browsers) to an object that is it's prototype.</p>
+    <p class="slide">A prototype is just an object; functions and objects have a hidden link (exposed as __proto__ in some browsers) to an object that is it's prototype.</p>
     <p class="slide">When a property is called the property is searched for on the object, then the objects prototype, then the prototype's prototype, etc</p>
     <p class="slide">JavaScript stops looking up the chain when it reaches Object.prototype</p>
 </div>
@@ -1084,26 +1095,24 @@ Design Patterns
 <div class="slide">
     <h2>Namespacing</h2>
      <pre><code class="prettyprint">var userApp = {
+    $userDiv : null,
+    $getUsers : null,
 
-        $userDiv : null,
-        $getUsers : null,
+    init : function(){
+         this.$userDiv = $( &quot;#userDiv&quot; );
+         this.$getUsers = $( &quot;#getUsers&quot; );
 
-        init : function(){
-             this.$userDiv = $( &quot;#userDiv&quot; );
-             this.$getUsers = $( &quot;#getUsers&quot; )
+         this.$getUsers.on( &#39;click&#39;,$.proxy( this,this.getUsers );
+    },
 
-             this.$getUsers.on( &#39;click&#39;,$.proxy( this,this.getUsers );
-        },
+    getUsers : function(){
+        //get users
+        this.addUser( user );
+    },
 
-        getUsers : function(){
-            //get users
-            this.addUser( user );
-        },
-
-        addUser = function( user ){
-            this.userDiv.append( user );
-        }
-    };
+    addUser = function( user ){
+        this.userDiv.append( user );
+    }
 };
 
 $( function(){
