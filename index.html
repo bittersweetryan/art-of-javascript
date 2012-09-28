@@ -74,7 +74,7 @@ About me
     <h3>Experience</h3>
     <ul>
         <li>Technical Solutions Architect at IDL Solutions <a href="http://www.idl.com" target="_blank">http://www.idl.com</a>.</li>
-        <li>Web Developer since 1996</li>
+        <li>Web Developer since 1997</li>
         <li>I ♥ Open Source
             <ul>
                 <li>
@@ -145,7 +145,7 @@ Variables
 
 <div class="slide">
     <h2>Variables</h2>
-    <p>Function ariables in JavaScript are poorly scoped by default, any variable that is  declared in a function without the var keyword goes into the global scope.</p>
+    <p>Function variables in JavaScript are poorly scoped by default, any variable that is  declared in a function without the var keyword goes into the global scope.</p>
      <pre><code class="prettyprint">function doSomething(){
     myVar = &quot;foo&quot;; //this goes into the global scope which == bad
     var myOtherVar = &quot;bar&quot;; //this goes into the function scope which == good     
@@ -217,7 +217,7 @@ console.log( "0.06 + 0.01 = " + result );</textarea>
     <p><code class="prettyprint">NaN</code>, is a special value in JavaScript. You'll get NaN in situations like trying to do math on a variable that is <code class="prettyprint">undefined</code> or trying to perform multiplication, division, or subtraction on a string.</p>
     <ul>
         <li class="slide"><code class="prettyprint">NaN is False</code></li>
-        <li class="slide"><code class="prettyprint">NaN !== NaN (NaN is not even == NaN)</code></li>
+        <li class="slide"><code class="prettyprint">NaN !== NaN (NaN is not even != NaN)</code></li>
         <li class="slide"><code class="prettyprint">typeof NaN</code> is number.</li>
         <li class="slide">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
     </ul>
