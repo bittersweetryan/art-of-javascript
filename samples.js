@@ -76,17 +76,17 @@ $(function(){
 				wheels : 4, doors : 4,  manufacturer : ""
 			};
 
-			var R8 = function(){ };
+			var Fusion = function(){ };
 
-			//set the R8's prototype to a new instance of car
-			R8.prototype = new Car();
+			//set the Fusion's prototype to a new instance of car
+			Fusion.prototype = new Car();
 
-			R8.prototype.constructor = R8; //reset the R8's constructor
+			Fusion.prototype.constructor = Fusion; //reset the R8's constructor
 
-			var r8 = new R8();
+			var fusion = new Fusion();
 
-			console.log(r8);
-			console.log(r8.wheels);
+			console.log(fusion);
+			console.log(fusion.wheels);
 		},
 
 		optionsPattern : function(){

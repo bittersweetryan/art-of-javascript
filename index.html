@@ -680,7 +680,7 @@ function changeCar( theObj ){
 
 createCar();</textarea>
 </div>
--->
+
 <div class="slide">
 <h2>Function Arguments</h2>
 <div>
@@ -688,7 +688,7 @@ createCar();</textarea>
     <img src="assets/by_value.png">
 </div>
 </div>
-
+-->
 <div class="slide"> 
     <h2>Lexical Scoping</h2>
     <p>Functions can be nested inside of other functions.  Each nested function has access to the scope of all its parents.  This is called lexical scoping. </p>
@@ -906,7 +906,7 @@ myObj.sayHello();</code></pre>
 <input type="button" data-run="this3" value="Run"><br><br>
 <p class="slide">In nested functions <code class="prettyprint">this</code> refers back to global namespace!</p>
 </div>
-
+<!--
 <div class="slide">
     <h2>This and jQuery</h2>
     <p>jQuery likes to normalize <code class="prettyprint">this</code>, which can cause issues if you expect <code class="prettyprint">this</code> to refer to the current object.</p>
@@ -938,7 +938,7 @@ obj.init();</code></pre>
 obj.init();</code></pre>
 <input type="button" id="thisButton1" value="Run">
 </div>
-
+-->
 <div class="slide">
     <h2>This</h2>
     <p>For a much more comprehensive look at "this" and "function invocation" read:
@@ -963,17 +963,17 @@ Car.prototype = {
     wheels : 4, doors : 4,  manufacturer : &quot;&quot;
 };
 
-var R8 = function(){ }; 
+var Fusion = function(){ }; 
 
-//set the R8&#39;s prototype to a new instance of car
-R8.prototype = new Car();
+//set the Fusion&#39;s prototype to a new instance of car
+Fusion.prototype = new Car();
 
-R8.prototype.constructor = R8; //reset the R8&#39;s constructor
+Fusion.prototype.constructor = Fusion; //reset the Fusion&#39;s constructor
 
-var r8 = new R8();
+var fusion = new Fusion();
 
-console.log( r8 );
-console.log( r8.wheels );</code></pre>
+console.log( fusion );
+console.log( fusion.wheels );</code></pre>
 <input type="button" data-run="inheritance1" value="Run">
 </div>
 
@@ -993,9 +993,9 @@ Car.prototype = {
 <div class="slide">
     <h2>Inheritance</h2>
     <p>Then we create a new, more specialized constructor function, setting its prototype to a new instance of our Car constructor.</p>
-     <pre><code class="prettyprint">var R8 = function(){ }; 
+     <pre><code class="prettyprint">var Fusion = function(){ }; 
 
-R8.prototype = new Car();
+Fusion.prototype = new Car();
 </code></pre>
 </div>
 
@@ -1004,11 +1004,11 @@ R8.prototype = new Car();
     <p>Overriding an objects prototype also overrides a property called <code class="prettyprint">prototype.constructor</code>.</p>
     <p>Its important to reset this property, otherwise the <code class="prettyprint">instanceof</code> operator won't work properly.</p>
     <p><code class="prettyprint">instanceof</code> is used weather if a variables is an intance of a particular prototype.</p>
-    <pre><code class="prettyprint">R8.prototype.constructor = R8;
+    <pre><code class="prettyprint">Fusion.prototype.constructor = Fusion;
 
-var r8 = new R8();
+var fusion = new Fusion();
 
-r8 instanceof R8 //true</code></pre>
+fusion instanceof Fusion //true</code></pre>
 </div>
 
 <div class="slide">
@@ -1167,7 +1167,7 @@ $( document ).myPlugin();</code></pre>
     <p>The pub-sub pattern specifies that there are "publishers" that publish events, and "subscribers" that can subscribe to those events.</p>
     <img src="assets/pub_sub.png">
 </div>
-
+<!--
 <div class="slide">
     <h2>Pub-Sub (AKA Observer)</h2>
     <p>This pattern you probably already use every day.</p>
@@ -1184,7 +1184,7 @@ $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
     console.log(&quot;Second Observable of click&quot;);
 });</code></pre>
 </div>
-
+-->
 <div class="slide">
     <h2>Pub-Sub (AKA Observer)</h2>
 <pre><code class="prettyprint">​var contacts = {
