@@ -373,11 +373,8 @@ console.log( false == '' );
 
 console.log( false === '' );</textarea>
 </div><br>
-    <p class="slide">
-        When using the comparison operator on arrays, JavaScript calls the <code class="prettyprint">toString()</code> method on the array.
-    </p>
-    <p class="slide">
-    Always use === when comparing a variable <code class="prettyprint">0</code>, <code class="prettyprint">undefined</code>, booleans, <code class="prettyprint">null</code>, and empty strings "".
+    <p class="slide"><strong>
+    Always use === when comparing a variable <code class="prettyprint">0</code>, <code class="prettyprint">undefined</code>, booleans, <code class="prettyprint">null</code>, and empty strings "".</strong>
     </p>
 
 </div>
@@ -494,7 +491,9 @@ Objects
 <div class="slide">
     <h2>Objects</h2>
     <p>Objects in JavaScript can be thought of as a set of key-value pairs.</p>
-    <pre><code class="prettyprint">myObject = {
+    <pre><code class="prettyprint">myObject = { }; //empty object
+
+myObject2 = {
     foo : &quot;Foo&quot;, 
     bar : &quot;Bar&quot;, 
     anotherObject : {
@@ -665,14 +664,17 @@ console.log( "Type of number: " + typeof 1234 );
 
 console.log( "Type of object literal: " + typeof {} );
 
-console.log( "Type of array: " + typeof [] );
+console.log( "Type of array: " + typeof [] ); //be carefull!
 
-console.log( "Type of function: " + typeof function(){} );
+console.log( "Type of function: " + typeof function(){} ); 
 
 console.log( "Type of function: " + typeof undefinedVar );</textarea>
     </div>
     <br>
-    <p class="slide">To check if a variable is defined or not you can call typeof on it.  Doing <code class="prettyprint">if( undefinedVar === 'undefined')</code> will throw an error.<p>
+    <div class="slide">
+    <p>To check if a variable is defined or not you can use the <code class="prettyprint">typeof</code> operator on it.</p>
+    <p>Doing <code class="prettyprint">if( undefinedVar === 'undefined')</code> will throw an error.</p>
+    </div>
 </div>
 
 <!--
