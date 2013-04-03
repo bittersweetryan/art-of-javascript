@@ -72,7 +72,7 @@ About me
     </ul>
     <h3>Experience</h3>
     <ul>
-        <li>Technical Solutions Architect at IDL Solutions <a href="http://www.idl.com" target="_blank">http://www.idl.com</a>.</li>
+        <li>Front End Engineer at Northwestern Mutual.</li>
         <li>Web Developer since 1997</li>
         <li>I ♥ Open Source
             <ul>
@@ -125,6 +125,7 @@ Cover
 Variables
  -->
 
+<!--
 <div class="slide">
     <h1>Variables</h1>
 </div>
@@ -198,17 +199,19 @@ function doMore(){
 doSometing();</textarea>
 </div>
 
+-->
 
 <!-- 
 Numbers
  -->
 
+<!-- 
 <div class="slide">
     <h2>Numbers</h2>
         <p class="slide">All numbers in JavaScript are 64 bit floating point numbers.</p>
     <div class="slide">
         <p>Floating point arithmatic sometimes give strange results (<a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a>).</p>
-        <div> <!-- constrain the textarea -->
+        <div> 
         <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var result = 0.06 + 0.01;
 console.log( "0.06 + 0.01 = " + result );</textarea>
         </div>
@@ -234,11 +237,11 @@ console.log( "0.06 + 0.01 = " + result );</textarea>
         <li class="slide">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
     </ul>
 </div>
-
+-->
 <!-- 
 Arrays
  -->
-
+<!--
 <div class="slide" id="arrays">
     <h1>Arrays</h1>
 </div>
@@ -338,6 +341,7 @@ console.log( myArray );
 console.log( myArray2 );
 console.log( myArray3 );</textarea>
 </div>
+-->
 
 <!-- 
 Operators
@@ -402,7 +406,7 @@ console.log( false === '' );</textarea>
                 <code class="prettyprint">null</code>
             </li>
         </ul>
-        <p><strong>Anything that is not falsy is truthy in JavaScript.</strong></p>
+        <p><strong>Anything that is not falsy is truthy.</strong></p>
 </div>
 <!--
 <div class="slide">
@@ -946,7 +950,7 @@ myObj.sayHello();</code></pre>
 <input type="button" data-run="this3" value="Run"><br><br>
 <p class="slide">In nested functions <code class="prettyprint">this</code> refers back to global namespace!</p>
 </div>
-<!--
+
 <div class="slide">
     <h2>This and jQuery</h2>
     <p>jQuery likes to normalize <code class="prettyprint">this</code>, which can cause issues if you expect <code class="prettyprint">this</code> to refer to the current object.</p>
@@ -978,7 +982,7 @@ obj.init();</code></pre>
 obj.init();</code></pre>
 <input type="button" id="thisButton1" value="Run">
 </div>
--->
+
 <div class="slide">
     <h2>This</h2>
     <p>For a much more comprehensive look at "this" and "function invocation" read:
@@ -1065,7 +1069,6 @@ fusion instanceof Fusion //true</code></pre>
     <p class="slide">JavaScript stops looking up the chain when it reaches Object.prototype</p>
 </div>
 
-<!--
 <div class="slide">
     <h2>Prototype's Members</h2>
     <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all existing instances.</p>
@@ -1084,7 +1087,7 @@ RealObject.prototype.iRule = function(){
 console.log( instanceOfRealObject.iRule() );
 console.log( anotherOfRealObject.iRule() );</textarea>
 </div>
--->
+
 <!--
 <div class="slide">
     <h2>Prototype on native Objects</h2>
