@@ -123,13 +123,15 @@ Cover
 
 <!-- 
 Variables
- -->
+ 
 
-<!--
+
 <div class="slide">
     <h1>Variables</h1>
 </div>
+-->
 
+<!--
 <div class="slide">
     <h2>Variables</h2>
     <h4>There are 6 data types in JavaScript</h4>
@@ -380,6 +382,17 @@ console.log( false === '' );</textarea>
     Always use === when comparing a variable <code class="prettyprint">0</code>, <code class="prettyprint">undefined</code>, booleans, <code class="prettyprint">null</code>, and empty strings "".</strong>
     </p>
 
+</div>
+
+<div class="slide">
+    <h2>Checking if a variable is defined</h2>
+    <h4>Because of type coersion truly check if a variable is truly defined or not you have to check its type.</h4>
+<textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
+  //dont forget the quotes!!
+  if( typeof undefinedVar === 'undefined'){ 
+
+    console.log( 'it really is undefined');
+}</textarea>    
 </div>
 
 <div class="slide">
@@ -645,6 +658,7 @@ Functions
 }</code></pre>
 </div>
 
+<!--
 <div class="slide">  
     <h2>Function Arguments</h2>
     <p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
@@ -679,7 +693,7 @@ console.log( "Type of function: " + typeof undefinedVar );</textarea>
     <p>Doing <code class="prettyprint">if( undefinedVar === 'undefined')</code> will throw an error.</p>
     </div>
 </div>
-
+-->
 <!--
 <div class="slide">
     <h2>Function Arguments</h2>
