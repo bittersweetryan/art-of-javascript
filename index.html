@@ -386,12 +386,14 @@ console.log( false === '' );</textarea>
 
 <div class="slide">
     <h2>Checking if a variable is defined</h2>
-    <h4>Because of type coersion truly check if a variable is truly defined or not you have to check its type.</h4>
-<textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
-  //dont forget the quotes!!
-  if( typeof undefinedVar === 'undefined'){ 
+    <h4>Because of type coersion to check if a variable is truly defined or not it's best to check its type.</h4>
+<textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">//dont forget the quotes!!
+if( typeof undefinedVar === 'undefined'){ 
 
     console.log( 'it really is undefined');
+}
+else{
+    console.log( 'var could be a falsy value');
 }</textarea>    
 </div>
 
@@ -419,7 +421,7 @@ console.log( false === '' );</textarea>
                 <code class="prettyprint">null</code>
             </li>
         </ul>
-        <p><strong>Anything that is not falsy is truthy.</strong></p>
+        <p><strong>Anything that is not falsy is truthy (we can do some cool stuff because of this)</strong></p>
 </div>
 <!--
 <div class="slide">
@@ -448,7 +450,7 @@ console.log( false === '' );</textarea>
 <div class="slide">
     <h2>Logical Operators</h2>
     <h3>JavaScript OR Operator <code class="prettyprint">||</code></h3>
-    <p>The || operator returns the value of the first expression if it's true otherwise returns the value of the second expression.
+    <p>The || operator returns the <strong><em>value</em></strong> of the first expression if it's true otherwise returns the value of the second expression.
     <textarea id="code3" name="code" class="code" mode="javascript" style="display: none;" runnable="true">
     console.log( null || "hello" ); 
 
@@ -535,7 +537,7 @@ console.log( myObject[ 'foo' ] );
 console.log( myObject ['foo ' + 'bar' ] );</textarea>
 </div>
 
-<!--
+
 <div class="slide">
     <h2>Objects</h2>
     <p>When accessing properties from other properties in an object, use the <code class="prettyprint">this</code> keyword.</p>
@@ -551,9 +553,8 @@ console.log( myObject ['foo ' + 'bar' ] );</textarea>
 
 myObj.sayHello();</textarea>
 </div>
--->
 
-<!--
+
 <div class="slide">
     <h2>Objects</h2>
     <p>To check if a property exists in an object use the <code class="prettyprint">hasOwnProperty()</code> method or the <code class="prettyprint">in</code> operator. <code class="prettyprint">hasOwnProperty</code> will only search the current object for a property whereas <code class="prettyprint">in</code> will search all the way up the prototype chain.</p>
@@ -566,7 +567,6 @@ console.log( 'baz' in myObject );
 
 console.log( myObject.hasOwnProperty( 'baz' ) );</textarea>
 </div>
--->
 
 <!-- 
 Functions
@@ -748,7 +748,7 @@ createCar();</textarea>
 -->
 <div class="slide"> 
     <h2>Lexical Scoping</h2>
-    <p>Functions can be nested inside of other functions.  Each nested function has access to the scope of all its parents.  This is called lexical scoping. </p>
+    <p>Functions can be nested inside of other functions.  Each nested function has access to the scope of all its parents.  This is called lexical scoping (not to be confused with a closure). </p>
 <!-- may have issues -->
      <textarea id="code8" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var lexical = function(){
     var outerVar = 'outer';
@@ -759,9 +759,11 @@ createCar();</textarea>
 
         console.log( outerVar );
 
-            return function(){
-                console.log( innerVar, outerVar );
-            }();
+        var innerFunction = function(){
+            console.log( innerVar, outerVar );
+        };
+
+        innerFunction();
     }();
 };
 
@@ -804,6 +806,7 @@ callTimer();</code></pre>
         <li class="slide">Never use a constructor function without first using the <code class="prettyprint">new</code> keyword!</li>
         <li class="slide">Using the new keyword will create a new scope for the function.</li>
         <li class="slide">Using the new keyword will also create the inheritance tree. Without new a function will only inherit from the Function Constructor.</li>
+        <li class="slide">I rarely use consructor functions.</li>
     </ul>
 </div>
 
@@ -827,9 +830,12 @@ robot.walk();
 
 var anotherRobot = Robot( "Phineasbot" ); //we just created a global!! 
 
-console.log( window.robotName ); //note that robotName is now a property of window
+console.log( window.robotName ); 
+//note that robotName is now a property of window
 
-//anotherRobot.walk(); //doesn't exist</textarea>
+try{ 
+    anotherRobot.walk(); 
+} catch( ex ){ console.log( ex.message ); }</textarea>
 </div>
 
 <div class="slide">
@@ -861,7 +867,7 @@ console.log( window.robotName ); //note that robotName is now a property of wind
     <h2>Constructor Functions</h2>
     <p>Without the <code class="prettyprint">new</code> keyword when the constructor is called <code clss="prettyprint">this</code> is equal to the global object.</p>
 <pre><code class="prettyprint">var Robot = function( robotName ){
-    this.robotName = robotName;  //this actually equals the window object in a browser
+    this.robotName = robotName;  //"this" actually equals the window object in a browser
 };
 </code></pre>
 </div>
@@ -876,7 +882,7 @@ This
 
 <div class="slide">
     <h2>This</h2>
-    <p>The <code class="prettyprint">this</code> keyword one of JavaScript's most mis-understood keywords.</p>
+    <p>The <code class="prettyprint">this</code> keyword one of JavaScript's most mis-understood keywords (and one of it's most powerful).</p>
 <pre><code class="prettyprint">var myObj = {
     myFunc : function(){ 
         console.log( this );
@@ -965,6 +971,7 @@ myObj.sayHello();</code></pre>
 <p class="slide">In nested functions <code class="prettyprint">this</code> refers back to global namespace!</p>
 </div>
 
+<!---
 <div class="slide">
     <h2>This and jQuery</h2>
     <p>jQuery likes to normalize <code class="prettyprint">this</code>, which can cause issues if you expect <code class="prettyprint">this</code> to refer to the current object.</p>
@@ -996,7 +1003,7 @@ obj.init();</code></pre>
 obj.init();</code></pre>
 <input type="button" id="thisButton1" value="Run">
 </div>
-
+-->
 <div class="slide">
     <h2>This</h2>
     <p>For a much more comprehensive look at "this" and "function invocation" read:
@@ -1012,9 +1019,38 @@ Inheritence
 </div>
 
 <div class="slide">
+    <h2>Prototypes are the Key To Inheritance!</h2>
+    <p class="slide">A prototype is just an object. Functions and objects have a hidden link to an object that is it's "prototype".</p>
+    <p class="slide"><strong>When a property is called the property is searched for on the object, then the objects prototype, then the prototype's prototype, etc</strong></p>
+    <p class="slide">JavaScript stops looking up the chain when it reaches Object.prototype.  If its not found <code>undefined</code> is returned.</p>
+    <div>
+        <img src="images/property-lookup.png" height="350px">
+    </div>
+</div>
+
+<div class="slide">
+    <h2>Prototype's Members</h2>
+    <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all existing instances.</p>
+     <textarea id="code21" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function Person( name ){ 
+    this.name = name
+};
+
+var person1 = new Person( "Ryan" );
+var person2 = new Person( "Scott" );
+
+//we can add to a prototype at any time
+Person.prototype.iRule = function(){ 
+    return this.name + " Rules.";
+};
+
+console.log( person1.iRule() );
+console.log( person2.iRule() );</textarea>
+</div>
+
+<div class="slide">
     <h2>Inheritance</h2>
     <p>JavaScript uses a prototype-based inheritance model.</p>
-     <pre><code class="prettyprint">var Car = function(){ };
+     <pre><code class="prettyprint">var Car = function( maker){ this.manufacturer = maker };
 
 //add properties to Car&#39;s Prototype
 Car.prototype = {
@@ -1024,13 +1060,13 @@ Car.prototype = {
 var Fusion = function(){ }; 
 
 //set the Fusion&#39;s prototype to a new instance of car
-Fusion.prototype = new Car();
+Fusion.prototype = new Car( 'Ford' );
 
 Fusion.prototype.constructor = Fusion; //reset the Fusion&#39;s constructor
 
 var fusion = new Fusion();
 
-console.log( fusion );</code></pre>
+console.log( fusion.manufacturer );</code></pre>
 <input type="button" data-run="inheritance1" value="Run">
 </div>
 
@@ -1038,7 +1074,7 @@ console.log( fusion );</code></pre>
 <div class="slide">
     <h2>Inheritance</h2>
     <p>First we create a new constuctor function.</p>
-     <pre><code class="prettyprint">var Car = function(){ };
+     <pre><code class="prettyprint">var Car = function( maker){ this.manufacturer = maker };
 
 //add properties to Car&#39;s Prototype
 Car.prototype = {
@@ -1052,12 +1088,12 @@ Car.prototype = {
     <p>Then we create a new, more specialized constructor function, setting its prototype to a new instance of our Car constructor.</p>
      <pre><code class="prettyprint">var Fusion = function(){ }; 
 
-Fusion.prototype = new Car();
+Fusion.prototype = new Car( 'Ford' );
 </code></pre>
 <p>
     Notice that we use <code class="prettyprint">Fusion.prototype = new Car()</code> and not:
     <pre><code class="prettyprint">var Fusion = function(){ 
-    this.prototype = new Car();
+    this.prototype = new Car( 'Ford' );
 };</code></pre>
 </p>
 <p>Setting <code class="prettyprint">this.prototype</code> will just add a new property to each <strong>instance</strong> of Fusion.</p>
@@ -1068,39 +1104,16 @@ Fusion.prototype = new Car();
     <p>Overriding an objects prototype also overrides a property called <code class="prettyprint">prototype.constructor</code>.</p>
     <p>Its important to reset this property, otherwise the <code class="prettyprint">instanceof</code> operator won't work properly.</p>
     <p><code class="prettyprint">instanceof</code> is used weather if a variables is an intance of a particular prototype.</p>
-    <pre><code class="prettyprint">Fusion.prototype.constructor = Fusion;
+    <pre><code class="prettyprint">fusion instanceof Fusion //false
+
+Fusion.prototype.constructor = Fusion;
 
 var fusion = new Fusion();
 
 fusion instanceof Fusion //true</code></pre>
 </div>
 
-<div class="slide">
-    <h2>What is a "Prototype"</h2>
-    <p class="slide">A prototype is just an object. Functions and objects have a hidden link to an object that is it's prototype.</p>
-    <p class="slide">In some browsers the prototype object is exposed as <code class="prettyprint">__proto__ </code>.</p>
-    <p class="slide">When a property is called the property is searched for on the object, then the objects prototype, then the prototype's prototype, etc</p>
-    <p class="slide">JavaScript stops looking up the chain when it reaches Object.prototype</p>
-</div>
 
-<div class="slide">
-    <h2>Prototype's Members</h2>
-    <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all existing instances.</p>
-     <textarea id="code21" name="code" class="code" mode="javascript" style="display: none;" runnable="true">function RealObject( name ){ 
-    this.name = name
-};
-
-var instanceOfRealObject = new RealObject( "Ryan" );
-var anotherOfRealObject = new RealObject( "Scott" );
-
-//we can add to a prototype at any time
-RealObject.prototype.iRule = function(){ 
-    return this.name + " Rules.";
-};
-
-console.log( instanceOfRealObject.iRule() );
-console.log( anotherOfRealObject.iRule() );</textarea>
-</div>
 
 <!--
 <div class="slide">
@@ -1131,7 +1144,7 @@ Design Patterns
 
 <div class="slide">
     <h2>Namespacing</h2>
-    <p>Namespacing is a way of not polluting a namespace for smaller sized applications.</p>
+    <p>Namespacing is a way of not polluting the global namespace.  It works great for smaller sized applications.</p>
     <p>Its a quick and easy way to clean up a lot of code in the $(document).ready() callback.</p>
     <pre><code class="prettyprint">$( function(){
     $( &#39;#getUsers&#39; ).on( &#39;click&#39;,function(){
@@ -1177,7 +1190,7 @@ $( function(){
 <div class="slide">
     <h2>Module Pattern</h2>
     <p>The module pattern can be used to "hide" variables and functions.</p>
-     <textarea id="code23" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var publicFunctions = ( function(){
+     <textarea id="code23" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var public = ( function(){
 
     var firstName = 'Aaron', //private
         lastName = 'Rodgers'; //private
@@ -1194,9 +1207,9 @@ $( function(){
         }
     };
     
-    return publicFn; //only what is returned is public
-} () ); /*remember the closure slide? This function is immediately 
-        invoked creating a closure */
+    return publicFn; //window.public is the publicFn.  
+    //It has access to the inner variables through a closure.
+} ( ) ); 
 
 publicFunctions.sayHello();</textarea>
 </div>
@@ -1336,13 +1349,13 @@ Resources
         <li>Nathan's Lessons <a href="http://nathansjslessons.appspot.com/" target="_blank">Interactive JavaScript Lessons</a></li>
         <li>JSBin <a href="http://www.jsbin.com/" target="_blank">http://www.jsbin.com</a></li>
     </ul>
-    <p>However I'd be remiss if I left out Douglas Crockford's "<a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">JavaScript: The Good Parts</a>".</p>
+    <p>This is where I used to mention "JavaScript the Good Parts", however "Effective JavaScript" by David Herman is one of the best JavaScript books I've read. </p>
 </div>
 
 <div class="slide" id="giveaway">
     <h2>Giveaway Time!</h2>
+    <p class="slide">What kind of car do I drive?</p>
     <p class="slide">In this presentation we created a "Robot" constructor function that took a name as a parameter.  What was the name of one of the robots we created?</p>
-    <p class="slide">Question 2 (just in case).  Name the 6 data types available in JavaScript.</p>
 </div>
 
 
