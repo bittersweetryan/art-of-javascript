@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="extensions/status/deck.status.css">
     <link rel="stylesheet" href="extensions/hash/deck.hash.css">
 
+    <link rel="stylesheet" href="presentation.css">
+
     <link rel="stylesheet" href="extensions/codemirror/deck.codemirror.css">
 
     <!-- Theme CSS files (menu swaps these out) 
@@ -56,6 +58,10 @@ Title
 
 <div class="slide" id="introslide">
     <h1>The Art of JavaScript: Level Up Your Skills In 60 Minutes</h1>
+    <div id="subtitle">
+        <h4 class="link">http://bittersweetryan.github.com/art-of-javascript</h4>
+        <h4>cf.Objective() 2013</h4>
+    </div>
 </div>
 
 <!-- 
@@ -207,7 +213,6 @@ doSometing();</textarea>
 Numbers
  -->
 
-<!-- 
 <div class="slide">
     <h2>Numbers</h2>
         <p class="slide">All numbers in JavaScript are 64 bit floating point numbers.</p>
@@ -218,17 +223,9 @@ Numbers
 console.log( "0.06 + 0.01 = " + result );</textarea>
         </div>
         <br>
-
-        <p class="slide">JavaScript has a BigNum library which will improve the accuracy of floating point expressions at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
     </div>
-        <div class="slide">
-            <p>Use the <code class="prettyprint">toFixed()</code> method to round a number to a specified number of decimal places.</p>
-            <div>
-                <textarea id="code1" name="code" class="code" mode="javascript" style="display: none;" runnable="true">console.log( 3.14159.toFixed( 2 ) ); </textarea>
-            </div>
-        </div>
 </div>
-
+<!--
 <div class="slide">
     <h2>Numbers</h2>
     <p><code class="prettyprint">NaN</code>, is a special value in JavaScript. You'll get NaN in situations like trying to do math on a variable that is <code class="prettyprint">undefined</code> or trying to perform multiplication, division, or subtraction on a string.</p>
@@ -835,7 +832,7 @@ console.log( window.robotName );
 
 try{ 
     anotherRobot.walk(); 
-} catch( ex ){ console.log( ex.message ); }</textarea>
+} catch( ex ){ console.log( 'Error! ' + ex.message ); }</textarea>
 </div>
 
 <div class="slide">
@@ -1023,7 +1020,7 @@ Inheritence
     <p class="slide">A prototype is just an object. Functions and objects have a hidden link to an object that is it's "prototype".</p>
     <p class="slide"><strong>When a property is called the property is searched for on the object, then the objects prototype, then the prototype's prototype, etc</strong></p>
     <p class="slide">JavaScript stops looking up the chain when it reaches Object.prototype.  If its not found <code>undefined</code> is returned.</p>
-    <div>
+    <div class="slide">
         <img src="images/property-lookup.png" height="350px">
     </div>
 </div>
