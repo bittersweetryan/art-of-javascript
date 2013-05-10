@@ -1102,15 +1102,14 @@ Fusion.prototype = new Car( 'Ford' );
 <div class="slide">
     <h2>Inheritance</h2>
     <p>Overriding an objects prototype also overrides a property called <code class="prettyprint">prototype.constructor</code>.</p>
-    <p>Its important to reset this property, otherwise the <code class="prettyprint">instanceof</code> operator won't work properly.</p>
-    <p><code class="prettyprint">instanceof</code> is used weather if a variables is an intance of a particular prototype.</p>
-    <pre><code class="prettyprint">fusion instanceof Fusion //false
+    <p>Its important to reset this property, otherwise some things may stop working properly.</p>
+    <pre><code class="prettyprint">Fusion.prototype = new Car();
 
-Fusion.prototype.constructor = Fusion;
+Fusion.prototype.constructor = Fusion; //reset the constructor
 
 var fusion = new Fusion();
 
-fusion instanceof Fusion //true</code></pre>
+fusion.constructor === Fusion //true</code></pre>
 </div>
 
 
