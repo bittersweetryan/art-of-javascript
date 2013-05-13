@@ -394,6 +394,7 @@ else{
 }</textarea>    
 </div>
 
+<!---
 <div class="slide">
     <h2>Truthy / Falsy Values</h2>
     <p>The following values evaluate to <code class="prettyprint">false</code>, since some of them not primitive boolean datatypes they are said to be "falsy".</p>
@@ -402,7 +403,7 @@ else{
             <li>
                 <code class="prettyprint">false</code>
             </li>
-            <li>
+            <li>s
                 <code class="prettyprint">0</code>
             </li>
             <li>
@@ -898,7 +899,7 @@ myFunc();</code></pre>
 <div class="slide">
     <h2>This</h2>
     <p>What happened in the function call?  Why did this point to window and not the function?</p>
-    <p class="slide">In order to explain we must understand what "this" means in JavaScript.  This refers to the <strong>current execution context.</strong></p>
+    <p class="slide">In order to explain we must understand what "this" means in JavaScript.  This refers to the <strong>current execution context, or what OWNS the call to the function  (think left side of function call).</strong></p>
     <p class="slide">When we called the myFunc function from within the object, the object was the current execution context.</p>
     <p class="slide">When we called myFunc() from the root of the script tag, the window object was the current execution context</p>
 </div>
@@ -1016,9 +1017,9 @@ Inheritence
 </div>
 
 <div class="slide">
-    <h2>Prototypes are the Key To Inheritance!</h2>
-    <p class="slide">A prototype is just an object. Functions and objects have a hidden link to an object that is it's "prototype".</p>
-    <p class="slide"><strong>When a property is called the property is searched for on the object, then the objects prototype, then the prototype's prototype, etc</strong></p>
+    <h2>Inheritance is Implemented Through Prototypes</h2>
+    <p class="slide">A prototype is just an object, both functions and objects have a hidden link to this object.</p>
+    <p class="slide"><strong>When a property is accessed the property is searched for on the object, then the objects prototype, then the prototype's prototype, etc</strong></p>
     <p class="slide">JavaScript stops looking up the chain when it reaches Object.prototype.  If its not found <code>undefined</code> is returned.</p>
     <div class="slide">
         <img src="images/property-lookup.png" height="350px">
@@ -1142,6 +1143,7 @@ Design Patterns
     <h2>Namespacing</h2>
     <p>Namespacing is a way of not polluting the global namespace.  It works great for smaller sized applications.</p>
     <p>Its a quick and easy way to clean up a lot of code in the $(document).ready() callback.</p>
+    <h4>Bad</h4>
     <pre><code class="prettyprint">$( function(){
     $( &#39;#getUsers&#39; ).on( &#39;click&#39;,function(){
         //get users
@@ -1157,6 +1159,7 @@ Design Patterns
 
 <div class="slide">
     <h2>Namespacing</h2>
+    <h4>Better</h4>
      <pre><code class="prettyprint">var userApp = {
     $userDiv : null,
     $getUsers : null,
