@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+]<!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
@@ -751,18 +751,22 @@ createCar();</textarea>
      <textarea id="code8" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var lexical = function(){
     var outerVar = 'outer';
     
-    return function(){
+     var innerFunction = function(){
 
         var innerVar = "inner"; //outer function does not have access
 
         console.log( outerVar );
 
-        var innerFunction = function(){
+        var innerFunction2 = function(){
             console.log( innerVar, outerVar );
         };
 
-        innerFunction();
+        innerFunction2();
+
     }();
+
+    innerFunction();
+
 };
 
 lexical();</textarea>
@@ -1189,28 +1193,28 @@ $( function(){
 <div class="slide">
     <h2>Module Pattern</h2>
     <p>The module pattern can be used to "hide" variables and functions.</p>
-     <textarea id="code23" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var public = ( function(){
+     <textarea id="code23" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var person = ( function(){
 
-    var firstName = 'Aaron', //private
-        lastName = 'Rodgers'; //private
+    var _firstName = 'Aaron', //private
+        _lastName = 'Rodgers'; //private
     
-    var getFullName = function(){ //private
+    var _getFullName = function(){ //private
 
-        return firstName + ' ' + lastName;                         
+        return _firstName + ' ' + _lastName;                         
     };
     
-    var publicFn = {
+    var public = {
 
         sayHello : function(){
-            console.log( "Hello, " + getFullName() );
+            console.log( "Hello, " + _getFullName() );
         }
     };
     
-    return publicFn; //window.public is the publicFn.  
+    return public; //window.public is the publicFn.  
     //It has access to the inner variables through a closure.
 } ( ) ); 
 
-publicFunctions.sayHello();</textarea>
+person.sayHello();</textarea>
 </div>
 
 <div class="slide">

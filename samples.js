@@ -69,24 +69,23 @@ $(function(){
 		},
 
 		inheritance1 : function(){
-			var Car = function(){ };
+			var Car = function( maker){ this.manufacturer = maker };
 
 			//add properties to Car's Prototype
 			Car.prototype = {
-				wheels : 4, doors : 4,  manufacturer : ""
+			    wheels : 4, doors : 4,  manufacturer : ""
 			};
 
-			var Fusion = function(){ };
+			var Fusion = function(){ }; 
 
 			//set the Fusion's prototype to a new instance of car
-			Fusion.prototype = new Car();
+			Fusion.prototype = new Car( 'Ford' );
 
-			Fusion.prototype.constructor = Fusion; //reset the R8's constructor
+			Fusion.prototype.constructor = Fusion; //reset the Fusion's constructor
 
 			var fusion = new Fusion();
 
-			console.log(fusion);
-			console.log(fusion.wheels);
+			console.log( fusion.manufacturer );
 		},
 
 		optionsPattern : function(){
