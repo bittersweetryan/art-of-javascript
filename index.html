@@ -1,5 +1,5 @@
-]<!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!DOCTYPE html>
+<!--[if lt IE 7870> <html class="no-js ie6" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
@@ -867,7 +867,7 @@ try{
 </div>
 <div class="slide">
     <h2>Constructor Functions</h2>
-    <p>Without the <code class="prettyprint">new</code> keyword when the constructor is called <code clss="prettyprint">this</code> is equal to the global object.</p>
+    <p>Without the <code class="prettyprint">new</code> keyword when the constructor is called <code class="prettyprint">this</code> is equal to the global object.</p>
 <pre><code class="prettyprint">var Robot = function( robotName ){
     this.robotName = robotName;  //"this" actually equals the window object in a browser
 };
@@ -957,14 +957,14 @@ myObj.sayHello();</textarea>
 <h2>This In Object Literals</h2>
 <p>Be careful when using <code class="prettyprint">this</code> in nested functions!</p>
  <pre><code class="prettyprint">var myObj = {
-    firstName : &quot;Homer&quot;,
+    firstName : &amp;quot;Homer&amp;quot;,
 
     sayHello : function(){
         //look what happens when this is used inside a nested function
-        return function(){
-            console.log( &quot;Hello, &quot; + this.firstName );
+        return (function(){
+            console.log( &amp;quot;Hello, &amp;quot; + this.firstName );
             console.log( this );
-        };
+        }());
     }
 };
 
@@ -1026,7 +1026,7 @@ Inheritence
     <p class="slide"><strong>When a property is accessed the property is searched for on the object, then the objects prototype, then the prototype's prototype, etc</strong></p>
     <p class="slide">JavaScript stops looking up the chain when it reaches Object.prototype.  If its not found <code>undefined</code> is returned.</p>
     <div class="slide">
-        <img src="images/property-lookup.png" height="350px">
+        <img src="images/property-lookup.png" height="350">
     </div>
 </div>
 
