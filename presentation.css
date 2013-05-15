@@ -1,6 +1,6 @@
 #subtitle {
 	text-align: center;
-	bottom: 150px;
+	bottom: 100px;
 	position: fixed;
 	width: 100%;
 	margin: 0 auto;
@@ -9,11 +9,13 @@
 #subtitle h4.link{
 	color: #c00;
 	opacity: 1;
+    margin: 20px 0;
+    font-size: 1.5em;
 }
 
 #subtitle h4 {
 	margin: 0 auto;
 	position: relative;
 	left: 0;
-	-webkit-transform: translate(-150px, 0);
+	-webkit-transform: translate(-50px, 0);
 }
