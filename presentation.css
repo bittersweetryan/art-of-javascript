@@ -9,6 +9,8 @@
 #subtitle h4.link{
 	color: #c00;
 	opacity: 1;
+    margin: 20px 0;
+    font-size: 1.5em;
 }
 
 #subtitle h4 {

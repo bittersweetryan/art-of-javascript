@@ -77,20 +77,19 @@ About me
         <li><a href="http://blog.bittersweetryan.com" target="_blank">blog.bittersweetryan.com</a></li>
     </ul>
     <h3>Experience</h3>
-    <ul>
+    <ul style="list-style:none">
         <li>Front End Engineer at Northwestern Mutual.</li>
         <li>Web Developer since 1997</li>
         <li>I ♥ Open Source
-            <ul>
+            <ul style="list-style:none">
                 <li>
-                    <strong>Author</strong>: ColdFusion Koans, GitHub News Filter (Chrome Extension), Envelope.js
+                    <strong>Author</strong>: ColdFusion Koans, Envelope.js, jsonme
                 </li>
                 <li>
-                    <strong>Contributor</strong>: JavaScript Koans, MXUnit, FW/1
+                    <strong>Contributor</strong>: JavaScript Koans, MXUnit, FW/1, Tomorrow Theme
                 </li>
             </ul>
         </li>
-        <li>Known To Make Obscure Simpsons Refernces. D'oh!</li>
     </ul>
 </div>
 
@@ -546,6 +545,13 @@ console.log( myObject ['foo ' + 'bar' ] );</textarea>
     sayHello : function(){
         //omitting the this keyword below would generate an error
         console.log( 'Hello, ' + this.firstName ); 
+        
+        try{
+            console.log( 'My name is: ' + firstName );
+        }
+        catch( e ){
+            console.log( 'Error! ' + e.message );
+        }
     }    
 };
 
@@ -556,10 +562,10 @@ myObj.sayHello();</textarea>
 <div class="slide">
     <h2>Objects</h2>
     <p>To check if a property exists in an object use the <code class="prettyprint">hasOwnProperty()</code> method or the <code class="prettyprint">in</code> operator. <code class="prettyprint">hasOwnProperty</code> will only search the current object for a property whereas <code class="prettyprint">in</code> will search all the way up the prototype chain.</p>
-    <h3>JavaScript</h3>
     <textarea id="code66" name="code" class="code" mode="javascript" style="display: none;" runnable="true">var myObject = {foo : 'Foo'};
 
-myObject.__proto__ = { baz : "Baz" }; //we'll talk about this later
+//we'll talk about prototypes later!
+myObject.__proto__ = { baz : "Baz" }; 
 
 console.log( 'baz' in myObject );
 
@@ -602,7 +608,9 @@ Functions
 
 <div class="slide">
     <h2>Hoisting</h2>
-    <p>There is one fundamental difference between function expressions and statements: hoisting.  Hoisting is when the JavaScript parser takes a function and variable declarations and moves them to the top of the current scope.</p>
+    <p>There is one fundamental difference between function expressions and statements: hoisting.</p>
+    <p>Hoisting is when the JavaScript parser takes <code>function</code> and <code>variable</code> declarations and moves them to the top of the current scope.</p>
+    <p>Since JavaScript only has function scope, this means that they are moved to the top of the function they are delcared in.</p>
 </div>
 
 <div class="slide">
@@ -613,10 +621,10 @@ Functions
     firstVar = &quot;&quot;;
 
     var secondVar = &quot;&quot;;
+    
+    secondFunction( firstVar + secondVar ); //OK
 
-    secondFunction( firstVar + secondVar );
-
-    firstFunction(); //throws an error
+    firstFunction(); //ERROR
 
     var firstFunction = function(){
         //do something
@@ -631,17 +639,17 @@ Functions
 <div class="slide">
     <h2>Function Declaration After Hoisting</h2>
     <pre><code class="prettyprint">function hoistingExample(){
-    //the function statement has been brought to the top of the scope
+    //function statements get moved to the top of the scope
     function secondFunction(){ 
         // do another thing
     }
 
-    //declared the variables
+    //variable declarations come next (but not the instantiation)
     var firstVar;
     var secondVar;
     var firstFun;
 
-    //instantiate the variables where they are in the code
+    //instantiation is left in place
     firstVar = &quot;&quot;;
 
     secondVar = &quot;&quot;;
@@ -763,7 +771,7 @@ createCar();</textarea>
 
         innerFunction2();
 
-    }();
+    };
 
     innerFunction();
 
@@ -794,7 +802,7 @@ lexical();</textarea>
     
 };
 
-var callTimer = timesCalled(); //this call right here creates the closure
+var callTimer = timesCalled(); //the closure is created here!
 
 callTimer();</code></pre>
 <input type="button" data-run="closure" value="Run">
@@ -806,8 +814,8 @@ callTimer();</code></pre>
     <ul>
         <li class="slide">By convention the first letter of a constructor should be a capital letter.</li>
         <li class="slide">Never use a constructor function without first using the <code class="prettyprint">new</code> keyword!</li>
-        <li class="slide">Using the new keyword will create a new scope for the function.</li>
-        <li class="slide">Using the new keyword will also create the inheritance tree. Without new a function will only inherit from the Function Constructor.</li>
+        <li class="slide">Using the <code class="prettyprint">new</code> keyword will create a new scope for the function.</li>
+        <li class="slide">Using the <code class="prettyprint">new</code> keyword will also create the inheritance tree. Without new a function will only inherit from the Function Constructor.</li>
         <li class="slide">I rarely use consructor functions.</li>
     </ul>
 </div>
@@ -1064,7 +1072,8 @@ var Fusion = function(){ };
 //set the Fusion&#39;s prototype to a new instance of car
 Fusion.prototype = new Car( 'Ford' );
 
-Fusion.prototype.constructor = Fusion; //reset the Fusion&#39;s constructor
+//reset the constructor property!
+Fusion.prototype.constructor = Fusion; 
 
 var fusion = new Fusion();
 
@@ -1144,10 +1153,10 @@ Design Patterns
 </div>
 
 <div class="slide">
-    <h2>Namespacing</h2>
+    <h2>Namespacing (Object Literal Pattern)</h2>
     <p>Namespacing is a way of not polluting the global namespace.  It works great for smaller sized applications.</p>
-    <p>Its a quick and easy way to clean up a lot of code in the $(document).ready() callback.</p>
-    <h4>Bad</h4>
+    <p>Its a quick and easy way to clean up a lot of code in the <code class="prettyprint">$(document).ready()</code> callback.</p>
+    <h4>Could be better...</h4>
     <pre><code class="prettyprint">$( function(){
     $( &#39;#getUsers&#39; ).on( &#39;click&#39;,function(){
         //get users
@@ -1199,22 +1208,24 @@ $( function(){
         _lastName = 'Rodgers'; //private
     
     var _getFullName = function(){ //private
-
         return _firstName + ' ' + _lastName;                         
     };
     
+    //define public API to return
     var public = {
-
         sayHello : function(){
             console.log( "Hello, " + _getFullName() );
         }
     };
     
-    return public; //window.public is the publicFn.  
-    //It has access to the inner variables through a closure.
+    return public;   
 } ( ) ); 
 
-person.sayHello();</textarea>
+person.sayHello();
+
+try{ person._getFullName(); } 
+catch( e ){ console.log( 'Error! ' + e.message ); };
+</textarea>
 </div>
 
 <div class="slide">
@@ -1263,7 +1274,7 @@ $(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
 -->
 <div class="slide">
     <h2>Pub-Sub (AKA Observer)</h2>
-<pre><code class="prettyprint">​var contacts = {
+<pre><code class="prettyprint">var contacts = {
     collection : [ &#39;Aaron&#39;, &#39;Drew&#39;, &#39;Tom&#39; ],
     update : function(){
         this.collection[ 0 ] = &#39;Arian&#39;;
